@@ -1,13 +1,13 @@
 {
   "name": "enlight",
   "title": "Enlight",
-  "id": "jid1-H8KAXoB9j5AodQ",
+  "id": "enlight_highlightjs",
   "author": "Qeole",
   "homepage": "https://github.com/Qeole/Enlight",
   "icon": "data/icon-64.png",
   "license": "MPL 2.0",
   "version": "1.0",
-  "description": "Syntax highlight for raw source code.\n\nProvides syntax highlighting for raw source code displayed in current tab.\nTo activate, click on the add-on button in Firefox toolbar, and select the language syntax you want to use (or “Autodetect” for automatic detection). You can also select the color theme to use in the dropdown list below.\n\nSyntax highlighting relies on highlight.js project (see https://highlightjs.org). Currently packaged is the version 8.2 of highlight.js, which provides 49 color themes and syntax for 92 languages.",
+  "description": "Syntax highlight for raw source code.",
   "preferences": [
   {
     "name": "style",

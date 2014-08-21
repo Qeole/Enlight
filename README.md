@@ -31,5 +31,5 @@ Other than on the [hilight.js homesite][1], you can find a list of supported lan
 [2]: https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_started)
 [3]: https://github.com/Qeole/Enlight/blob/master/LICENSE
 [4]: https://github.com/isagalaev/highlight.js/blob/master/LICENSE
-[3]: https://github.com/Qeole/Enlight/blob/master/data/panel.html
-[3]: https://github.com/Qeole/Enlight/blob/master/package.json
+[5]: https://github.com/Qeole/Enlight/blob/master/data/panel.html
+[6]: https://github.com/Qeole/Enlight/blob/master/package.json
