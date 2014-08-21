@@ -1,0 +1,217 @@
+{
+  "name": "enlight",
+  "title": "Enlight",
+  "id": "jid1-H8KAXoB9j5AodQ",
+  "author": "Qeole",
+  "homepage": "https://github.com/Qeole/Enlight",
+  "icon": "data/icon-64.png",
+  "license": "MPL 2.0",
+  "version": "1.0",
+  "description": "Syntax highlight for raw source code.\n\nProvides syntax highlighting for raw source code displayed in current tab.\nTo activate, click on the add-on button in Firefox toolbar, and select the language syntax you want to use (or “Autodetect” for automatic detection). You can also select the color theme to use in the dropdown list below.\n\nSyntax highlighting relies on highlight.js project (see https://highlightjs.org). Currently packaged is the version 8.2 of highlight.js, which provides 49 color themes and syntax for 92 languages.",
+  "preferences": [
+  {
+    "name": "style",
+    "type": "menulist",
+    "title": "Color theme",
+    "value": "solarized_dark",
+    "options": [
+    {
+      "value": "arta",
+      "label": "Arta"
+    },
+    {
+      "value": "ascetic",
+      "label": "Ascetic"
+    },
+    {
+      "value": "atelier-dune.dark",
+      "label": "Atelier Dune Dark"
+    },
+    {
+      "value": "atelier-dune.light",
+      "label": "Atelier Dune Light"
+    },
+    {
+      "value": "atelier-forest.dark",
+      "label": "Atelier Forest Dark"
+    },
+    {
+      "value": "atelier-forest.light",
+      "label": "Atelier Forest Light"
+    },
+    {
+      "value": "atelier-heath.dark",
+      "label": "Atelier Heath Dark"
+    },
+    {
+      "value": "atelier-heath.light",
+      "label": "Atelier Heath Light"
+    },
+    {
+      "value": "atelier-lakeside.dark",
+      "label": "Atelier Lakeside Dark"
+    },
+    {
+      "value": "atelier-lakeside.light",
+      "label": "Atelier Lakeside Light"
+    },
+    {
+      "value": "atelier-seaside.dark",
+      "label": "Atelier Seaside Dark"
+    },
+    {
+      "value": "atelier-seaside.light",
+      "label": "Atelier Seaside Light"
+    },
+    {
+      "value": "brown_paper",
+      "label": "Brown Paper"
+    },
+    {
+      "value": "codepen-embed",
+      "label": "Codepen Embed"
+    },
+    {
+      "value": "color-brewer",
+      "label": "Color Brewer"
+    },
+    {
+      "value": "dark",
+      "label": "Dark"
+    },
+    {
+      "value": "default",
+      "label": "Default"
+    },
+    {
+      "value": "docco",
+      "label": "Docco"
+    },
+    {
+      "value": "far",
+      "label": "Far"
+    },
+    {
+      "value": "foundation",
+      "label": "Foundation"
+    },
+    {
+      "value": "github",
+      "label": "Github"
+    },
+    {
+      "value": "googlecode",
+      "label": "Googlecode"
+    },
+    {
+      "value": "hybrid",
+      "label": "Hybrid"
+    },
+    {
+      "value": "idea",
+      "label": "Idea"
+    },
+    {
+      "value": "ir_black",
+      "label": "Ir Black"
+    },
+    {
+      "value": "kimbie.dark",
+      "label": "Kimbie Dark"
+    },
+    {
+      "value": "kimbie.light",
+      "label": "Kimbie Light"
+    },
+    {
+      "value": "magula",
+      "label": "Magula"
+    },
+    {
+      "value": "mono-blue",
+      "label": "Mono Blue"
+    },
+    {
+      "value": "monokai",
+      "label": "Monokai"
+    },
+    {
+      "value": "monokai_sublime",
+      "label": "Monokai Sublime"
+    },
+    {
+      "value": "obsidian",
+      "label": "Obsidian"
+    },
+    {
+      "value": "paraiso.dark",
+      "label": "Paraiso Dark"
+    },
+    {
+      "value": "paraiso.light",
+      "label": "Paraiso Light"
+    },
+    {
+      "value": "pojoaque",
+      "label": "Pojoaque"
+    },
+    {
+      "value": "railscasts",
+      "label": "Railscasts"
+    },
+    {
+      "value": "rainbow",
+      "label": "Rainbow"
+    },
+    {
+      "value": "school_book",
+      "label": "School Book"
+    },
+    {
+      "value": "solarized_dark",
+      "label": "Solarized Dark"
+    },
+    {
+      "value": "solarized_light",
+      "label": "Solarized Light"
+    },
+    {
+      "value": "sunburst",
+      "label": "Sunburst"
+    },
+    {
+      "value": "tomorrow",
+      "label": "Tomorrow"
+    },
+    {
+      "value": "tomorrow-night-blue",
+      "label": "Tomorrow Night Blue"
+    },
+    {
+      "value": "tomorrow-night-bright",
+      "label": "Tomorrow Night Bright"
+    },
+    {
+      "value": "tomorrow-night",
+      "label": "Tomorrow Night"
+    },
+    {
+      "value": "tomorrow-night-eighties",
+      "label": "Tomorrow Night Eighties"
+    },
+    {
+      "value": "vs",
+      "label": "VS"
+    },
+    {
+      "value": "xcode",
+      "label": "XCode"
+    },
+    {
+      "value": "zenburn",
+      "label": "Zenburn"
+    }
+    ]
+  }
+  ]
+}
