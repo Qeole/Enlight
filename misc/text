@@ -1,0 +1,34 @@
+### Reviewers
+
+Everything under data/highlightjs/ is just unzipped archive from https://highlightjs.org/download/ (with all languages selected). I did not modify it at all. It was generated from code available at https://github.com/isagalaev/highlight.js.
+
+
+
+### Profil dév
+
+This add-on was originally buit to bring syntax highlight to raw diff patches displayed on <a href="https://bugzilla.mozilla.org">Bugzilla</a>. It is sometimes usefull to display raw patches for bugs related to the one you're working on. But patches are much easier to read with a few colors, of course.
+
+
+Features to come may include:
+<ul>
+  <li>Possibility to highlight selected text only</li>
+  <li>Better UI integration, <i>e.g.</i> drop-down menu instead of panel or right-click to select color scheme.</li>
+  <li>The icon does not integrate so well to Australis, could be improved.</li>
+</ul>
+No improvements will be made here for adding supported languages or improving parsers, see the <a href="https://github.com/isagalaev/highlight.js">highlight.js GitHub repo</a> for this instead.
+
+
+### Détails module
+
+Provides syntax highlighting for raw source code displayed in current tab.
+To activate, click on the add-on button in Firefox toolbar, and select the language syntax you want to use (or <code>Autodetect</code> for automatic detection). You can also select the color theme to use in the add-on preferences.
+
+Syntax highlighting relies on highlight.js project (see <a href="https://highlightjs.org">https://highlightjs.org</a>). Currently packaged is the version 8.2 of highlight.js, which provides 49 color themes and syntax for 92 languages.
+
+
+
+### Détails techniques
+
+Embeds a package version of highlight.js version 8.2 bundle, containing syntax description for all 92 proposed languages. You can get the same at <a href="https://highlightjs.org/download/">https://highlightjs.org/download/</a>. If you want to help them parsing languages, highlight.js is on <a href="https://highlightjs.org/contribute/">GitHub</a>.
+
+If you have improvements for the add-on itself, feel free to file an issue or to submit a pull request on <a href="https://github.com/Qeole/Enlight">the add-on repo</a>.

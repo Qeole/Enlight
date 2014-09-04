@@ -24,8 +24,8 @@ function dohl() {
   document.head.appendChild(css);
 
   initBody = document.createElement("div");
-  initBody.setAttribute("style", "display:none;");
-  initBody.setAttribute("id",    "enlightInitBody");
+  initBody.style.display = "none";
+  initBody.setAttribute("id", "enlightInitBody");
   initBody.innerHTML = document.body.innerHTML;
 
   var lang = (self.options.language != "") ? ' class=' + self.options.language : "";
