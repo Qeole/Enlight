@@ -17,7 +17,8 @@
  * Execute this at startup
  */
 var enlight = function () {
-  if (!document.body || document.body.getElementsByTagName("pre").length == 0) {
+  if (!document.body ||
+       document.body.getElementsByTagName("pre").length == 0) {
     return;
   }
 
@@ -63,9 +64,10 @@ function dohl() {
   /*
    * Deal with language
    */
-  var setLanguage = (self.options.language != "") ?
-    function (element) { element.setAttribute("class", self.options.language); } :
-    function (element) {};
+  var setLanguage = (self.options.language != "" &&
+                     self.options.language != "auto") ?
+    function(element){element.setAttribute("class", self.options.language);} :
+    function(element){};
 
   /*
    * Enclose <pre></pre> blocks content in <code></code> blocks

@@ -1,11 +1,18 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <style type="text/css">.lang:hover{background-color:#DEE2E8;}</style>
+    <style type="text/css">
+      .auto:hover{background-color:green;color:white;}
+      .auto{padding-left:20px; font-size:150%;background-color:#B5FFB7;}
+      .none:hover{background-color:red;color:white;}
+      .none{padding-left:20px;font-size:120%;background-color:#FFCACA;}
+      .lang:hover{background-color:#DEE2E8;}
+      .lang{padding-left:20px;}
+    </style>
   </head>
   <body>
-    <div class="lang" id=""><b>Autodetect</b></div>
-    <div class="lang" id="nohighlight">None</div>
+    <div class="auto" id="auto"><b>Auto-detect</b></div>
+    <div class="none" id="nohighlight"><b>None</b></div>
     <br />
     <div class="lang" id="1c">1C</div>
     <div class="lang" id="actionscript">ActionScript</div>
