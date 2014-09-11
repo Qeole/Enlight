@@ -17,8 +17,14 @@
  * Execute this at startup
  */
 var enlight = function () {
+  /*
+   * If there is no <pre></pre> HTML block, there's nothing to work on: get
+   * out of here.
+   */
   if (!document.body ||
-       document.body.getElementsByTagName("pre").length == 0) {
+       document.body.getElementsByTagName("pre").item(0) === null) {
+    // TODO: tell it to add-on core so that we can toggle button off
+    self.port.emit('toggle_off', 1);
     return;
   }
 
@@ -31,13 +37,12 @@ var enlight = function () {
 } ();
 
 function dohl() {
-  /*
-   * If there is no <pre></pre> HTML block,
-   * there's nothing to highlight: get out of here
-   */
   var preList = document.getElementsByTagName("pre");
-  if (preList.item(0) == null) {
-    // TODO: tell it to add-on core so that we can toggle button off
+  /*
+   * If self.options is undefined we shouldn't be there. Page has probably been
+   * changed since a former highlight: get out as wall.
+   */
+  if (self.options === undefined) {
     return;
   }
 
@@ -89,6 +94,23 @@ function dohl() {
    * Save previous document in a hidden div to restore it on undohl()
    */
   document.body.appendChild(idoc);
+
+  /*
+   * Notify core script that page is unload: highlighting will be lost, so
+   * toggle add-on button off.
+   * But don't erase an existing window.onbeforeunload function.
+   */
+  if (window.onunload === null) {
+    window.onunload = function () {
+      self.port.emit('toggle_off', 2);
+      /*
+       * self.port.emit needs some time before document unloads,
+       * sleep a while (value is milliseconds).
+       */
+      var startTime = new Date().getTime();
+      while (new Date().getTime() < startTime + 50);
+    };
+  }
 }
 
 function undohl(idoc) {
