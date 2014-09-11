@@ -43,7 +43,7 @@ exports["test main02 double click"] = function(assert, done) {
   });
 };
 
-exports["test main03 highlight empty"] = function(assert, done) {
+exports["test main03 highlight blank"] = function(assert, done) {
   assert.ok(!main.button.state("tab").checked, "button toggled off");
   assert.ok(!main.panel.isShowing,             "panel is closed");
 
@@ -62,7 +62,33 @@ exports["test main03 highlight empty"] = function(assert, done) {
   });
 };
 
-exports["test main04 highlight test page"] = function(assert, done) {
+exports["test main04 highlight empty"] = function(assert, done) {
+  assert.ok(!main.button.state("tab").checked, "button toggled off");
+  assert.ok(!main.panel.isShowing,             "panel is closed");
+  tabs.open({
+    url     : self.data.url("test/index.html"),
+    onReady : () => {
+
+      main.button.click();
+      utils.waitUntil(function(){return main.panel.isShowing;}).then(() => {
+        assert.ok( main.button.state("tab").checked, "button toggled on");
+        assert.ok( main.panel.isShowing,             "panel is open");
+
+        clickInPanel("auto");
+        main.doHighlight();
+        utils.waitUntil(function(){return !main.button.state("tab").checked;}).then(() => {
+          assert.ok(!main.button.state("tab").checked, "button toggled off");
+          assert.ok(!main.panel.isShowing,             "panel is closed");
+
+          tabs.activeTab.close();
+          done();
+        });
+      });
+    }
+  });
+};
+
+exports["test main05 highlight test page"] = function(assert, done) {
   assert.ok(!main.button.state("tab").checked, "button toggled off");
   assert.ok(!main.panel.isShowing,             "panel is closed");
   tabs.open({
@@ -94,7 +120,7 @@ exports["test main04 highlight test page"] = function(assert, done) {
   });
 };
 
-exports["test main05 highlight then reload"] = function(assert, done) {
+exports["test main06 highlight then reload"] = function(assert, done) {
   assert.ok(!main.button.state("tab").checked, "button toggled off");
   assert.ok(!main.panel.isShowing,             "panel is closed");
   tabs.open({
