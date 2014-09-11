@@ -23,7 +23,6 @@ var enlight = function () {
    */
   if (!document.body ||
        document.body.getElementsByTagName("pre").item(0) === null) {
-    // TODO: tell it to add-on core so that we can toggle button off
     self.port.emit('toggle_off', 1);
     return;
   }
