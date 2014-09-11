@@ -1,5 +1,6 @@
-Enlight
+Enlight ![Add-on icon](misc/spot64.png)
 =======
+
 
 Firefox add-on providing syntax highlighting for raw code, based on the highlight.js project.
 
