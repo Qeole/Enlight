@@ -14,8 +14,11 @@ The `xpi` add-on file itself can easily be generated with a `cfx xpi` command fr
 
 ## Usage
 
-On install, a new button with a ~~spotlight~~ light bulb (yes, it's supposed to be a ~~spotlight~~ light bulb − but the ugly spotlight remains as the add-on icon in the add-on manager tab for now) should appear in Firefox toolbar.
+On install, a new button with a ~~spotlight~~ light bulb (![buttonOff](data/lightbulb_off-32.png)) (yes, it's supposed to be a ~~spotlight~~ light bulb -- but the magnificent spotlight remains the add-on icon in the add-on manager tab for now) should appear in Firefox toolbar.
+
 To highlight raw source code in the active tab, click on this button and select the language syntax you want to use (or “Autodetect” for automatic detection).
+If you want to undo highlighting, click again on the button (![buttonOn](data/lightbulb_on-32.png)) (reloading the page also works).
+
 You can also select the color theme you want to use in the add-on preferences, through Firefox add-on manager tab.
 
 ## License
