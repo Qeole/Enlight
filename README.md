@@ -29,7 +29,7 @@ The highlight.js minimal script included in this module provides support for 22 
   1. download an archive containing all languages you want from https://highlightjs.org/download;
   2. extract the archive;
   3. get the source of the add-on;
-  4. overwrite add-on file `data/highlight.min.js` with file `highlight.pack.js` from the archive you obtained;
+  4. overwrite add-on file `data/highlightjs/highlight.min.js` with file `highlight.pack.js` from the archive you obtained;
   5. uncomment lines relative to added languages in `data/panel.html`;
   6. repack the add-on (with command `cfx xpi` from add-on SDK) and install add-on in Firefox.
 
