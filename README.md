@@ -3,7 +3,7 @@ Enlight
 
 Firefox add-on providing syntax highlighting for raw code, based on the highlight.js project.
 
-Syntax highlighting relies on highlight.js project (see [project homepage][1]. Currently packaged with the add-on is the version 8.2 of highlight.js, which provides 49 color themes and syntax for 92 languages.
+Syntax highlighting relies on highlight.js project (see [project homepage][1]. Currently packaged with the add-on is the version 8.2 of highlight.js, which provides 49 color themes and syntax for 22 languages.
 
 ## Install
 
