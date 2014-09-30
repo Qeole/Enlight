@@ -32,3 +32,25 @@ Syntax highlighting relies on highlight.js project (see <a href="https://highlig
 Embeds a package version of highlight.js version 8.2 bundle, containing syntax description for all 92 proposed languages. You can get the same at <a href="https://highlightjs.org/download/">https://highlightjs.org/download/</a>. If you want to help them parsing languages, highlight.js is on <a href="https://highlightjs.org/contribute/">GitHub</a>.
 
 If you have improvements for the add-on itself, feel free to file an issue or to submit a pull request on <a href="https://github.com/Qeole/Enlight">the add-on repo</a>.
+
+
+
+# Notes version
+
+Le module embarque à présent une version minimale mais « plus officielle » du code du projet <i>highlight.js</i>.
+Le nombre de langages supportés passe de 92 à 22, mais c'est un mal nécessaire pour obtenir la validation du module par Mozilla sur cette plate-forme.
+
+La page GiHub de l'extension fournit, au besoin, les instructions nécessaires pour réintroduire des langages dans le module.
+
+From now on the add-on embeds a minimal but “more official” version of <i>highlight.js</i> script.
+The number of supported languages dropped from 92 to 22, but this is necessary to get approval from Mozilla on this platform.
+
+See the add-on GitHub page for instructions about how to add languages back in the add-on.
+
+
+# Notes dév
+
+This new version follows an IRC conversation with editor erosman.
+Following his/her suggestion, I now embed a “more official” version of highlight.js minified code, i.e. the one available at http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js (or at http://yandex.st/highlightjs/8.2/highlight.min.js, for they are the same). It is still located under data/highlightjs/.
+
+Here's an example of source code file you can try to highlight with the add-on (same link as in screenshots): https://bug1045209.bugzilla.mozilla.org/attachment.cgi?id=8475819
