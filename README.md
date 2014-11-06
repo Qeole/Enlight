@@ -4,7 +4,7 @@
 
 Firefox add-on providing syntax highlighting for raw code, based on the highlight.js project.
 
-Syntax highlighting relies on highlight.js project (see [project homepage][1]. Currently packaged with the add-on is the version 8.2 of highlight.js, which provides 49 color themes and syntax for 22 languages.
+Syntax highlighting relies on highlight.js project (see [project homepage][1]. Currently packaged with the add-on is the version 8.3 of highlight.js, which provides 49 color themes and syntax for 22 languages.
 
 ## Install
 
@@ -23,7 +23,7 @@ You can also select the color theme you want to use in the add-on preferences, t
 
 ## Supporting more languages
 
-The highlight.js minimal script included in this module provides support for 22 languages, while the project theoretically offers support for up to 92 languages. I had to restrict it because of Mozilla add-on platform review policy. To get support for more languages, you can use one of the two following methods:
+The highlight.js minimal script included in this module provides support for 22 languages, while the project theoretically offers support for up to 103 languages. I had to restrict it because of Mozilla add-on platform review policy. To get support for more languages, you can use one of the two following methods:
 * Use branch `all_languages` of this repository − it contains a binary `xpi` file not approved by Mozilla, but containing support for all languages. NOTE: `all_languages` branch was not verified by Mozilla, so you are _not_ expected to do this unless you trust me for not altering code from highlight.js, or you verified by yourself.
 * Add support yourself by reproducing following steps:
   1. download an archive containing all languages you want from https://highlightjs.org/download;

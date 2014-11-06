@@ -90,6 +90,19 @@ function dohl() {
   hljs.initHighlighting(); // from highlight.pack.js
 
   /*
+   * There's a white border remaining because of document.background.
+   * If option is set, remove it.
+   */
+  if (self.options.bgColor) {
+    setTimeout(function () { // Wait for CSS to be computed
+      let codeBG = getComputedStyle(code)["background-color"];
+      if (codeBG && codeBG!="white" && codeBG!="#FFFFFF" && codeBG!="#ffffff") {
+          document.body.style = "background-color: " + codeBG + ";";
+      }
+    }, 50);
+  }
+
+  /*
    * Save previous document in a hidden div to restore it on undohl()
    */
   document.body.appendChild(idoc);
@@ -104,7 +117,8 @@ function dohl() {
       self.port.emit('toggle_off', 2);
       /*
        * self.port.emit needs some time before document unloads,
-       * sleep a while (value is milliseconds).
+       * sleep a while (value is milliseconds). setTimeout() does
+       * not work here.
        */
       var startTime = new Date().getTime();
       while (new Date().getTime() < startTime + 50);
