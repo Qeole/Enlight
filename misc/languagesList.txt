@@ -1,0 +1,103 @@
+1c:1C
+actionscript:ActionScript
+apache:Apache
+applescript:AppleScript
+asciidoc:AsciiDoc
+autohotkey:AutoHotkey
+avrasm:AVR Assembly
+axapta:Axapta
+bash:Bash
+brainfuck:Brainfuck
+cpp:C++
+cs:C#
+capnproto:Cap'n Proto
+clojure:Clojure
+cmake:CMake
+coffeescript:CoffeeScript
+css:CSS
+d:D
+dart:Dart
+delphi:Delphi
+diff:Diff
+django:Django
+dos:DOS
+dust:Dust
+elixir:Elixir
+erb:ERB (Embedded Ruby)
+erlang:Erlang
+erlang-repl:Erlang REPL
+fsharp:F#
+fix:FIX
+gcode:G-code (ISO 6983)
+gherkin:Gherkin
+glsl:GLSL
+go:Go
+gradle:Gradle
+groovy:Groovy
+haml:Haml
+handlebars:Handlebars
+haskell:Haskell
+haxe:Haxe
+http:HTTP
+ini:Ini
+x86asm:Intel x86 Assembly
+java:Java
+javascript:JavaScript
+json:JSON
+lasso:Lasso
+less:Less
+lisp:Lisp
+livecodeserver:LiveCode
+livescript:LiveScript
+lua:Lua
+makefile:Makefile
+markdown:Markdown
+mathematica:Mathematica
+matlab:Matlab
+mel:MEL
+mizar:Mizar
+monkey:Monkey
+nginx:Nginx
+nimrod:Nimrod
+nix:Nix
+nsis:NSIS
+objectivec:Objective C
+ocaml:OCaml
+ruleslanguage:Oracle Rules Language
+oxygene:Oxygene
+parser3:Parser3
+perl:Perl
+php:PHP
+powershell:PowerShell
+processing:Processing
+protobuf:Protocol Buffers
+puppet:Puppet
+python:Python
+profile:Python Profile
+q:Q
+r:R
+rib:RenderMan RIB
+rsl:RenderMan RSL
+ruby:Ruby
+rust:Rust
+scala:Scala
+scheme:Scheme
+scilab:Scilab
+scss:SCSS
+smalltalk:Smalltalk
+sql:SQL
+stylus:Stylus
+swift:Swift
+tcl:Tcl
+tex:TeX
+thrift:Thrift
+twig:Twig
+typescript:TypeScript
+vala:Vala
+vbnet:VB.NET
+vbscript:VBScript
+vbscript-html:VBScript in HTML
+vhdl:VHDL
+vim:Vim Script
+xl:XL
+xml:XML
