@@ -214,6 +214,12 @@
     ]
   },
   {
+    "name": "autohl",
+    "type": "bool",
+    "title": "Auto-highlight source code files",
+    "value": false
+  },
+  {
     "name": "invert",
     "type": "bool",
     "title": "Alternate icon set",
