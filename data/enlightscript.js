@@ -97,7 +97,7 @@ function dohl() {
     setTimeout(function () { // Wait for CSS to be computed
       let codeBG = getComputedStyle(code)["background-color"];
       if (codeBG && codeBG!="white" && codeBG!="#FFFFFF" && codeBG!="#ffffff") {
-          document.body.style = "background-color: " + codeBG + ";";
+          document.body.style.backgroundColor = codeBG;
       }
     }, 50);
   }
