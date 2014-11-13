@@ -106,24 +106,6 @@ function dohl() {
    * Save previous document in a hidden div to restore it on undohl()
    */
   document.body.appendChild(idoc);
-
-  /*
-   * Notify core script that page is unload: highlighting will be lost, so
-   * toggle add-on button off.
-   * But don't erase an existing window.onbeforeunload function.
-   */
-  if (window.onunload === null) {
-    window.onunload = function () {
-      self.port.emit('toggle_off', 2);
-      /*
-       * self.port.emit needs some time before document unloads,
-       * sleep a while (value is milliseconds). setTimeout() does
-       * not work here.
-       */
-      var startTime = new Date().getTime();
-      while (new Date().getTime() < startTime + 50);
-    };
-  }
 }
 
 function undohl(idoc) {
