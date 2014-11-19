@@ -1,3 +1,47 @@
+## Version 8.4
+
+We've got the new [demo page][]! The obvious new feature is the new look, but
+apart from that it's got smarter: by presenting languages in groups it avoids
+running 10000 highlighting attempts after first load which was slowing it down
+and giving bad overall impression. It is now also being generated from test
+code snippets so the authors of new languages don't have to update both tests
+and the demo page with the same thing.
+
+Other notable changes:
+
+- The `template_comment` class is gone in favor of the more general `comment`.
+- Number parsing unified and improved across languages.
+- C++, Java and C# now use unified grammar to highlight titles in
+  function/method definitions.
+- The browser build is now usable as an AMD module, there's no separate build
+  target for that anymore.
+- OCaml has got a [comprehensive overhaul][ocaml] by [Mickaël Delahaye][].
+- Clojure's data structures and literals are now highlighted outside of lists
+  and we can now highlight Clojure's REPL sessions.
+
+New languages:
+
+- *AspectJ* by [Hakan Özler][]
+- *STEP Part 21* by [Adam Joseph Cook][]
+- *SML* derived by [Edwin Dalorzo][] from OCaml definition
+- *Mercury* by [mucaho][]
+- *Smali* by [Dennis Titze][]
+- *Verilog* by [Jon Evans][]
+- *Stata* by [Brian Quistorff][]
+
+[Hakan Özler]: https://github.com/ozlerhakan
+[Adam Joseph Cook]: https://github.com/adamjcook
+[demo page]: https://highlightjs.org/static/demo/
+[Ivan Sagalaev]: https://github.com/isagalaev
+[Edwin Dalorzo]: https://github.com/edalorzo
+[mucaho]: https://github.com/mucaho
+[Dennis Titze]: https://github.com/titze
+[Jon Evans]: https://github.com/craftyjon
+[Brian Quistorff]: https://github.com/bquistorff
+[ocaml]: https://github.com/isagalaev/highlight.js/pull/608#issue-46190207
+[Mickaël Delahaye]: https://github.com/polazarus
+
+
 ## Version 8.3
 
 We streamlined our tool chain, it is now based entirely on node.js instead of
@@ -28,6 +72,7 @@ New languages in this release:
 - *XL* by [Christophe de Dinechin][]
 - *LiveScript* by [Taneli Vatanen][] and [Jen Evers-Corvina][]
 - *ERB* (Ruby in HTML) by [Lucas Mazza][]
+- *Roboconf* by [Vincent Zurczak][]
 
 [b]: http://highlightjs.readthedocs.org/en/latest/building-testing.html
 [Jeremy Hull]: https://github.com/sourrust
@@ -44,6 +89,7 @@ New languages in this release:
 [Taneli Vatanen]: https://github.com/Daiz-
 [Jen Evers-Corvina]: https://github.com/sevvie
 [Lucas Mazza]: https://github.com/lucasmazza
+[Vincent Zurczak]: https://github.com/vincent-zurczak
 
 ## Version 8.2
 
@@ -249,6 +295,8 @@ Miscellaneous improvements:
 - Objective C and C# now properly highlight titles in method definition.
 - Big overhaul of relevance counting for a number of languages. Please do report
   bugs about mis-detection of non-trivial code snippets!
+
+[API reference]: http://highlightjs.readthedocs.org/en/latest/api.html
 
 [cr]: http://highlightjs.readthedocs.org/en/latest/css-classes-reference.html
 [api docs]: http://highlightjs.readthedocs.org/en/latest/api.html
