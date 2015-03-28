@@ -39,7 +39,7 @@ function dohl() {
   var preList = document.getElementsByTagName("pre");
   /*
    * If self.options is undefined we shouldn't be there. Page has probably been
-   * changed since a former highlight: get out as wall.
+   * changed since a former highlight: get out as well.
    */
   if (self.options === undefined) {
     return;
