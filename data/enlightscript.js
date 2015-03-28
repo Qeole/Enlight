@@ -103,6 +103,16 @@ function dohl() {
   }
 
   /*
+   * If we launched language auto-detection, tell main script about detected
+   * language
+   */
+  if (self.options.language == "" || self.options.language == "auto") {
+    let languageClass = document.querySelectorAll('pre code')[0].className;
+    let languageId = languageClass.slice("hljs ".length);
+    self.port.emit('detected_language', languageId);
+  }
+
+  /*
    * Save previous document in a hidden div to restore it on undohl()
    */
   document.body.appendChild(idoc);
