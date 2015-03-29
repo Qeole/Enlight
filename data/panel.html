@@ -28,7 +28,7 @@
 
       function generateList(aResponse) {
         // Parse JSON string into object
-        var languageList = JSON.parse(aResponse)[0];
+        var languageList = JSON.parse(aResponse);
 
         var keys = Object.keys(languageList);
 

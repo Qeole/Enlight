@@ -1,4 +1,4 @@
-[{
+{
 "auto"           : "<b data-l10n-id='autodetect'></b>",
 "apache"         : "Apache",
 "bash"           : "Bash",
@@ -112,4 +112,4 @@
 "vhdl"           : "VHDL",
 "vim"            : "Vim Script",
 "xl"             : "XL"
-}]
+}

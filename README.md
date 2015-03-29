@@ -12,6 +12,8 @@ Just open the enlight.xpi file (`File->Open`) in Firefox. Confirm you want to in
 
 The `xpi` add-on file itself can easily be generated with a `cfx xpi` command from the Mozilla add-on SDK (see [documentation on MDN][2]).
 
+`jpm` is not supported yet.
+
 ## Usage
 
 On install, a new button with a ~~spotlight~~ light bulb ![buttonOff](data/lightbulb_off-32.png) (yes, it's supposed to be a ~~spotlight~~ light bulb − but the magnificent spotlight remains the add-on icon in the add-on manager tab for now) should appear in Firefox toolbar.
@@ -41,11 +43,11 @@ The code for highlight.js (_i.e._ everything under the `data/highlightjs` direct
 
 ## Miscellaneous
 
-Other than on the [hilight.js homesite][1], you can find a list of supported languages in [data/panel.html][5], and of available color schemes in [package.json][6].
+Other than on the [hilight.js homesite][1], you can find a list of supported languages in [data/languages.json][5], and of available color schemes in [package.json][6].
 
 [1]: https://highlightjs.org
 [2]: https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_started)
 [3]: https://github.com/Qeole/Enlight/blob/master/LICENSE
 [4]: https://github.com/isagalaev/highlight.js/blob/master/LICENSE
-[5]: https://github.com/Qeole/Enlight/blob/master/data/panel.html
+[5]: https://github.com/Qeole/Enlight/blob/master/data/languages.json
 [6]: https://github.com/Qeole/Enlight/blob/master/package.json
