@@ -8,11 +8,12 @@ Syntax highlighting relies on highlight.js project (see [project homepage][1]. C
 
 ## Install
 
-Just open the enlight.xpi file (`File->Open`) in Firefox. Confirm you want to install, and you're done.
+Theory: just open the enlight.xpi file (`File->Open`) in Firefox. Confirm you want to install, and you're done.
+Note that this is or will soon become impossible due to [Mozilla policy on add-ons signature][2]; so unless you use Firefox Developer Edition or Nightly, the preferred way is to install through [the add-on page on Mozilla add-ons platform][3].
 
-The `xpi` add-on file itself can easily be generated with a `cfx xpi` command from the Mozilla add-on SDK (see [documentation on MDN][2]).
+If you wish to build from sources, the `xpi` add-on file itself can easily be generated with a `cfx xpi` command from the Mozilla add-on SDK (see [documentation on MDN][4]).
 
-`jpm` is not supported yet.
+Building with `jpm` is not supported yet, should arrive soon.
 
 ## Usage
 
@@ -37,17 +38,19 @@ The highlight.js minimal script included in this module provides support for 22 
 
 ## License
 
-The code relative to the add-on itself is placed under the Mozilla Public License v. 2.0 (see file [LICENSE][3]).
+The code relative to the add-on itself is placed under the Mozilla Public License v. 2.0 (see file [LICENSE][6]).
 
-The code for highlight.js (_i.e._ everything under the `data/highlightjs` directory) was released under the BSD License (see relative [LICENSE][4] file for details).
+The code for highlight.js (_i.e._ everything under the `data/highlightjs` directory) was released under the BSD License (see relative [LICENSE][6] file for details).
 
 ## Miscellaneous
 
-Other than on the [hilight.js homesite][1], you can find a list of supported languages in [data/languages.json][5], and of available color schemes in [package.json][6].
+Other than on the [hilight.js homesite][1], you can find a list of supported languages in [data/languages.json][7], and of available color schemes in [package.json][8].
 
 [1]: https://highlightjs.org
-[2]: https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_started)
-[3]: https://github.com/Qeole/Enlight/blob/master/LICENSE
-[4]: https://github.com/isagalaev/highlight.js/blob/master/LICENSE
-[5]: https://github.com/Qeole/Enlight/blob/master/data/languages.json
-[6]: https://github.com/Qeole/Enlight/blob/master/package.json
+[2]: https://blog.mozilla.org/addons/2015/02/10/extension-signing-safer-experience
+[3]: https://addons.mozilla.org/firefox/addon/enlight
+[4]: https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_started)
+[5]: https://github.com/Qeole/Enlight/blob/master/LICENSE
+[6]: https://github.com/isagalaev/highlight.js/blob/master/LICENSE
+[7]: https://github.com/Qeole/Enlight/blob/master/data/languages.json
+[8]: https://github.com/Qeole/Enlight/blob/master/package.json
