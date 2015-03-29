@@ -1,5 +1,5 @@
 {
-"auto"           : "<b data-l10n-id='autodetect'></b>",
+"auto"           : "",
 "apache"         : "Apache",
 "bash"           : "Bash",
 "cpp"            : "C, C++",

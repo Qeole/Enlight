@@ -55,9 +55,11 @@ exports["test main03 highlight blank"] = function(assert, done) {
     clickInPanel("auto");
     main.doHighlight();
     utils.waitUntil(function(){return !main.panel.isShowing;}).then(() => {
-      assert.ok(!main.button.state("tab").checked, "03c button toggled off");
-      assert.ok(!main.panel.isShowing,             "03c panel is closed");
-      done();
+      utils.waitUntil(function(){return !main.button.state("tab").checked}).then(() => {
+        assert.ok(!main.button.state("tab").checked, "03c button toggled off");
+        assert.ok(!main.panel.isShowing,             "03c panel is closed");
+        done();
+      });
     });
   });
 };

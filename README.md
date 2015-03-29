@@ -38,7 +38,7 @@ The highlight.js minimal script included in this module provides support for 22 
 
 ## License
 
-The code relative to the add-on itself is placed under the Mozilla Public License v. 2.0 (see file [LICENSE][6]).
+The code relative to the add-on itself is placed under the Mozilla Public License v. 2.0 (see file [LICENSE][5]).
 
 The code for highlight.js (_i.e._ everything under the `data/highlightjs` directory) was released under the BSD License (see relative [LICENSE][6] file for details).
 
@@ -49,7 +49,7 @@ Other than on the [hilight.js homesite][1], you can find a list of supported lan
 [1]: https://highlightjs.org
 [2]: https://blog.mozilla.org/addons/2015/02/10/extension-signing-safer-experience
 [3]: https://addons.mozilla.org/firefox/addon/enlight
-[4]: https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_started)
+[4]: https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_started
 [5]: https://github.com/Qeole/Enlight/blob/master/LICENSE
 [6]: https://github.com/isagalaev/highlight.js/blob/master/LICENSE
 [7]: https://github.com/Qeole/Enlight/blob/master/data/languages.json
