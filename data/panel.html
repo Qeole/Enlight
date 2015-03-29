@@ -11,121 +11,48 @@
     </style>
   </head>
   <body>
-    <div class="auto" id="auto">       <b data-l10n-id="autodetect"></b></div>
-    <br />
-    <div class="lang" id="apache">          Apache               </div>
-    <div class="lang" id="bash">            Bash                 </div>
-    <div class="lang" id="cpp">             C, C++               </div>
-    <div class="lang" id="cs">              C#                   </div>
-    <div class="lang" id="coffeescript">    CoffeeScript         </div>
-    <div class="lang" id="css">             CSS                  </div>
-    <div class="lang" id="diff">            Diff                 </div>
-    <div class="lang" id="xml">             HTML, XML            </div>
-    <div class="lang" id="http">            HTTP                 </div>
-    <div class="lang" id="ini">             Ini                  </div>
-    <div class="lang" id="json">            JSON                 </div>
-    <div class="lang" id="java">            Java                 </div>
-    <div class="lang" id="javascript">      JavaScript           </div>
-    <div class="lang" id="makefile">        Makefile             </div>
-    <div class="lang" id="markdown">        Markdown             </div>
-    <div class="lang" id="nginx">           Nginx                </div>
-    <div class="lang" id="objectivec">      Objective C          </div>
-    <div class="lang" id="php">             PHP                  </div>
-    <div class="lang" id="perl">            Perl                 </div>
-    <div class="lang" id="python">          Python               </div>
-    <div class="lang" id="ruby">            Ruby                 </div>
-    <div class="lang" id="sql">             SQL                  </div>
-    <!--
-    <div class="lang" id="1c">              1C                   </div>
-    <div class="lang" id="actionscript">    ActionScript         </div>
-    <div class="lang" id="applescript">     AppleScript          </div>
-    <div class="lang" id="asciidoc">        AsciiDoc             </div>
-    <div class="lang" id="aspectj">         AspectJ              </div>
-    <div class="lang" id="autohotkey">      AutoHotkey           </div>
-    <div class="lang" id="avrasm">          AVR Assembly         </div>
-    <div class="lang" id="axapta">          Axapta               </div>
-    <div class="lang" id="brainfuck">       Brainfuck            </div>
-    <div class="lang" id="capnproto">       Cap'n Proto          </div>
-    <div class="lang" id="clojure">         Clojure              </div>
-    <div class="lang" id="clojure-repl">    Clojure REPL         </div>
-    <div class="lang" id="cmake">           CMake                </div>
-    <div class="lang" id="d">               D                    </div>
-    <div class="lang" id="dart">            Dart                 </div>
-    <div class="lang" id="delphi">          Delphi               </div>
-    <div class="lang" id="django">          Django               </div>
-    <div class="lang" id="dos">             DOS                  </div>
-    <div class="lang" id="dust">            Dust                 </div>
-    <div class="lang" id="elixir">          Elixir               </div>
-    <div class="lang" id="erb">             ERB (Embedded Ruby)  </div>
-    <div class="lang" id="erlang">          Erlang               </div>
-    <div class="lang" id="erlang-repl">     Erlang REPL          </div>
-    <div class="lang" id="fsharp">          F#                   </div>
-    <div class="lang" id="fix">             FIX                  </div>
-    <div class="lang" id="gcode">           G-code (ISO 6983)    </div>
-    <div class="lang" id="gherkin">         Gherkin              </div>
-    <div class="lang" id="glsl">            GLSL                 </div>
-    <div class="lang" id="go">              Go                   </div>
-    <div class="lang" id="gradle">          Gradle               </div>
-    <div class="lang" id="groovy">          Groovy               </div>
-    <div class="lang" id="haml">            Haml                 </div>
-    <div class="lang" id="handlebars">      Handlebars           </div>
-    <div class="lang" id="haskell">         Haskell              </div>
-    <div class="lang" id="haxe">            Haxe                 </div>
-    <div class="lang" id="x86asm">          Intel x86 Assembly   </div>
-    <div class="lang" id="lasso">           Lasso                </div>
-    <div class="lang" id="less">            Less                 </div>
-    <div class="lang" id="lisp">            Lisp                 </div>
-    <div class="lang" id="livecodeserver">  LiveCode             </div>
-    <div class="lang" id="livescript">      LiveScript           </div>
-    <div class="lang" id="lua">             Lua                  </div>
-    <div class="lang" id="mathematica">     Mathematica          </div>
-    <div class="lang" id="matlab">          Matlab               </div>
-    <div class="lang" id="mel">             MEL                  </div>
-    <div class="lang" id="mercury">         Mercury              </div>
-    <div class="lang" id="mizar">           Mizar                </div>
-    <div class="lang" id="monkey">          Monkey               </div>
-    <div class="lang" id="nimrod">          Nimrod               </div>
-    <div class="lang" id="nix">             Nix                  </div>
-    <div class="lang" id="nsis">            NSIS                 </div>
-    <div class="lang" id="ocaml">           OCaml                </div>
-    <div class="lang" id="ruleslanguage">   Oracle Rules Language</div>
-    <div class="lang" id="oxygene">         Oxygene              </div>
-    <div class="lang" id="parser3">         Parser3              </div>
-    <div class="lang" id="powershell">      PowerShell           </div>
-    <div class="lang" id="processing">      Processing           </div>
-    <div class="lang" id="protobuf">        Protocol Buffers     </div>
-    <div class="lang" id="puppet">          Puppet               </div>
-    <div class="lang" id="profile">         Python Profile       </div>
-    <div class="lang" id="q">               Q                    </div>
-    <div class="lang" id="r">               R                    </div>
-    <div class="lang" id="rib">             RenderMan RIB        </div>
-    <div class="lang" id="rsl">             RenderMan RSL        </div>
-    <div class="lang" id="roboconf">        Roboconf             </div>
-    <div class="lang" id="rust">            Rust                 </div>
-    <div class="lang" id="scala">           Scala                </div>
-    <div class="lang" id="scheme">          Scheme               </div>
-    <div class="lang" id="scilab">          Scilab               </div>
-    <div class="lang" id="scss">            SCSS                 </div>
-    <div class="lang" id="smali">           Smali                </div>
-    <div class="lang" id="smalltalk">       Smalltalk            </div>
-    <div class="lang" id="sml">             SML                  </div>
-    <div class="lang" id="stata">           Stata                </div>
-    <div class="lang" id="step21">          STEP Part 21         </div>
-    <div class="lang" id="stylus">          Stylus               </div>
-    <div class="lang" id="swift">           Swift                </div>
-    <div class="lang" id="tcl">             Tcl                  </div>
-    <div class="lang" id="tex">             TeX                  </div>
-    <div class="lang" id="thrift">          Thrift               </div>
-    <div class="lang" id="twig">            Twig                 </div>
-    <div class="lang" id="typescript">      TypeScript           </div>
-    <div class="lang" id="vala">            Vala                 </div>
-    <div class="lang" id="vbnet">           VB.NET               </div>
-    <div class="lang" id="vbscript">        VBScript             </div>
-    <div class="lang" id="vbscript-html">   VBScript in HTML     </div>
-    <div class="lang" id="verilog">         Verilog              </div>
-    <div class="lang" id="vhdl">            VHDL                 </div>
-    <div class="lang" id="vim">             Vim Script           </div>
-    <div class="lang" id="xl">              XL                   </div>
-    -->
+    <script>
+      function loadJSON(aCallback) {
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', 'languages.json', true);
+        xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == "200") {
+            // Required use of an anonymous callback as .open will NOT return a
+            // value but simply returns undefined in asynchronous mode
+            aCallback(xobj.responseText);
+          }
+        };
+        xobj.send(null);
+      }
+
+      function generateList(aResponse) {
+        // Parse JSON string into object
+        var languageList = JSON.parse(aResponse)[0];
+
+        var keys = Object.keys(languageList);
+
+        for (var i in keys) {
+          var element = document.createElement("div");
+
+          element.id = keys[i];
+          if (keys[i] == "auto") {
+            element.className = "auto";
+            var label = document.createElement("b");
+            label.setAttribute("data-l10n-id", "autodetect");
+            element.appendChild(label);
+          }
+          else {
+            element.className = "lang";
+            element.appendChild(document.createTextNode(languageList[keys[i]]));
+          }
+          document.body.appendChild(element);
+          //document.body.innerHTML +=
+          //  '<div class="lang" id="'+keys[i]+'">'+languageList[keys[i]]+'</div>';
+        }
+      }
+
+      loadJSON(generateList);
+    </script>
   </body>
 </html>
