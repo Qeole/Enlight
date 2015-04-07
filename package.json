@@ -6,7 +6,7 @@
   "homepage": "https://github.com/Qeole/Enlight",
   "icon": "data/icon-64.png",
   "license": "MPL 2.0",
-  "version": "1.6",
+  "version": "1.7",
   "description": "Syntax highlight for raw source code.",
   "preferences": [
   {
@@ -15,6 +15,14 @@
     "title": "Color theme",
     "value": "solarized_dark",
     "options": [
+    {
+      "value": "agate",
+      "label": "Agate"
+    },
+    {
+      "value": "androidstudio",
+      "label": "Android Studio"
+    },
     {
       "value": "arta",
       "label": "Arta"
@@ -64,6 +72,14 @@
       "label": "Atelier Seaside Light"
     },
     {
+      "value": "atelier-sulphurpool.dark",
+      "label": "Atelier Sulphurpool Dark"
+    },
+    {
+      "value": "atelier-sulphurpool.light",
+      "label": "Atelier Sulphurpool Light"
+    },
+    {
       "value": "brown_paper",
       "label": "Brown Paper"
     },
@@ -78,6 +94,10 @@
     {
       "value": "dark",
       "label": "Dark"
+    },
+    {
+      "value": "darkula",
+      "label": "Darkula"
     },
     {
       "value": "default",
