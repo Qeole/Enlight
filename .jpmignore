@@ -1,0 +1,4 @@
+misc/
+.*
+*.xpi
+test/
