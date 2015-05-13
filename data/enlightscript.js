@@ -93,10 +93,12 @@ function dohl() {
   if (lineNodes) {
   for (pre of preList) {
       /*
-       * Add "line" spans on left of lines
+       * Enclose each line of highlighted content into a "line" span.
+       * Text has already been highlighted at this point (it's a mix of text
+       * and of spans for coloring), so I can't see any easy way to do this
+       * without assigning to innerHTML.
        */
-      var text = pre.firstChild.innerHTML;
-      var lines = text.trimRight()
+      var lines = pre.firstChild.innerHTML
         .replace(/^.*?(\n|$)/gm, '<span class="line">$&</span>');
       pre.firstChild.innerHTML = lines;
 
