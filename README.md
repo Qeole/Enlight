@@ -8,12 +8,13 @@ Syntax highlighting relies on highlight.js project (see [project homepage][1]. C
 
 ## Install
 
-Theory: just open the enlight.xpi file (`File->Open`) in Firefox. Confirm you want to install, and you're done.
+Theory: just open the `enlight_highlightjs@jetpack-<version>.xpi` file (`File->Open`) in Firefox. Confirm you want to install, and you're done.
 Note that this is or will soon become impossible due to [Mozilla policy on add-ons signature][2]; so unless you use Firefox Developer Edition or Nightly, the preferred way is to install through [the add-on page on Mozilla add-ons platform][3].
 
-If you wish to build from sources, the `xpi` add-on file itself can easily be generated with a `cfx xpi` command from the Mozilla add-on SDK (see [documentation on MDN][4]).
+This branch uses `jpm` to build the add-on ([documentation][9]).
+If you wish to build from sources, the `xpi` add-on file itself can easily be generated with a `jpm xpi` command from the Mozilla add-on SDK (see [documentation on MDN][4]).
 
-Building with `jpm` is not supported yet, should arrive soon.
+Building with `cfx` is still supported (see `master` branch), but not for long.
 
 ## Usage
 
@@ -34,7 +35,7 @@ The highlight.js minimal script included in this module provides support for 22 
   3. get the source of the add-on;
   4. overwrite add-on file `data/highlightjs/highlight.min.js` with file `highlight.pack.js` from the archive you obtained;
   5. uncomment lines relative to added languages in `data/panel.html`;
-  6. repack the add-on (with command `cfx xpi` from add-on SDK) and install add-on in Firefox.
+  6. repack the add-on (with command `jpm xpi` from add-on SDK) and install add-on in Firefox.
 
 ## License
 
@@ -54,3 +55,4 @@ Other than on the [hilight.js homesite][1], you can find a list of supported lan
 [6]: https://github.com/isagalaev/highlight.js/blob/master/LICENSE
 [7]: https://github.com/Qeole/Enlight/blob/master/data/languages.json
 [8]: https://github.com/Qeole/Enlight/blob/master/package.json
+[9]: https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm
