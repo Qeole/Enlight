@@ -1,12 +1,11 @@
 {
   "name": "enlight",
   "title": "Enlight",
-  "id": "enlight_highlightjs",
+  "id": "enlight_highlightjs@jetpack",
   "author": "Qeole",
   "homepage": "https://github.com/Qeole/Enlight",
-  "icon": "data/icon-64.png",
   "license": "MPL 2.0",
-  "version": "1.9-cfx",
+  "version": "1.9.0",
   "description": "Syntax highlight for raw source code.",
   "preferences": [
   {

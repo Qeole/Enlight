@@ -3,7 +3,7 @@
 var self  = require("sdk/self");
 var tabs  = require("sdk/tabs");
 var utils = require('sdk/test/utils');
-var main  = require("./main");
+var main  = require("../index");
 
 function clickInPanel(languageId) {
   main.panel.languageId = languageId;
