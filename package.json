@@ -6,7 +6,7 @@
   "homepage": "https://github.com/Qeole/Enlight",
   "icon": "data/icon-64.png",
   "license": "MPL 2.0",
-  "version": "1.7",
+  "version": "1.8-cfx",
   "description": "Syntax highlight for raw source code.",
   "preferences": [
   {
@@ -250,6 +250,12 @@
     "type": "bool",
     "title": "Adapt body background color",
     "value": true
+  },
+  {
+    "name": "lineNumbers",
+    "type": "bool",
+    "title": "Add line numbering",
+    "value": false
   }
   ]
 }

@@ -76,10 +76,7 @@ function dohl() {
   /*
    * Enclose <pre></pre> blocks content in <code></code> blocks
    */
-  var i;
-  for (i in preList) {
-    if (i == "item") { break; }
-    var pre = preList[i];
+  for (var pre of preList) {
     var firstChild = pre.firstChild;
     var code = document.createElement("code");
     setLanguage(code);
@@ -87,7 +84,49 @@ function dohl() {
     pre.appendChild(code);
   }
 
-  hljs.initHighlighting(); // from highlight.pack.js
+  hljs.initHighlighting(); // from highlight.min.js or highlight.pack.js
+
+  /*
+   * Add line numbers if option is set
+   */
+  var lineNodes = self.options.lineNumbers;
+  if (lineNodes) {
+  for (pre of preList) {
+      /*
+       * Add "line" spans on left of lines
+       */
+      var text = pre.firstChild.innerHTML;
+      var lines = text.trimRight()
+        .replace(/^.*?(\n|$)/gm, '<span class="line">$&</span>');
+      pre.firstChild.innerHTML = lines;
+
+      /*
+       * Numbering is performed with CSS. We add it to head of document. From
+       * https://github.com/isagalaev/highlight.js/compare/master...line-numbers
+       */
+      var styleContent = " \
+        pre { \
+          counter-reset: lines; \
+        } \
+        pre .line { \
+          counter-increment: lines; \
+        } \
+        pre .line::before { \
+          -moz-user-select: none; \
+          \
+          content: counter(lines); text-align: right; \
+          display: inline-block; width: 2em; \
+          padding-right: 0.5em; margin-right: 0.5em; \
+          font-weight: bold; \
+          border-right: solid 1px; \
+        }";
+      var style = document.createElement("style");
+      style.setAttribute("type", "text/css");
+      var styleTextNode = document.createTextNode(styleContent);
+      style.appendChild(styleTextNode);
+      document.head.appendChild(style);
+    }
+  }
 
   /*
    * There's a white border remaining because of document.background.
