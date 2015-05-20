@@ -6,7 +6,7 @@
   "homepage": "https://github.com/Qeole/Enlight",
   "icon": "data/icon-64.png",
   "license": "MPL 2.0",
-  "version": "1.8-cfx",
+  "version": "1.9-cfx",
   "description": "Syntax highlight for raw source code.",
   "preferences": [
   {
@@ -32,12 +32,28 @@
       "label": "Ascetic"
     },
     {
+      "value": "atelier-cave.dark",
+      "label": "Atelier Cave Dark"
+    },
+    {
+      "value": "atelier-cave.light",
+      "label": "Atelier Cave Light"
+    },
+    {
       "value": "atelier-dune.dark",
       "label": "Atelier Dune Dark"
     },
     {
       "value": "atelier-dune.light",
       "label": "Atelier Dune Light"
+    },
+    {
+      "value": "atelier-estuary.dark",
+      "label": "Atelier Estuary Dark"
+    },
+    {
+      "value": "atelier-estuary.light",
+      "label": "Atelier Estuary Light"
     },
     {
       "value": "atelier-forest.dark",
@@ -62,6 +78,22 @@
     {
       "value": "atelier-lakeside.light",
       "label": "Atelier Lakeside Light"
+    },
+    {
+      "value": "atelier-plateau.dark",
+      "label": "Atelier Plateau Dark"
+    },
+    {
+      "value": "atelier-plateau.light",
+      "label": "Atelier Plateau Light"
+    },
+    {
+      "value": "atelier-savanna.dark",
+      "label": "Atelier Savanna Dark"
+    },
+    {
+      "value": "atelier-savanna.light",
+      "label": "Atelier Savanna Light"
     },
     {
       "value": "atelier-seaside.dark",
@@ -118,6 +150,10 @@
     {
       "value": "github",
       "label": "Github"
+    },
+    {
+      "value": "github-gist",
+      "label": "Github Gist"
     },
     {
       "value": "googlecode",
