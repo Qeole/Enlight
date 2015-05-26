@@ -117,7 +117,7 @@ function dohl() {
           -moz-user-select: none; \
           \
           content: counter(lines); text-align: right; \
-          display: inline-block; width: 2em; \
+          display: inline-block; min-width: 2.5em; \
           padding-right: 0.5em; margin-right: 0.5em; \
           font-weight: bold; \
           border-right: solid 1px; \
