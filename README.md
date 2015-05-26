@@ -14,7 +14,7 @@ Note that this is or will soon become impossible due to [Mozilla policy on add-o
 This branch uses `jpm` to build the add-on ([documentation][9]).
 If you wish to build from sources, the `xpi` add-on file itself can easily be generated with a `jpm xpi` command from the Mozilla add-on SDK (see [documentation on MDN][4]).
 
-Building with `cfx` is still supported (see `master` branch), but not for long.
+Building with `cfx` is no longer supported.
 
 ## Usage
 
