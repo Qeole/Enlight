@@ -107,7 +107,9 @@ panel.port.on("click-lang", function(languageId) {
  */
 function checkBody() {
   if (document.body && document.body.childNodes.length &&
-      document.body.firstChild.nodeName == "PRE") {
+      document.body.firstChild.nodeName == "PRE" &&
+      document.location.toString()
+        .slice(0,"view-source:".length) != "view-source:") {
     self.port.emit('isCodeBlock');
   }
 };
