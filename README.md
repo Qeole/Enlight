@@ -4,17 +4,17 @@
 
 Firefox add-on providing syntax highlighting for raw code, based on the highlight.js project.
 
-Syntax highlighting relies on highlight.js project (see [project homepage][1]. Currently packaged with the add-on is the version 8.6 of highlight.js, which provides 63 color themes and syntax for 22 languages.
+Syntax highlighting relies on highlight.js project (see [project homepage][1]. Currently packaged with the add-on is the version 8.7 of highlight.js, which provides 65 color themes and syntax for 22 languages.
 
 ## Install
 
 Theory: just open the `enlight_highlightjs@jetpack-<version>.xpi` file (`File->Open`) in Firefox. Confirm you want to install, and you're done.
 Note that this is or will soon become impossible due to [Mozilla policy on add-ons signature][2]; so unless you use Firefox Developer Edition or Nightly, the preferred way is to install through [the add-on page on Mozilla add-ons platform][3].
 
-This branch uses `jpm` to build the add-on ([documentation][9]).
+One need the `jpm` tool to build the add-on ([documentation][9]).
 If you wish to build from sources, the `xpi` add-on file itself can easily be generated with a `jpm xpi` command from the Mozilla add-on SDK (see [documentation on MDN][4]).
 
-Building with `cfx` is no longer supported.
+Building with `cfx` is no longer supported, and I have not explored WebExtensions yet.
 
 ## Usage
 
@@ -27,7 +27,7 @@ You can also select the color theme you want to use in the add-on preferences, t
 
 ## Supporting more languages
 
-The highlight.js minimal script included in this module provides support for 22 languages, while the project theoretically offers support for up to 125 languages. I had to restrict it because of Mozilla add-on platform review policy. To get support for more languages, you can use one of the two following methods:
+The highlight.js minimal script included in this module provides support for 22 languages, while the project theoretically offers support for up to 130 languages. I had to restrict it because of Mozilla add-on platform review policy. To get support for more languages, you can use one of the two following methods:
 * Use branch `all_languages` of this repository − it contains a binary `xpi` file not approved by Mozilla, but containing support for all languages. NOTE: `all_languages` branch was not verified by Mozilla, so you are _not_ expected to do this unless you trust me for not altering code from highlight.js, or you verified by yourself.
 * Add support yourself by reproducing following steps:
   1. download an archive containing all languages you want from https://highlightjs.org/download;
