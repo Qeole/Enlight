@@ -5,7 +5,7 @@
   "author": "Qeole",
   "homepage": "https://github.com/Qeole/Enlight",
   "license": "MPL 2.0",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "Syntax highlight for raw source code.",
   "preferences": [
   {
@@ -157,6 +157,14 @@
     {
       "value": "googlecode",
       "label": "Googlecode"
+    },
+    {
+      "value": "grayscale",
+      "label": "Grayscale"
+    },
+    {
+      "value": "hopscotch",
+      "label": "Hopscotch"
     },
     {
       "value": "hybrid",
