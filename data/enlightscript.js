@@ -80,6 +80,9 @@ function dohl() {
     var firstChild = pre.firstChild;
     var code = document.createElement("code");
     setLanguage(code);
+    if (self.options.bgColor) {
+      code.style = "padding: 0;";
+    }
     code.appendChild(firstChild);
     pre.appendChild(code);
   }
