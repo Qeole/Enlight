@@ -9,7 +9,7 @@
 
 if [ -n "$(find . -newer enlight*.xpi ! -path '*.git*')" ] ; then
     exec < /dev/tty
-    printf 'Did you run |cfx xpi|? [y/N]: '
+    printf 'Did you run |jpm xpi|? [y/N]: '
     read R
     [ "$R" = "y" ] || (echo "Aborting commit." && exit 1)
 fi

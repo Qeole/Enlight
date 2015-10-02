@@ -5,7 +5,7 @@
   "author": "Qeole",
   "homepage": "https://github.com/Qeole/Enlight",
   "license": "MPL 2.0",
-  "version": "1.10.3",
+  "version": "1.11.0",
   "description": "Syntax highlight for raw source code.",
   "preferences": [
   {
