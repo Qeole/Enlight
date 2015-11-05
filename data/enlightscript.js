@@ -102,7 +102,7 @@ function dohl() {
        * without assigning to innerHTML.
        */
       var lines = pre.firstChild.innerHTML
-        .replace(/^.*?(\n|$)/gm, '<span class="line hljs-comment"></span>$&');
+        .replace(/^.*?(\n|$)(?=.|\n)/gm, '<span class="line hljs-comment"></span>$&');
       pre.firstChild.innerHTML = lines;
 
       /*
