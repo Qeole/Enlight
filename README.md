@@ -1,4 +1,3 @@
- <!-- vim: set tw=80 cc=80 spell: -->
  ![Add-on icon](misc/spot64.png) Enlight
  ========================================
 
