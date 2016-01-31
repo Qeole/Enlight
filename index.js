@@ -1,10 +1,10 @@
 /* vim: set ts=8 sts=2 et sw=2 tw=80 cc=80: */
 
 var self     = require("sdk/self");
-var buttons  = require('sdk/ui/button/toggle');
+var buttons  = require("sdk/ui/button/toggle");
 var tabs     = require("sdk/tabs");
 var panels   = require("sdk/panel");
-var spref    = require('sdk/simple-prefs');
+var spref    = require("sdk/simple-prefs");
 var xhr      = require("sdk/net/xhr");
 var _        = require("sdk/l10n").get; // Localization
 
@@ -77,10 +77,10 @@ var button = buttons.ToggleButton({
  * Language selection panel
  */
 function panelSelect() {
-  window.addEventListener('click', function(event) {
+  window.addEventListener("click", function(event) {
     let t = event.target;
-    if (t.nodeName == 'DIV') {
-      self.port.emit('click-lang', t.getAttribute('id'));
+    if (t.nodeName == "DIV") {
+      self.port.emit("click-lang", t.getAttribute("id"));
     }
   }, false);
 }
@@ -111,7 +111,7 @@ function checkBody() {
       document.body.firstChild.nodeName == "PRE" &&
       document.location.toString()
         .slice(0,"view-source:".length) != "view-source:") {
-    self.port.emit('isCodeBlock');
+    self.port.emit("isCodeBlock");
   }
 };
 (function setAutoHighlight() {
@@ -246,7 +246,7 @@ function undoHighlight() {
 function loadJSON(aCallback) {
   var xobj = new xhr.XMLHttpRequest();
   xobj.overrideMimeType("application/json");
-  xobj.open('GET', self.data.url(gLanguagePath), true);
+  xobj.open("GET", self.data.url(gLanguagePath), true);
   xobj.onreadystatechange = function () {
     if (xobj.readyState == 4 && xobj.status == "200") {
       aCallback(xobj.responseText);

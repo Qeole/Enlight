@@ -23,7 +23,7 @@ var enlight = function () {
    */
   if (!document.body ||
        document.body.getElementsByTagName("pre").item(0) === null) {
-    self.port.emit('toggle_off', 1);
+    self.port.emit("toggle_off", 1);
     return;
   }
 
