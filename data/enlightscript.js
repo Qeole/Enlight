@@ -13,6 +13,8 @@
  * Undoing highlight consists in getting saved document back from the div.
  */
 
+/*****************************************************************************/
+
 /*
  * Execute this at startup
  */
@@ -35,15 +37,26 @@ var enlight = function () {
   initDocumentDiv === null ? dohl() : undohl(initDocumentDiv.firstChild);
 } ();
 
+/*****************************************************************************/
+
 function dohl() {
   var preList = document.getElementsByTagName("pre");
   /*
    * If self.options is undefined we shouldn't be there. Page has probably been
    * changed since a former highlight: get out as well.
    */
-  if (self.options === undefined) {
+  if (!self.options) {
     return;
   }
+
+  /*
+   * Back up initial document
+   */
+  var clone = document.documentElement.cloneNode(true);
+  var idoc  = document.createElement("div");
+  idoc.style.display = "none";
+  idoc.setAttribute("id", "enlightInitDocument");
+  idoc.appendChild(clone);
 
   /*
    * Add link to CSS stylesheet
@@ -57,13 +70,9 @@ function dohl() {
   document.head.appendChild(css);
 
   /*
-   * Back up initial document
+   * If needed, add CSS rules for line numbering
    */
-  var clone = document.documentElement.cloneNode(true);
-  var idoc  = document.createElement("div");
-  idoc.style.display = "none";
-  idoc.setAttribute("id", "enlightInitDocument");
-  idoc.appendChild(clone);
+  addLineNumberStyle();
 
   /*
    * Deal with language
@@ -87,61 +96,34 @@ function dohl() {
     pre.appendChild(code);
   }
 
-  hljs.initHighlighting(); // from highlight.min.js or highlight.pack.js
+  /*
+   * Call highlighting function: hljs is defined in highlight.js library.
+   */
+  hljs.initHighlighting();
 
   /*
-   * Add line numbers if option is set
+   * Add line numbers if needed.
    */
   var lineNodes = self.options.lineNumbers;
   if (lineNodes) {
-  for (pre of preList) {
-      /*
-       * Enclose each line of highlighted content into a "line" span.
-       * Text has already been highlighted at this point (it's a mix of text
-       * and of spans for coloring), so I can't see any easy way to do this
-       * without assigning to innerHTML.
-       */
-      var lines = pre.firstChild.innerHTML
-        .replace(/^.*?(\n|$)(?=.|\n)/gm, '<span class="line hljs-comment"></span>$&');
-      pre.firstChild.innerHTML = lines;
-
-      /*
-       * Numbering is performed with CSS. We add it to head of document. From
-       * https://github.com/isagalaev/highlight.js/compare/master...line-numbers
-       */
-      var styleContent = " \
-        pre { \
-          counter-reset: lines; \
-        } \
-        pre .line { \
-          counter-increment: lines; \
-        } \
-        pre .line::before { \
-          -moz-user-select: none; \
-          \
-          content: counter(lines); text-align: right; \
-          display: inline-block; min-width: 2.5em; \
-          padding-right: 0.5em; margin-right: 0.5em; \
-          font-weight: bold; \
-          border-right: solid 1px; \
-        }";
-      var style = document.createElement("style");
-      style.setAttribute("type", "text/css");
-      var styleTextNode = document.createTextNode(styleContent);
-      style.appendChild(styleTextNode);
-      document.head.appendChild(style);
+    for (var pre of preList) {
+      var code = pre.firstChild;
+      addLineNumbers(code);
     }
   }
 
   /*
-   * There's a white border remaining because of document.background.
+   * There's a remaining white border because of body background color.
    * If option is set, remove it.
    */
   if (self.options.bgColor) {
     setTimeout(function () { // Wait for CSS to be computed
-      let codeBG = getComputedStyle(code)["background-color"];
-      if (codeBG && codeBG!="white" && codeBG!="#FFFFFF" && codeBG!="#ffffff") {
-          document.body.style.backgroundColor = codeBG;
+      let codeBG = getComputedStyle(preList[0].firstChild)["background-color"];
+      if (codeBG &&
+          codeBG!="white" &&
+          codeBG!="#FFFFFF" &&
+          codeBG!="#ffffff") {
+        document.body.style.backgroundColor = codeBG;
       }
     }, 50);
   }
@@ -162,10 +144,64 @@ function dohl() {
   document.body.appendChild(idoc);
 }
 
+/*****************************************************************************/
+
 function undohl(idoc) {
   document.replaceChild(idoc, document.documentElement);
   /*
    * Another solution:
    * window.location.reload(false);
    */
+}
+
+/*****************************************************************************/
+
+/*
+ * Add line numbers to argument code block if option is set
+ */
+function addLineNumbers(aCode) {
+  /*
+   * Enclose each line of highlighted content into a "line" span.
+   * Text has already been highlighted at this point (it's a mix of text
+   * and of spans for coloring), so I can't see any easy way to do this
+   * without assigning to innerHTML.
+   */
+  var lines = aCode.innerHTML
+    .replace(/^.*?(\n|$)(?=.|\n)/gm,
+             '<span class="line hljs-comment"></span>$&');
+  aCode.innerHTML = lines;
+}
+
+/*****************************************************************************/
+
+/*
+ * Numbering is performed with CSS. We add it to head of document. From
+ * https://github.com/isagalaev/highlight.js/compare/master...line-numbers
+ */
+function addLineNumberStyle() {
+  var lineNodes = self.options.lineNumbers;
+  if (!lineNodes) {
+    return;
+  }
+  var styleContent = " \
+    pre { \
+      counter-reset: lines; \
+    } \
+    pre .line { \
+      counter-increment: lines; \
+    } \
+    pre .line::before { \
+      -moz-user-select: none; \
+      \
+      content: counter(lines); text-align: right; \
+      display: inline-block; min-width: 2.5em; \
+      padding-right: 0.5em; margin-right: 0.5em; \
+      font-weight: bold; \
+      border-right: solid 1px; \
+    }";
+  var style = document.createElement("style");
+  style.setAttribute("type", "text/css");
+  var styleTextNode = document.createTextNode(styleContent);
+  style.appendChild(styleTextNode);
+  document.head.appendChild(style);
 }
