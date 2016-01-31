@@ -1,3 +1,4 @@
+ <!-- vim: set tw=80 cc=80 spell: -->
  ![Add-on icon](misc/spot64.png) Enlight
  ========================================
 
@@ -5,8 +6,8 @@
 Firefox add-on providing syntax highlighting for raw code, based on the
 highlight.js project.
 
-Syntax highlighting relies on highlight.js project (see [project homepage][hljs].
-Currently packaged with the add-on is the version
+Syntax highlighting relies on highlight.js project (see [project
+homepage][hljs]. Currently packaged with the add-on is the version
 8.8.0 of highlight.js, which provides
 65    color themes and syntax for
 22    languages.
@@ -58,6 +59,13 @@ You can also customize some options through Firefox add-on manager tab:
 * Add line numbers (_default: off_): add line numbers on the left of file
   content. Line numbers are created with CSS and are not part of the file
   contents.
+
+When line numbering is enabled, it is possible to jump to line passed through
+URL (_default: on_): scroll to e.g. line 27 and select it if a suffix such as
+`#Line27` or `#line27` or `#L27` or `#l27` is appended to the URL **before**
+the script loads (this does not relies on HTML anchors and cannot be triggered
+by simple URL modification; reload the script for current page if you added the
+suffix afterward).
 
 ## Supporting more languages
 

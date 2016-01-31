@@ -35,7 +35,13 @@ var enlight = function () {
    * Else, launch highlighting.
    */
   initDocumentDiv === null ? dohl() : undohl(initDocumentDiv.firstChild);
-  gotoline();
+
+  /*
+   * If option is set, activate “gotoline” functionality.
+   */
+  if (self.options.lineNumbers) {
+    gotoline();
+  }
 } ();
 
 /*****************************************************************************/
@@ -105,8 +111,7 @@ function dohl() {
   /*
    * Add line numbers if needed.
    */
-  var lineNodes = self.options.lineNumbers;
-  if (lineNodes) {
+  if (self.options.lineNumbers) {
     for (var pre of preList) {
       var code = pre.firstChild;
       addLineNumbers(code);
@@ -180,8 +185,7 @@ function addLineNumbers(aCode) {
  * https://github.com/isagalaev/highlight.js/compare/master...line-numbers
  */
 function addLineNumberStyle() {
-  var lineNodes = self.options.lineNumbers;
-  if (!lineNodes) {
+  if (!self.options.lineNumbers) {
     return;
   }
   var styleContent = " \
