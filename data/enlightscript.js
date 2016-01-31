@@ -77,10 +77,10 @@ function dohl() {
   /*
    * Deal with language
    */
-  var setLanguage = (self.options.language != "" &&
-                     self.options.language != "auto") ?
-    function(element){element.setAttribute("class", self.options.language);} :
-    function(element){};
+  var language = (self.options.language != "" &&
+                  self.options.language != "auto") ?
+                    " " + self.options.language :
+                    "";
 
   /*
    * Enclose <pre></pre> blocks content in <code></code> blocks
@@ -88,7 +88,7 @@ function dohl() {
   for (var pre of preList) {
     var firstChild = pre.firstChild;
     var code = document.createElement("code");
-    setLanguage(code);
+    code.setAttribute("class", "hljs" + language);
     if (self.options.bgColor) {
       code.style = "padding: 0;";
     }
