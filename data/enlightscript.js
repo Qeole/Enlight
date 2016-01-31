@@ -1,4 +1,4 @@
-/* Vim: set ts=8 sts=2 et sw=2 tw=80: */
+/* vim: set ts=8 sts=2 et sw=2 tw=80 cc=80: */
 
 /*
  * Syntax highlighting addition/removal handlers (content scripts).

@@ -1,4 +1,4 @@
-/* vim: se ts=8 sts=2 et sw=2 tw=80 cc=80: */
+/* vim: set ts=8 sts=2 et sw=2 tw=80 cc=80: */
 
 var self     = require("sdk/self");
 var buttons  = require('sdk/ui/button/toggle');
