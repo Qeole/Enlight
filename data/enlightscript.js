@@ -35,6 +35,7 @@ var enlight = function () {
    * Else, launch highlighting.
    */
   initDocumentDiv === null ? dohl() : undohl(initDocumentDiv.firstChild);
+  gotoline();
 } ();
 
 /*****************************************************************************/
@@ -204,4 +205,51 @@ function addLineNumberStyle() {
   var styleTextNode = document.createTextNode(styleContent);
   style.appendChild(styleTextNode);
   document.head.appendChild(style);
+}
+
+/*****************************************************************************/
+
+/*
+ * If user added an anchor to the URL, go to line number and select this line.
+ * NOTE: there is no event triggered by URL edit that we could listen to, so
+ * the anchor must be present when the script loads. If user adds it afterward,
+ * they should manually reload the script (or the page if using autodetection).
+ */
+function gotoline() {
+  /*
+   * Get "#line27" or "#Line27" or "#L27" or "#l27" -like sequence from URL
+   */
+  let nb = (window.location + '').match(/#(?:[Ll](?:ine)?)?(\d+)/i)
+  if (nb === null) {
+    return;
+  }
+
+  /*
+   * Fetch associated line. Note that we fetch the “absolute” nth line of
+   * highlighted code in the file, which is not necessarily the nth line of its
+   * block if there are several highlighted blocks of code.
+   */
+  let target = document.getElementsByClassName('line')[nb[1]-1]
+  if (target === undefined) {
+    return;
+  }
+
+  /*
+   * Scroll to that line
+   */
+  target.scrollIntoView();
+
+  /*
+   * Select this line
+   */
+  let next = target.nextSibling;
+  while (next.nextSibling !== null
+         && (next.nextSibling.className === undefined
+             || next.nextSibling.className.search(/\bline\b/) == -1)) {
+    let selection = window.getSelection();
+    let range = document.createRange();
+    range.selectNodeContents(next);
+    selection.addRange(range);
+    next = next.nextSibling;
+  }
 }
