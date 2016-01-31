@@ -109,7 +109,7 @@ exports["test main05 highlight test page"] = function(assert, done) {
           assert.ok(!main.panel.isShowing,             "05c panel is closed");
 
           main.button.click();
-          utils.waitUntil(function(){return !main.panel.isShowing;}).then(() => {
+          utils.waitUntil(function(){return !main.button.state("tab").checked;}).then(() => {
             assert.ok(!main.button.state("tab").checked, "05d button toggled off");
             assert.ok(!main.panel.isShowing,             "05d panel is closed");
 
