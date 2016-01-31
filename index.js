@@ -107,7 +107,7 @@ panel.port.on("click-lang", function(languageId) {
  * condition: document.body has single <pre></pre> child node
  */
 function checkBody() {
-  if (document.body && document.body.childNodes.length &&
+  if (document.body && document.body.childNodes.length == 1 &&
       document.body.firstChild.nodeName == "PRE" &&
       document.location.toString()
         .slice(0,"view-source:".length) != "view-source:") {
