@@ -9,15 +9,16 @@ var xhr      = require("sdk/net/xhr");
 var _        = require("sdk/l10n").get; // Localization
 
 /*
- * Directory for highlight.js code (under data/)
+ * Paths (under data/)
  */
-var gHJSPath   = "highlightjs";
-var gHJSScript = "highlight.min.js"
+var gHJSPath       = "highlightjs";      // directory for highlight.js
+var gHJSScript     = "highlight.js";     // highlight.js lib, under gHJSPath/
+var gContentScript = "enlightscript.js"; // Enlight content script
 
 /*
  * List of supported languages (for display in button label)
  */
-var gLanguagePath = "languages.json"
+var gLanguagePath = "languages.json"     // language list, under data/
 var gLanguageList = {};
 
 /*
@@ -177,7 +178,7 @@ function doHighlight(aLanguageId, aTab=tabs.activeTab) {
     },
     contentScriptFile: [
       self.data.url(gHJSPath + "/" + gHJSScript),
-      self.data.url("enlightscript.js")
+      self.data.url(gContentScript)
     ]
   });
 
