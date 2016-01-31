@@ -246,14 +246,12 @@ function gotoline() {
   /*
    * Select this line
    */
-  let next = target.nextSibling;
-  while (next.nextSibling !== null
-         && (next.nextSibling.className === undefined
-             || next.nextSibling.className.search(/\bline\b/) == -1)) {
-    let selection = window.getSelection();
-    let range = document.createRange();
-    range.selectNodeContents(next);
-    selection.addRange(range);
-    next = next.nextSibling;
-  }
+  let selection = window.getSelection();
+  let range = document.createRange();
+  range.setStartAfter(target);
+  let next = document.getElementsByClassName('line')[nb[1]];
+  next !== undefined ?
+    range.setEndBefore(next) :
+    range.setEndAfter(target.parentNode);
+  selection.addRange(range);
 }
