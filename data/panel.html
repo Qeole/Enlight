@@ -15,7 +15,7 @@
       function loadJSON(aCallback) {
         var xobj = new XMLHttpRequest();
         xobj.overrideMimeType("application/json");
-        xobj.open('GET', 'languages.json', true);
+        xobj.open('GET', 'languages-all.json', true);
         xobj.onreadystatechange = function () {
           if (xobj.readyState == 4 && xobj.status == "200") {
             // Required use of an anonymous callback as .open will NOT return a

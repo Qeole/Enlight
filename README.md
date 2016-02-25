@@ -9,7 +9,7 @@ Syntax highlighting relies on highlight.js project (see [project
 homepage][hljs]. Currently packaged with the add-on is the version
 9.2.0 of highlight.js, which provides
 71    color themes and syntax for
-22    languages.
+150   languages.
 
 ## Install
 
@@ -66,29 +66,11 @@ the script loads (this does not relies on HTML anchors and cannot be triggered
 by simple URL modification; reload the script for current page if you added the
 suffix afterward).
 
-## Supporting more languages
+## Current branch
 
-The highlight.js minimal script included in this module provides support for
-22  languages, while the project theoretically offers support for up to
-150 languages. I had to restrict it because of Mozilla add-on platform review
-policy. To get support for more languages, you can use one of the two following
-methods:
-* Use branch `all_languages` of this repository − it contains a binary `xpi`
-  file not approved by Mozilla, but containing support for all languages. NOTE:
-  `all_languages` branch was not verified by Mozilla, so you are _not_ expected
-  to do this unless you trust me for not altering code from highlight.js, or
-  you verified by yourself.
-* Add support yourself by reproducing following steps:
-  1. download an archive containing all languages you want from
-  https://highlightjs.org/download;
-  2. extract the archive;
-  3. get the source of the add-on;
-  4. overwrite add-on file `data/highlightjs/highlight.min.js` with contents of
-  file `highlight.pack.js` from the archive you obtained;
-  5. add the additional languages you want in `data/languages.json` (you can
-  pick and copy corresponding lines from `data/languages-all.json`);
-  6. repack the add-on (with command `jpm xpi` from add-on SDK) and install
-  add-on in Firefox.
+Current branch embeds syntax for all languages supported by highlight.js.
+
+Developers: beware, this branch is regularly rebased on master branch.
 
 ## License
 
@@ -102,7 +84,7 @@ for details).
 ## Miscellaneous
 
 Other than on the [hilight.js homesite][hljs], you can find a list of supported
-languages in [data/languages.json][languages], and of available color schemes in
+languages in [data/languages-all.json][languages], and of available color schemes in
 [package.json][package].
 
 [hljs]: https://highlightjs.org
@@ -111,6 +93,6 @@ languages in [data/languages.json][languages], and of available color schemes in
 [sdk]: https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_started
 [mpl]: https://github.com/Qeole/Enlight/blob/master/LICENSE
 [bsd]: https://github.com/isagalaev/highlight.js/blob/master/LICENSE
-[languages]: https://github.com/Qeole/Enlight/blob/master/data/languages.json
+[languages]: https://github.com/Qeole/Enlight/blob/master/data/languages-all.json
 [package]: https://github.com/Qeole/Enlight/blob/master/package.json
 [jpm]: https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm

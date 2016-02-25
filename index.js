@@ -18,7 +18,7 @@ var gContentScript = "enlightscript.js"; // Enlight content script
 /*
  * List of supported languages (for display in button label)
  */
-var gLanguagePath = "languages.json"     // language list, under data/
+var gLanguagePath = "languages-all.json" // language list, under data/
 var gLanguageList = {};
 
 /*
