@@ -7,8 +7,8 @@ highlight.js project.
 
 Syntax highlighting relies on highlight.js project (see [project
 homepage][hljs]. Currently packaged with the add-on is the version
-8.8.0 of highlight.js, which provides
-65    color themes and syntax for
+9.2.0 of highlight.js, which provides
+71    color themes and syntax for
 22    languages.
 
 ## Install
@@ -70,7 +70,7 @@ suffix afterward).
 
 The highlight.js minimal script included in this module provides support for
 22  languages, while the project theoretically offers support for up to
-135 languages. I had to restrict it because of Mozilla add-on platform review
+150 languages. I had to restrict it because of Mozilla add-on platform review
 policy. To get support for more languages, you can use one of the two following
 methods:
 * Use branch `all_languages` of this repository − it contains a binary `xpi`

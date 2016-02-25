@@ -5,14 +5,14 @@
   "author": "Qeole",
   "homepage": "https://github.com/Qeole/Enlight",
   "license": "MPL 2.0",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "description": "Syntax highlight for raw source code.",
   "preferences": [
   {
     "name": "style",
     "type": "menulist",
     "title": "Color theme",
-    "value": "solarized_dark",
+    "value": "solarized-dark",
     "options": [
     {
       "value": "agate",
@@ -23,6 +23,10 @@
       "label": "Android Studio"
     },
     {
+      "value": "arduino-light",
+      "label": "Arduino Light"
+    },
+    {
       "value": "arta",
       "label": "Arta"
     },
@@ -31,87 +35,87 @@
       "label": "Ascetic"
     },
     {
-      "value": "atelier-cave.dark",
+      "value": "atelier-cave-dark",
       "label": "Atelier Cave Dark"
     },
     {
-      "value": "atelier-cave.light",
+      "value": "atelier-cave-light",
       "label": "Atelier Cave Light"
     },
     {
-      "value": "atelier-dune.dark",
+      "value": "atelier-dune-dark",
       "label": "Atelier Dune Dark"
     },
     {
-      "value": "atelier-dune.light",
+      "value": "atelier-dune-light",
       "label": "Atelier Dune Light"
     },
     {
-      "value": "atelier-estuary.dark",
+      "value": "atelier-estuary-dark",
       "label": "Atelier Estuary Dark"
     },
     {
-      "value": "atelier-estuary.light",
+      "value": "atelier-estuary-light",
       "label": "Atelier Estuary Light"
     },
     {
-      "value": "atelier-forest.dark",
+      "value": "atelier-forest-dark",
       "label": "Atelier Forest Dark"
     },
     {
-      "value": "atelier-forest.light",
+      "value": "atelier-forest-light",
       "label": "Atelier Forest Light"
     },
     {
-      "value": "atelier-heath.dark",
+      "value": "atelier-heath-dark",
       "label": "Atelier Heath Dark"
     },
     {
-      "value": "atelier-heath.light",
+      "value": "atelier-heath-light",
       "label": "Atelier Heath Light"
     },
     {
-      "value": "atelier-lakeside.dark",
+      "value": "atelier-lakeside-dark",
       "label": "Atelier Lakeside Dark"
     },
     {
-      "value": "atelier-lakeside.light",
+      "value": "atelier-lakeside-light",
       "label": "Atelier Lakeside Light"
     },
     {
-      "value": "atelier-plateau.dark",
+      "value": "atelier-plateau-dark",
       "label": "Atelier Plateau Dark"
     },
     {
-      "value": "atelier-plateau.light",
+      "value": "atelier-plateau-light",
       "label": "Atelier Plateau Light"
     },
     {
-      "value": "atelier-savanna.dark",
+      "value": "atelier-savanna-dark",
       "label": "Atelier Savanna Dark"
     },
     {
-      "value": "atelier-savanna.light",
+      "value": "atelier-savanna-light",
       "label": "Atelier Savanna Light"
     },
     {
-      "value": "atelier-seaside.dark",
+      "value": "atelier-seaside-dark",
       "label": "Atelier Seaside Dark"
     },
     {
-      "value": "atelier-seaside.light",
+      "value": "atelier-seaside-light",
       "label": "Atelier Seaside Light"
     },
     {
-      "value": "atelier-sulphurpool.dark",
+      "value": "atelier-sulphurpool-dark",
       "label": "Atelier Sulphurpool Dark"
     },
     {
-      "value": "atelier-sulphurpool.light",
+      "value": "atelier-sulphurpool-light",
       "label": "Atelier Sulphurpool Light"
     },
     {
-      "value": "brown_paper",
+      "value": "brown-paper",
       "label": "Brown Paper"
     },
     {
@@ -139,6 +143,10 @@
       "label": "Docco"
     },
     {
+      "value": "dracula",
+      "label": "Dracula"
+    },
+    {
       "value": "far",
       "label": "Far"
     },
@@ -163,6 +171,14 @@
       "label": "Grayscale"
     },
     {
+      "value": "gruvbox-dark",
+      "label": "Gruvbox Dark"
+    },
+    {
+      "value": "gruvbox-light",
+      "label": "Gruvbox Light"
+    },
+    {
       "value": "hopscotch",
       "label": "Hopscotch"
     },
@@ -175,15 +191,15 @@
       "label": "Idea"
     },
     {
-      "value": "ir_black",
+      "value": "ir-black",
       "label": "Ir Black"
     },
     {
-      "value": "kimbie.dark",
+      "value": "kimbie-dark",
       "label": "Kimbie Dark"
     },
     {
-      "value": "kimbie.light",
+      "value": "kimbie-light",
       "label": "Kimbie Light"
     },
     {
@@ -199,7 +215,7 @@
       "label": "Monokai"
     },
     {
-      "value": "monokai_sublime",
+      "value": "monokai-sublime",
       "label": "Monokai Sublime"
     },
     {
@@ -207,16 +223,24 @@
       "label": "Obsidian"
     },
     {
-      "value": "paraiso.dark",
+      "value": "paraiso-dark",
       "label": "Paraiso Dark"
     },
     {
-      "value": "paraiso.light",
+      "value": "paraiso-light",
       "label": "Paraiso Light"
     },
     {
       "value": "pojoaque",
       "label": "Pojoaque"
+    },
+    {
+      "value": "qtcreator_dark",
+      "label": "Qt Creator Dark"
+    },
+    {
+      "value": "qtcreator_light",
+      "label": "Qt Creator Light"
     },
     {
       "value": "railscasts",
@@ -227,15 +251,15 @@
       "label": "Rainbow"
     },
     {
-      "value": "school_book",
+      "value": "school-book",
       "label": "School Book"
     },
     {
-      "value": "solarized_dark",
+      "value": "solarized-dark",
       "label": "Solarized Dark"
     },
     {
-      "value": "solarized_light",
+      "value": "solarized-light",
       "label": "Solarized Light"
     },
     {
