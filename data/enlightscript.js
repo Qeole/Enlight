@@ -39,7 +39,7 @@ var enlight = function () {
   /*
    * If option is set, activate “gotoline” functionality.
    */
-  if (self.options.lineNumbers) {
+  if (self.options && self.options.lineNumbers) {
     gotoline();
   }
 } ();
