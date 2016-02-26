@@ -1,6 +1,11 @@
+# WARNING
+
+**This branch has been merged into master branch, and it is now deprecated.
+From v1.12.0 on, all languages supported by highlight.js are included in master
+branch. Current branch will not receive any more update.**
+
  ![Add-on icon](misc/spot64.png) Enlight
 ========================================
-
 
 Firefox add-on providing syntax highlighting for raw code, based on the
 highlight.js project.
