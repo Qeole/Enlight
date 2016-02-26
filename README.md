@@ -66,12 +66,6 @@ the script loads (this does not relies on HTML anchors and cannot be triggered
 by simple URL modification; reload the script for current page if you added the
 suffix afterward).
 
-## Current branch
-
-Current branch embeds syntax for all languages supported by highlight.js.
-
-Developers: beware, this branch is regularly rebased on master branch.
-
 ## License
 
 The code relative to the add-on itself is placed under the Mozilla Public
