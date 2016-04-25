@@ -5,7 +5,7 @@
   "author": "Qeole",
   "homepage": "https://github.com/Qeole/Enlight",
   "license": "MPL 2.0",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "description": "Syntax highlight for raw source code.",
   "permissions": {
     "multiprocess": true
@@ -296,6 +296,10 @@
     {
       "value": "xcode",
       "label": "XCode"
+    },
+    {
+      "value": "xt256",
+      "label": "xt256"
     },
     {
       "value": "zenburn",

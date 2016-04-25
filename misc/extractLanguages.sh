@@ -14,4 +14,4 @@ listall $1
 echo -e "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Not in data/languages-all.json:"
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-grep -f <(sed 's/^"\([^"]*\)".*/\1/' data/languages-all.json) -v <(listall $1)
+grep -vw -f <(sed 's/^"\([^"]*\)".*/\1/' data/languages-all.json) <(listall $1)
