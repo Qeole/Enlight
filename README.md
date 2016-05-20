@@ -1,7 +1,6 @@
  ![Add-on icon](misc/spot64.png) Enlight
 ========================================
 
-
 Firefox add-on providing syntax highlighting for raw code, based on the
 highlight.js project.
 
@@ -13,17 +12,23 @@ homepage][hljs]. Currently packaged with the add-on is the version
 
 ## Install
 
-Theory: just open the `enlight_highlightjs@jetpack-<version>.xpi` file
-(`File->Open`) in Firefox. Confirm you want to install, and you're done. Note
-that this is or will soon become impossible due to [Mozilla policy on add-ons
-signature][signing]; so unless you use Firefox Developer Edition or Nightly, the
-preferred way is to install through [the add-on page on Mozilla add-ons
-platform][amo].
+\>>> [Get it from Mozilla add-ons platform][amo]. <<<
 
-One needs the `jpm` tool to build the add-on ([documentation][jpm]). If you wish
-to build from sources, the `xpi` add-on file itself can easily be generated
-with a `jpm xpi` command from the Mozilla add-on SDK (see [documentation on
-MDN][sdk]).
+As a general rule, it is no longer possible to manually install the version
+provided here with the vanilla Firefox release. See [Mozilla policy on add-ons
+signature][signing] for details. On some specific Firefox versions where add-on
+signing has been disabled (_Developer Edition_ or _Nightly_ with the option
+manually deactivated, or on special stable releases), it may be possible to use
+a version of the add-on coming from this repository.
+
+If you run one of those specific versions: just open the
+`enlight_highlightjs@jetpack-<version>.xpi` file (`File->Open`) in Firefox.
+Confirm you want to install, and you're done.
+
+To build the add-on, one needs the `jpm` tool ([documentation][jpm]). If you
+wish to build from sources, the `xpi` add-on file itself can easily be
+generated with a `jpm xpi` command from the Mozilla add-on SDK (see
+[documentation on MDN][sdk]).
 
 Building with `cfx` is no longer supported. WebExtensions do not seem to
 support per tab activation of the toggle button, which makes it unsuitable for
