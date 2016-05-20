@@ -3,3 +3,4 @@ misc/
 *.xpi
 test/
 data/test/
+new-src/
