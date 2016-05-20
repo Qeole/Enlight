@@ -5,7 +5,7 @@
   "author": "Qeole",
   "homepage": "https://github.com/Qeole/Enlight",
   "license": "MPL 2.0",
-  "version": "1.13.0",
+  "version": "1.14.0",
   "description": "Syntax highlight for raw source code.",
   "permissions": {
     "multiprocess": true
@@ -236,6 +236,10 @@
     {
       "value": "pojoaque",
       "label": "Pojoaque"
+    },
+    {
+      "value": "purebasic",
+      "label": "PureBASIC"
     },
     {
       "value": "qtcreator_dark",
