@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <style type="text/css">
-      .auto:hover{background-color:green;color:white;}
+      body{font-family:sans;cursor:default;}
+      .auto:hover{background-color:green;color:white;font-weight:bold;}
       .auto{padding-left:20px;padding-top:10px;padding-bottom:10px;
-        font-size:150%;background-color:#B5FFB7;}
+        font-size:150%;background-color:#B5FFB7;font-weight:bold;}
       .lang:hover{background-color:#DEE2E8;}
       .lang{padding-left:20px;}
     </style>
@@ -38,9 +39,7 @@
           element.id = keys[i];
           if (keys[i] == "auto") {
             element.className = "auto";
-            var label = document.createElement("b");
-            label.setAttribute("data-l10n-id", "autodetect");
-            element.appendChild(label);
+            element.setAttribute("data-l10n-id", "autodetect");
           }
           else {
             element.className = "lang";
