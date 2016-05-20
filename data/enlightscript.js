@@ -173,8 +173,7 @@ function addLineNumbers(aCode) {
    * without assigning to innerHTML.
    */
   var lines = aCode.innerHTML
-    .replace(/^.*?(\n|$)(?=.|\n)/gm,
-             '<span class="line hljs-comment"></span>$&');
+    .replace(/^.*?(\n|$)/gm, '<span class="line hljs-comment"></span>$&');
   aCode.innerHTML = lines;
 }
 
