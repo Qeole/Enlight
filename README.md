@@ -7,8 +7,8 @@ highlight.js project.
 Syntax highlighting relies on highlight.js project (see [project
 homepage][hljs]. Currently packaged with the add-on is the version
 9.4.0 of highlight.js, which provides
-73    color themes and syntax for
-155   languages.
+74    color themes and syntax for
+162   languages.
 
 ## Install
 
