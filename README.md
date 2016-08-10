@@ -6,9 +6,9 @@ highlight.js project.
 
 Syntax highlighting relies on highlight.js project (see [project
 homepage][hljs]. Currently packaged with the add-on is the version
-9.4.0 of highlight.js, which provides
-74    color themes and syntax for
-162   languages.
+9.6.0 of highlight.js, which provides
+76    color themes and syntax for
+166   languages.
 
 ## Install
 
@@ -30,9 +30,8 @@ wish to build from sources, the `xpi` add-on file itself can easily be
 generated with a `jpm xpi` command from the Mozilla add-on SDK (see
 [documentation on MDN][sdk]).
 
-Building with `cfx` is no longer supported. WebExtensions do not seem to
-support per tab activation of the toggle button, which makes it unsuitable for
-this add-on for now.
+Building with `cfx` is no longer supported. I intend to work on a version based
+on WebExtensions, … when I can find some spare time!
 
 ## Usage
 

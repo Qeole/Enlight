@@ -5,7 +5,7 @@
   "author": "Qeole",
   "homepage": "https://github.com/Qeole/Enlight",
   "license": "MPL 2.0",
-  "version": "1.14.0",
+  "version": "1.15.0",
   "description": "Syntax highlight for raw source code.",
   "permissions": {
     "multiprocess": true
@@ -118,6 +118,14 @@
       "label": "Atelier Sulphurpool Light"
     },
     {
+      "value": "atom-one-dark",
+      "label": "Atom One Dark"
+    },
+    {
+      "value": "atom-one-light",
+      "label": "Atom One Light"
+    },
+    {
       "value": "brown-paper",
       "label": "Brown Paper"
     },
@@ -130,12 +138,12 @@
       "label": "Color Brewer"
     },
     {
-      "value": "dark",
-      "label": "Dark"
+      "value": "darcula",
+      "label": "Darcula"
     },
     {
-      "value": "darkula",
-      "label": "Darkula"
+      "value": "dark",
+      "label": "Dark"
     },
     {
       "value": "default",
