@@ -4,3 +4,4 @@ misc/
 test/
 data/test/
 new-src/
+node_modules/

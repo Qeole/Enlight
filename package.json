@@ -4,8 +4,9 @@
   "id": "enlight_highlightjs@jetpack",
   "author": "Qeole",
   "homepage": "https://github.com/Qeole/Enlight",
-  "license": "MPL 2.0",
-  "version": "1.15.1",
+  "repository": "https://github.com/Qeole/Enlight",
+  "license": "MPL-2.0",
+  "version": "1.16.0",
   "description": "Syntax highlight for raw source code.",
   "permissions": {
     "multiprocess": true
