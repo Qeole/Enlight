@@ -21,5 +21,6 @@
 "perl"           : "Perl",
 "python"         : "Python",
 "ruby"           : "Ruby",
+"shell"          : "Shell",
 "sql"            : "SQL"
 }

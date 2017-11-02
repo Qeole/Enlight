@@ -271,6 +271,10 @@
       "label": "Rainbow"
     },
     {
+      "value": "routeros",
+      "label" : "RouterOS (MikroTik)"
+    },
+    {
       "value": "school-book",
       "label": "School Book"
     },
@@ -309,6 +313,10 @@
     {
       "value": "vs",
       "label": "VS"
+    },
+    {
+      "value": "vs2015",
+      "label": "VisualStudio 2015 Dark"
     },
     {
       "value": "xcode",

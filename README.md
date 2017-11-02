@@ -6,9 +6,9 @@ highlight.js project.
 
 Syntax highlighting relies on highlight.js project (see [project
 homepage][hljs]. Currently packaged with the add-on is the version
-9.8.0 of highlight.js, which provides
-76    color themes <!-- darkula is an alias, doesn't count --> and syntax for
-168   languages.
+9.12.0 of highlight.js, which provides
+78    color themes <!-- darkula is an alias, doesn't count --> and syntax for
+175   languages.
 
 ## Install
 
