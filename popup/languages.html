@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html>
-  <!-- Vim: set ts=8 sts=2 et sw=2 tw=80: -->
   <head>
+  <!-- vim: set ts=8 sts=2 et sw=2 tw=80: -->
     <meta charset="utf-8">
     <style type="text/css">
       body{font-family:sans;cursor:default;}
@@ -12,44 +13,6 @@
     </style>
   </head>
   <body>
-    <script>
-      function loadJSON(aCallback) {
-        var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-        xobj.open('GET', 'languages-all.json', true);
-        xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            // Required use of an anonymous callback as .open will NOT return a
-            // value but simply returns undefined in asynchronous mode
-            aCallback(xobj.responseText);
-          }
-        };
-        xobj.send(null);
-      }
-
-      function generateList(aResponse) {
-        // Parse JSON string into object
-        var languageList = JSON.parse(aResponse);
-
-        var keys = Object.keys(languageList);
-
-        for (var i in keys) {
-          var element = document.createElement("div");
-
-          element.id = keys[i];
-          if (keys[i] == "auto") {
-            element.className = "auto";
-            element.setAttribute("data-l10n-id", "autodetect");
-          }
-          else {
-            element.className = "lang";
-            element.appendChild(document.createTextNode(languageList[keys[i]]));
-          }
-          document.body.appendChild(element);
-        }
-      }
-
-      loadJSON(generateList);
-    </script>
+    <script type="text/javascript" src="languages.js"> </script>
   </body>
 </html>

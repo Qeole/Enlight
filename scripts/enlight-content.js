@@ -1,4 +1,11 @@
-/* vim: set ts=8 sts=2 et sw=2 tw=80 cc=80: */
+/* -*- indent-tabs-mode: nil; js-indent-level: 2 -*- */
+/* vim: set ts=8 sts=2 et sw=2 tw=80: */
+
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
 
 /*
  * Syntax highlighting addition/removal handlers (content scripts).
@@ -14,20 +21,25 @@
  */
 
 /*****************************************************************************/
+var options = {};
 
 /*
- * Execute this at startup
+ * Run the main function at startup.
  */
 var enlight = function () {
+  /*
+   * Get options attached as window.enlightContentScriptOptions by previous
+   * content script.
+   */
+  options = enlightContentScriptOptions;
+
   /*
    * If there is no <pre></pre> HTML block, there's nothing to work on: get
    * out of here.
    */
   if (!document.body ||
-       document.body.getElementsByTagName("pre").item(0) === null) {
-    self.port.emit("toggle_off", 1);
+       document.body.getElementsByTagName("pre").item(0) === null)
     return;
-  }
 
   var initDocumentDiv = document.getElementById("enlightInitDocument");
   /*
@@ -39,9 +51,8 @@ var enlight = function () {
   /*
    * If option is set, activate “gotoline” functionality.
    */
-  if (self.options && self.options.lineNumbers) {
+  if (options && options.lineNumbers)
     gotoline();
-  }
 } ();
 
 /*****************************************************************************/
@@ -49,12 +60,14 @@ var enlight = function () {
 function dohl() {
   var preList = document.getElementsByTagName("pre");
   /*
-   * If self.options is undefined we shouldn't be there. Page has probably been
-   * changed since a former highlight: get out as well.
+   * If options is empty we shouldn't be there. Page has probably been changed
+   * since a former highlight: get out as well.
+   * If options.language is "undo", we want to undo highlighting. If we
+   * triggered dohl() in that case, we probably messed up somewhere in keeping
+   * track of page status. Stop the mess here and return.
    */
-  if (!self.options) {
+  if (!options || options == {} || options.language == "undo")
     return;
-  }
 
   /*
    * Back up initial document
@@ -66,17 +79,6 @@ function dohl() {
   idoc.appendChild(clone);
 
   /*
-   * Add link to CSS stylesheet
-   */
-  var css = document.createElement("link");
-  var style = self.options.stylesheet;
-  css.setAttribute("href",  style != undefined ? style : "");
-  css.setAttribute("rel",  "stylesheet");
-  css.setAttribute("type", "text/css");
-  css.setAttribute("id",   "enlightStylesheet");
-  document.head.appendChild(css);
-
-  /*
    * If needed, add CSS rules for line numbering
    */
   addLineNumberStyle();
@@ -84,9 +86,8 @@ function dohl() {
   /*
    * Deal with language
    */
-  var language = (self.options.language != "" &&
-                  self.options.language != "auto") ?
-                    " " + self.options.language :
+  var language = (options.language != "" && options.language != "auto") ?
+                    " " + options.language :
                     "";
 
   /*
@@ -96,9 +97,7 @@ function dohl() {
     var firstChild = pre.firstChild;
     var code = document.createElement("code");
     code.setAttribute("class", "hljs" + language);
-    if (self.options.bgColor) {
-      code.style = "padding: 0;";
-    }
+    code.style = "padding: 0;";
     code.appendChild(firstChild);
     pre.appendChild(code);
   }
@@ -111,37 +110,35 @@ function dohl() {
   /*
    * Add line numbers if needed.
    */
-  if (self.options.lineNumbers) {
+  if (options.lineNumbers)
     for (var pre of preList) {
       var code = pre.firstChild;
       addLineNumbers(code);
     }
-  }
 
   /*
-   * There's a remaining white border because of body background color.
-   * If option is set, remove it.
+   * There's a remaining white border because of body background color. Remove
+   * it by copying background color of highlighted code area.
    */
-  if (self.options.bgColor) {
-    setTimeout(function () { // Wait for CSS to be computed
-      let codeBG = getComputedStyle(preList[0].firstChild)["background-color"];
-      if (codeBG &&
-          codeBG!="white" &&
-          codeBG!="#FFFFFF" &&
-          codeBG!="#ffffff") {
-        document.body.style.backgroundColor = codeBG;
-      }
-    }, 50);
-  }
+  setTimeout(function () { // Wait for CSS to be computed
+    let codeBG = getComputedStyle(preList[0].firstChild)["background-color"];
+    if (codeBG &&
+        codeBG!="white" &&
+        codeBG!="#FFFFFF" &&
+        codeBG!="#ffffff")
+      document.body.style.backgroundColor = codeBG;
+  }, 50);
 
   /*
    * If we launched language auto-detection, tell main script about detected
    * language
    */
-  if (self.options.language == "" || self.options.language == "auto") {
-    let languageClass = document.querySelectorAll('pre code')[0].className;
+  if (options.language == "" || options.language == "auto") {
+    let languageClass = document.querySelectorAll("pre code")[0].className;
     let languageId = languageClass.slice("hljs ".length);
-    self.port.emit('detected_language', languageId);
+    let port = browser.runtime.connect({name: "detectedLanguage"});
+    port.postMessage({language: languageId});
+    port.disconnect();
   }
 
   /*
@@ -184,9 +181,9 @@ function addLineNumbers(aCode) {
  * https://github.com/isagalaev/highlight.js/compare/master...line-numbers
  */
 function addLineNumberStyle() {
-  if (!self.options.lineNumbers) {
+  if (!options.lineNumbers)
     return;
-  }
+
   var styleContent = " \
     pre { \
       counter-reset: lines; \
@@ -222,20 +219,18 @@ function gotoline() {
   /*
    * Get "#line27" or "#Line27" or "#L27" or "#l27" -like sequence from URL
    */
-  let nb = (window.location + '').match(/#(?:[Ll](?:ine)?)?(\d+)/i)
-  if (nb === null) {
+  let nb = (window.location + "").match(/#(?:[Ll](?:ine)?)?(\d+)/i)
+  if (nb === null)
     return;
-  }
 
   /*
    * Fetch associated line. Note that we fetch the “absolute” nth line of
    * highlighted code in the file, which is not necessarily the nth line of its
    * block if there are several highlighted blocks of code.
    */
-  let target = document.getElementsByClassName('line')[nb[1]-1]
-  if (target === undefined) {
+  let target = document.getElementsByClassName("line")[nb[1]-1]
+  if (target === undefined)
     return;
-  }
 
   /*
    * Scroll to that line
@@ -248,7 +243,7 @@ function gotoline() {
   let selection = window.getSelection();
   let range = document.createRange();
   range.setStartAfter(target);
-  let next = document.getElementsByClassName('line')[nb[1]];
+  let next = document.getElementsByClassName("line")[nb[1]];
   next !== undefined ?
     range.setEndBefore(next) :
     range.setEndAfter(target.parentNode);

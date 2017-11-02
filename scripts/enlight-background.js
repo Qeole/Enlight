@@ -1,269 +1,222 @@
-/* vim: set ts=8 sts=2 et sw=2 tw=80 cc=80: */
-
-var self     = require("sdk/self");
-var buttons  = require("sdk/ui/button/toggle");
-var tabs     = require("sdk/tabs");
-var panels   = require("sdk/panel");
-var spref    = require("sdk/simple-prefs");
-var xhr      = require("sdk/net/xhr");
-var _        = require("sdk/l10n").get; // Localization
+/* -*- indent-tabs-mode: nil; js-indent-level: 2 -*- */
+/* vim: set ts=8 sts=2 et sw=2 tw=80: */
 
 /*
- * Paths (under data/)
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-var gHJSPath       = "highlightjs";      // directory for highlight.js
-var gHJSScript     = "highlight.js";     // highlight.js lib, under gHJSPath/
-var gContentScript = "enlightscript.js"; // Enlight content script
 
 /*
- * List of supported languages (for display in button label)
+ * Paths.
  */
-var gLanguagePath = "languages-all.json" // language list, under data/
+var gHLJSPath      = "highlightjs/highlight.pack.js";
+var gContentScript = "scripts/enlight-content.js";
+var gLanguagePath  = "popup/languages-list_all.json";
+
+/*
+ * List of supported languages (for display in button label).
+ */
 var gLanguageList = {};
 
 /*
- * Icon sets for toggle button
+ * Current page status: highlighted, or not.
  */
-var gIconInit;
-var gIconOff;
-var gIconOn;
-
-function setIcons () {
-  var invert = spref.prefs["invert"] ? ".invert" : "";
-  gIconInit = { // actually links towards ./lightbulb_off-xx(.invert)?.png
-    "16": "./lightbulb_init-16" + invert + ".png",
-    "32": "./lightbulb_init-32.png",
-    "64": "./lightbulb_init-64.png"
-  };
-  gIconOff = {
-    "16": "./lightbulb_off-16" + invert + ".png",
-    "32": "./lightbulb_off-32.png",
-    "64": "./lightbulb_off-64.png"
-  };
-  gIconOn = {
-    "16": "./lightbulb_on-16" + invert + ".png",
-    "32": "./lightbulb_on-32.png",
-    "64": "./lightbulb_on-64.png"
-  };
-}
-setIcons();
+var isHighlighted = false;
 
 /*
- * Update preferences
+ * Options, hardcoded for now.
  */
-spref.on("", onPrefChange);
-function onPrefChange(aPref) {
-  switch (aPref) {
-    case "invert":
-      setIcons();
-      button.icon = gIconInit;
-      break;
-    default:
-      break;
+var options = {
+  hlstyle: "solarized-dark.css",
+  autohl: false,
+  linenumbers: false,
+};
+
+/*
+ * Callback.
+ */
+function onError(error) {
+  console.error("[enlight]: Error:", error);
+}
+
+/*
+ * Reload one option from storage.
+ */
+function reloadOption(aId, aDefault) {
+  let gettingItem = browser.storage.local.get(aId);
+  return gettingItem.then((res) => {
+    if (res[aId] != undefined)
+      options[aId] = res[aId];
+  }, onError);
+}
+
+/*
+ * Update button tooltip label ("title").
+ */
+function updateTitle(aLanguageId) {
+  if (aLanguageId)
+    browser.browserAction.setTitle({
+      title: "Enlight [" + gLanguageList[aLanguageId] + "]"
+    });
+  else
+    browser.browserAction.setTitle({title: "Enlight"});
+}
+
+/*
+ * Actually trigger syntax highlighting by injecting content scripts.
+ */
+function doHighlight(aLanguageId) {
+  browser.tabs.executeScript({
+    file: gHLJSPath
+  }).then(() => {
+    browser.tabs.executeScript({
+      code:
+        "window.enlightContentScriptOptions = {" +
+        "  language: '" + aLanguageId + "'," +
+        "  lineNumbers: " + options.linenumbers +
+        "};"
+    }).then(() => {
+      browser.tabs.executeScript({
+        file: gContentScript
+      }).then(() => {
+        if (aLanguageId == "undo")
+          return browser.tabs.removeCSS({
+            file: "/highlightjs/styles/" + options.hlstyle
+          });
+        else
+          return browser.tabs.insertCSS({
+            file: "/highlightjs/styles/" + options.hlstyle
+          });
+      });
+    });
+  });
+}
+
+/*
+ * Listener. Communicate with popup.
+ */
+function popupListener(aMsg, aSender, aSendResponse) {
+  if (aMsg.languageId) {
+    console.debug("[enlight] Required language:", aMsg.languageId);
+    doHighlight(aMsg.languageId);
+    isHighlighted = true;
+    updateTitle(aMsg.languageId);
+  } else if (aMsg.shouldOpenPopup) {
+    aSendResponse({shouldOpen: !isHighlighted});
+    if (isHighlighted) {
+      doHighlight("undo");
+      isHighlighted = false;
+      updateTitle();
+    }
   }
 }
 
 /*
- * Toggle button
- */
-var button = buttons.ToggleButton({
-  id      : "Highlighter",
-  label   : _("button_label"),
-  icon    : gIconInit,
-  onClick : handleClick
-});
-
-/*
- * Language selection panel
- */
-function panelSelect() {
-  window.addEventListener("click", function(event) {
-    let t = event.target;
-    if (t.nodeName == "DIV") {
-      self.port.emit("click-lang", t.getAttribute("id"));
-    }
-  }, false);
-}
-
-var panel = panels.Panel({
-  contentURL    : self.data.url("panel.html"),
-  contentScript : "(" + panelSelect.toString() + ")()",
-  onHide        : function() {
-    if (panel.languageId == "" || panel.languageId == undefined) {
-      button.state("tab", {"icon" : gIconOff, "checked" : false,
-                   "label" : _("button_label")});
-    }
-  }
-});
-
-panel.port.on("click-lang", function(languageId) {
-  panel.languageId = languageId;
-  panel.hide();
-  doHighlight(languageId);
-});
-
-/*
- * Auto-highlight source code pages
- * condition: document.body has single <pre></pre> child node
+ * Injected script. Check page contents, for auto-highlighting.
  */
 function checkBody() {
-  if (document.body && document.body.childNodes.length == 1 &&
-      document.body.firstChild.nodeName == "PRE" &&
-      document.location.toString()
-        .slice(0,"view-source:".length) != "view-source:") {
-    self.port.emit("isCodeBlock");
-  }
-};
-(function setAutoHighlight() {
-  tabs.on("ready", function(aTab) {
-    if (spref.prefs["autohl"]) {
-      let worker = aTab.attach({
-        contentScript: "(" + checkBody.toString() + ")()",
-      });
-      worker.port.on("isCodeBlock", function() {
-        button.state("tab", {"icon" : gIconOn, "checked" : true});
-        doHighlight("", aTab);
-      });
-    }
-  });
-})();
+  let port = browser.runtime.connect({name:"checkBodyPort"});
+  if (
+    document.body &&
+    document.body.childNodes.length == 1 &&
+    document.body.firstChild.nodeName == "PRE" &&
+    document.location.toString()
+      .slice(0,"view-source:".length) != "view-source:"
+  )
+    port.postMessage({isCodeBlock: true});
+  else
+    port.postMessage({isCodeBlock: false});
+  port.disconnect();
+}
 
 /*
- * Callbacks
+ * Listen to injected script to see if it detects a code block in the page.
  */
-function handleClick(state) {
-  /*
-   * Classic behavior (window-wise) would be:
-   *    // checked is false: clicking a first time set it to true
-   *    if (checked)      // i.e. we just clicked an odd time
-   *      do highlight
-   *    else              // we just clicked an even time
-   *      undo highlight
-   *    fi
-   * But here we toggle tab-wise, so we need to check "manually".
-   *
-   * Also first time we click tab.checked is false, click does not set it to
-   * true. Hence we need a way to know if it's the first time for this tab:
-   * here we change the icon path (actually is a link to same PNG file).
-   */
-  button.state("window", {"checked" : false});
-  if (button.state("tab").icon["16"] == gIconInit["16"]) {
-    button.state("tab", {"icon" : gIconOn, "checked" : false});
-  }
-
-  if (!button.state("tab").checked) {
-    button.state("tab", {"icon" : gIconOn, "checked" : true});
-    panel.languageId = "";
-    panel.show({
-      position: button
-    });
-  }
-  else {
-    button.state("tab", {"icon" : gIconOff, "checked" : false,
-                 "label" : _("button_label")});
-    undoHighlight();
+function checkBodyListener(p) {
+  switch (p.name) {
+    case "checkBodyPort":
+      p.onMessage.addListener((m) => {
+        console.debug("[enlight] Do we detect a code block?", m.isCodeBlock);
+        doHighlight("auto");
+        isHighlighted = true;
+      });
+      break;
+    case "detectedLanguage":
+      p.onMessage.addListener((m) => {
+        console.debug("[enlight] Content script detected language:",
+          m.language);
+        updateTitle(m.language);
+      });
+      break;
+    default: {};
   }
 }
 
-function doHighlight(aLanguageId, aTab=tabs.activeTab) {
-  console.debug(_("log_highlight", aLanguageId, spref.prefs["style"]));
-
-  let worker = aTab.attach({
-    contentScriptOptions: {
-      "stylesheet"  : self.data.url(gHJSPath + "/styles/" +
-                      spref.prefs["style"] + ".css"),
-      "bgColor"     : spref.prefs["bgColor"],
-      "language"    : aLanguageId,
-      "lineNumbers" : spref.prefs["lineNumbers"]
-    },
-    contentScriptFile: [
-      self.data.url(gHJSPath + "/" + gHJSScript),
-      self.data.url(gContentScript)
-    ]
-  });
-
-  worker.port.on("toggle_off", function(reason) {
-    /*
-     * For some reason document content is not highlighted.
-     * Need to toggle button off.
-     */
-    if (!button.state("tab").checked) {
-      return;
-    }
-    let logToggleOffReason = _("log_toff_r" + reason);
-    console.debug(_("log_toggleoff", logToggleOffReason));
-    button.state("tab", {"icon" : gIconOff, "checked" : false,
-                 "label" : _("button_label")});
-  });
-
+/*
+ * Listener. If auto-highlighting is selected, highlight all raw text pages.
+ */
+function tabUpdateListener(aTabId, aChangeInfo, aTabInfo) {
+  if (!aChangeInfo.url)
+    return;
   /*
-   * Add language ID to button's label if we know it
+   * Auto-highlight!
    */
-  if (aLanguageId && aLanguageId != "auto") {
-    button.state("tab", {"icon" : gIconOn, "checked" : true,
-                 "label" : _("button_label") +
-                   " [" + gLanguageList[aLanguageId] + "]"});
-  }
-  else {
-    worker.port.on("detected_language", function(aId) {
-      /*
-       * We launched language auto-detection, and content script is telling us
-       * what language was detected: update button label
-       */
-      button.state("tab", {"icon" : gIconOn, "checked" : true,
-                   "label" : _("button_label") +
-                     " [" + gLanguageList[aId] + "]"});
-    });
-  }
-
-  aTab.on("ready", function () {
-    /*
-     * Content document has been changed/reloaded.
-     * Need to toggle button off.
-     */
-    if (!button.state("tab").checked) {
-      return;
-    }
-    console.debug(_("log_toggleoff", "log_toff_r2"));
-    button.state("tab", {"icon" : gIconOff, "checked" : false});
-    aTab.on("ready", function () {});
-  });
-}
-
-function undoHighlight() {
-  console.debug(_("log_undo"));
-  tabs.activeTab.attach({
-    contentScriptFile: [
-      self.data.url("enlightscript.js")
-    ]
+  browser.tabs.executeScript({
+    code: "(" + checkBody.toString() + ")()"
   });
 }
 
 /*
- * Functions used to parse JSON list of languages (so that we can display name
- * of detected language in button label)
+ * Parse JSON list of languages so that we can display the name of detected
+ * languages in button label.
  */
 function loadJSON(aCallback) {
-  var xobj = new xhr.XMLHttpRequest();
-  xobj.overrideMimeType("application/json");
-  xobj.open("GET", self.data.url(gLanguagePath), true);
-  xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-      aCallback(xobj.responseText);
-    }
-  };
-  xobj.send(null);
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open("GET", gLanguagePath, true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            aCallback(xobj.responseText);
+        }
+    };
+    xobj.send(null);
 }
 
+/*
+ * Callback.
+ */
 function parseResponse(aResponse) {
   gLanguageList = JSON.parse(aResponse);
 }
 
-loadJSON(parseResponse);
+/*
+ * Load all options, and set up auto-highlighting if required.
+ */
+function init() {
+  if (options.autohl) {
+    browser.runtime.onConnect.removeListener(checkBodyListener);
+    browser.tabs.onUpdated.removeListener(tabUpdateListener);
+  }
+
+  reloadOption("autohl")
+    .then(reloadOption("linenumbers"))
+    .then(reloadOption("hlstyle"))
+    .then(() => {
+      if (options.autohl) {
+        browser.runtime.onConnect.addListener(checkBodyListener);
+        browser.tabs.onUpdated.addListener(tabUpdateListener);
+      }
+    });
+}
 
 /*
- * Exports for unit tests
+ * Perform these operations at add-on start-up:
  */
-exports.button      = button;
-exports.panel       = panel;
-exports.doHighlight = doHighlight;
+
+browser.runtime.onMessage.addListener(popupListener);
+
+browser.storage.onChanged.addListener(init);
+init();
+
+loadJSON(parseResponse);

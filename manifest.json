@@ -1,360 +1,49 @@
 {
-  "name": "enlight",
-  "title": "Enlight",
-  "id": "enlight_highlightjs@jetpack",
-  "author": "Qeole",
-  "homepage": "https://github.com/Qeole/Enlight",
-  "repository": "https://github.com/Qeole/Enlight",
-  "license": "MPL-2.0",
-  "version": "1.16.0",
-  "description": "Syntax highlight for raw source code.",
-  "permissions": {
-    "multiprocess": true
+
+  "manifest_version": 2,
+  "name": "Enlight",
+  "version": "2.0.9.12",
+  "homepage_url": "https://github.com/Qeole/Enlight",
+  "description": "__MSG_description__",
+  "default_locale": "en",
+  "icons": {
+    "64": "icons/spot64.png"
   },
-  "preferences": [
-  {
-    "name": "style",
-    "type": "menulist",
-    "title": "Color theme",
-    "value": "solarized-dark",
-    "options": [
-    {
-      "value": "agate",
-      "label": "Agate"
-    },
-    {
-      "value": "androidstudio",
-      "label": "Android Studio"
-    },
-    {
-      "value": "arduino-light",
-      "label": "Arduino Light"
-    },
-    {
-      "value": "arta",
-      "label": "Arta"
-    },
-    {
-      "value": "ascetic",
-      "label": "Ascetic"
-    },
-    {
-      "value": "atelier-cave-dark",
-      "label": "Atelier Cave Dark"
-    },
-    {
-      "value": "atelier-cave-light",
-      "label": "Atelier Cave Light"
-    },
-    {
-      "value": "atelier-dune-dark",
-      "label": "Atelier Dune Dark"
-    },
-    {
-      "value": "atelier-dune-light",
-      "label": "Atelier Dune Light"
-    },
-    {
-      "value": "atelier-estuary-dark",
-      "label": "Atelier Estuary Dark"
-    },
-    {
-      "value": "atelier-estuary-light",
-      "label": "Atelier Estuary Light"
-    },
-    {
-      "value": "atelier-forest-dark",
-      "label": "Atelier Forest Dark"
-    },
-    {
-      "value": "atelier-forest-light",
-      "label": "Atelier Forest Light"
-    },
-    {
-      "value": "atelier-heath-dark",
-      "label": "Atelier Heath Dark"
-    },
-    {
-      "value": "atelier-heath-light",
-      "label": "Atelier Heath Light"
-    },
-    {
-      "value": "atelier-lakeside-dark",
-      "label": "Atelier Lakeside Dark"
-    },
-    {
-      "value": "atelier-lakeside-light",
-      "label": "Atelier Lakeside Light"
-    },
-    {
-      "value": "atelier-plateau-dark",
-      "label": "Atelier Plateau Dark"
-    },
-    {
-      "value": "atelier-plateau-light",
-      "label": "Atelier Plateau Light"
-    },
-    {
-      "value": "atelier-savanna-dark",
-      "label": "Atelier Savanna Dark"
-    },
-    {
-      "value": "atelier-savanna-light",
-      "label": "Atelier Savanna Light"
-    },
-    {
-      "value": "atelier-seaside-dark",
-      "label": "Atelier Seaside Dark"
-    },
-    {
-      "value": "atelier-seaside-light",
-      "label": "Atelier Seaside Light"
-    },
-    {
-      "value": "atelier-sulphurpool-dark",
-      "label": "Atelier Sulphurpool Dark"
-    },
-    {
-      "value": "atelier-sulphurpool-light",
-      "label": "Atelier Sulphurpool Light"
-    },
-    {
-      "value": "atom-one-dark",
-      "label": "Atom One Dark"
-    },
-    {
-      "value": "atom-one-light",
-      "label": "Atom One Light"
-    },
-    {
-      "value": "brown-paper",
-      "label": "Brown Paper"
-    },
-    {
-      "value": "codepen-embed",
-      "label": "Codepen Embed"
-    },
-    {
-      "value": "color-brewer",
-      "label": "Color Brewer"
-    },
-    {
-      "value": "darcula",
-      "label": "Darcula"
-    },
-    {
-      "value": "dark",
-      "label": "Dark"
-    },
-    {
-      "value": "default",
-      "label": "Default"
-    },
-    {
-      "value": "docco",
-      "label": "Docco"
-    },
-    {
-      "value": "dracula",
-      "label": "Dracula"
-    },
-    {
-      "value": "far",
-      "label": "Far"
-    },
-    {
-      "value": "foundation",
-      "label": "Foundation"
-    },
-    {
-      "value": "github",
-      "label": "Github"
-    },
-    {
-      "value": "github-gist",
-      "label": "Github Gist"
-    },
-    {
-      "value": "googlecode",
-      "label": "Googlecode"
-    },
-    {
-      "value": "grayscale",
-      "label": "Grayscale"
-    },
-    {
-      "value": "gruvbox-dark",
-      "label": "Gruvbox Dark"
-    },
-    {
-      "value": "gruvbox-light",
-      "label": "Gruvbox Light"
-    },
-    {
-      "value": "hopscotch",
-      "label": "Hopscotch"
-    },
-    {
-      "value": "hybrid",
-      "label": "Hybrid"
-    },
-    {
-      "value": "idea",
-      "label": "Idea"
-    },
-    {
-      "value": "ir-black",
-      "label": "Ir Black"
-    },
-    {
-      "value": "kimbie-dark",
-      "label": "Kimbie Dark"
-    },
-    {
-      "value": "kimbie-light",
-      "label": "Kimbie Light"
-    },
-    {
-      "value": "magula",
-      "label": "Magula"
-    },
-    {
-      "value": "mono-blue",
-      "label": "Mono Blue"
-    },
-    {
-      "value": "monokai",
-      "label": "Monokai"
-    },
-    {
-      "value": "monokai-sublime",
-      "label": "Monokai Sublime"
-    },
-    {
-      "value": "obsidian",
-      "label": "Obsidian"
-    },
-    {
-      "value": "ocean",
-      "label": "Ocean Dark"
-    },
-    {
-      "value": "paraiso-dark",
-      "label": "Paraiso Dark"
-    },
-    {
-      "value": "paraiso-light",
-      "label": "Paraiso Light"
-    },
-    {
-      "value": "pojoaque",
-      "label": "Pojoaque"
-    },
-    {
-      "value": "purebasic",
-      "label": "PureBASIC"
-    },
-    {
-      "value": "qtcreator_dark",
-      "label": "Qt Creator Dark"
-    },
-    {
-      "value": "qtcreator_light",
-      "label": "Qt Creator Light"
-    },
-    {
-      "value": "railscasts",
-      "label": "Railscasts"
-    },
-    {
-      "value": "rainbow",
-      "label": "Rainbow"
-    },
-    {
-      "value": "routeros",
-      "label" : "RouterOS (MikroTik)"
-    },
-    {
-      "value": "school-book",
-      "label": "School Book"
-    },
-    {
-      "value": "solarized-dark",
-      "label": "Solarized Dark"
-    },
-    {
-      "value": "solarized-light",
-      "label": "Solarized Light"
-    },
-    {
-      "value": "sunburst",
-      "label": "Sunburst"
-    },
-    {
-      "value": "tomorrow",
-      "label": "Tomorrow"
-    },
-    {
-      "value": "tomorrow-night-blue",
-      "label": "Tomorrow Night Blue"
-    },
-    {
-      "value": "tomorrow-night-bright",
-      "label": "Tomorrow Night Bright"
-    },
-    {
-      "value": "tomorrow-night",
-      "label": "Tomorrow Night"
-    },
-    {
-      "value": "tomorrow-night-eighties",
-      "label": "Tomorrow Night Eighties"
-    },
-    {
-      "value": "vs",
-      "label": "VS"
-    },
-    {
-      "value": "vs2015",
-      "label": "VisualStudio 2015 Dark"
-    },
-    {
-      "value": "xcode",
-      "label": "XCode"
-    },
-    {
-      "value": "xt256",
-      "label": "xt256"
-    },
-    {
-      "value": "zenburn",
-      "label": "Zenburn"
-    }
+
+  "browser_action": {
+    "browser_style": true,
+    "default_title": "Enlight",
+    "default_popup": "popup/languages.html",
+    "theme_icons": [
+      {
+        "dark": "icons/lightbulb-dark.svg",
+        "light": "icons/lightbulb-light.svg",
+        "size": 64
+      }
     ]
   },
-  {
-    "name": "autohl",
-    "type": "bool",
-    "title": "Auto-highlight source code files",
-    "value": false
+
+  "background": {
+    "scripts": ["scripts/enlight-background.js"]
   },
-  {
-    "name": "invert",
-    "type": "bool",
-    "title": "Alternate icon set",
-    "value": false
+
+  "options_ui": {
+    "browser_style": true,
+    "page": "options/ui.html"
   },
-  {
-    "name": "bgColor",
-    "type": "bool",
-    "title": "Adapt body background color",
-    "value": true
-  },
-  {
-    "name": "lineNumbers",
-    "type": "bool",
-    "title": "Add line numbering",
-    "value": false
+
+  "permissions": [
+    "<all_urls>",
+    "activeTab",
+    "tabs",
+    "storage"
+  ],
+
+  "applications": {
+    "gecko": {
+      "id": "enlight_highlightjs@jetpack",
+      "strict_min_version": "56.0"
+    }
   }
-  ]
+
 }

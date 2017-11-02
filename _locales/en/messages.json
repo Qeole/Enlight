@@ -1,31 +1,6 @@
-# Vim: set spelllang=en:
-
-# Metadata
-# Currently in master branch of add-on SDK, but not in current stable v1.17
-addon_description = Syntax highlight for raw source code.
-
-# Preferences
-style_title             = Color theme
-style_description       = Select the color theme you want to use for syntax highlighting.
-autohl_title            = Auto-highlight source code files
-autohl_description      = Automatically apply highlighting to pages detected as source code (technically, detection occurs when HTML body contains a single child of name <pre></pre>).
-invert_title            = Alternate icon set
-invert_description      = Use white (instead of dark gray) icons for the button, for a better contrast on dark themes.
-bgColor_title           = Adapt body background color
-bgColor_description     = Make HTML body background color the same as background color for the code block. Should remove white border around highlighted code. Disable if you use the add-on on web pages other than plain text source code files.
-lineNumbers_title       = Add line numbering
-lineNumbers_description = Display line numbers on the left of highlighted content. When this option is enabled, one can also scroll to e.g. line 27 and select it if a suffix such as “#Line27” or “#line27” or “#L27” or “#l27” is appended to the URL BEFORE the script loads (this does not relies on HTML anchors and cannot be triggered by simple URL modification; reload the script for current page if you added the suffix afterward).
-
-# Button
-button_label      = Highlight raw source code
-
-# Language selection panel
-autodetect        = Auto-detect
-no_language       = None
-
-# Logs
-log_highlight     = Let's (try to) highlight code for language “%s” with style “%s”.
-log_undo          = Oh, well, let's get back to initial content.
-log_toggleoff     = Received toggle off request from content script for reason “%s”.
-log_toff_r1       = nothing to work on in this document
-log_toff_r2       = document is unloaded
+{
+    "description": {
+        "message": "Syntax highlighting for raw source code files.",
+        "description": "Description of the extension."
+    }
+}

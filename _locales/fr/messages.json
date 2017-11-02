@@ -1,31 +1,6 @@
-# Vim: set spelllang=fr:
-
-# Métadata
-# Currently in master branch of add-on SDK, but not in current stable v1.17
-addon_description = Coloration syntaxique sur code source brut.
-
-# Préférences
-style_title             = Thème
-style_description       = Sélectionnez le jeu de couleurs à utiliser pour la coloration syntaxique.
-autohl_title            = Coloration automatique du code source
-autohl_description      = Lance automatiquement la coloration syntaxique à l'ouverture des pages détectées comme étant des fichiers sources (du point de vue technique, cette détection survient lorsque l'élément HTML body contient un unique nœud, de type <pre></pre>).
-invert_title            = Icônes alternatives
-invert_description      = Utiliser des icônes blanches (plutôt que gris foncé) pour le bouton, pour un meilleur contraste sur un thème foncé.
-bgColor_title           = Adapter la couleur d'arrière-plan de l'élément body
-bgColor_description     = Étend la couleur d'arrière plan du bloc de code coloré à l'élément body du document HTML. Cela permet en principe de retirer la bordure blanche qui apparaît autour du bloc coloré. Désactivez cette option si vous utilisez cette extension pour des pages web autres que contenant seulement du code source au format texte.
-lineNumbers_title       = Numéroter les lignes
-lineNumbers_description = Affiche le numéro de chaque ligne à gauche du contenu coloré. Lorsque cette option est activée, il est possible de sauter à la ligne fournie, par exemple 27, et de la mettre en surbrillance si l'URL comporte un suffixe de la forme « #Line27 » ou « #line27 » ou « #L27 » ou « #l27 ». Ce suffixe doit être ajouté AVANT le chargement du script (la fonctionnalité ne repose pas sur les ancres HTML et ne peut pas détecter une simple modification de l'URL. Si le suffixe est ajouté après le chargement du script pour la page en cours, il suffit de recharger ce dernier).
-
-# Bouton
-button_label      = Coloration syntaxique de code
-
-# Panneau de sélection du langage
-autodetect        = Détection auto
-no_language       = Aucun
-
-# Logs
-log_highlight     = Essayons la coloration syntaxique pour le langage « %s » avec le thème « %s ».
-log_undo          = Retour au contenu initial du document.
-log_toggleoff     = Le script de contenu signale l'absence de coloration pour la raison « %s ».
-log_toff_r1       = aucun bloc sur lequel travailler dans ce document
-log_toff_r2       = le document est déchargé du navigateur
+{
+    "description": {
+        "message": "Coloration syntaxique pour code source brut.",
+        "description": "Description of the extension."
+    }
+}
