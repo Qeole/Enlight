@@ -138,8 +138,9 @@ function checkBodyListener(p) {
     case "checkBodyPort":
       p.onMessage.addListener((m) => {
         console.debug("[enlight] Do we detect a code block?", m.isCodeBlock);
-        doHighlight("auto");
-        isHighlighted = true;
+        if (m.isCodeBlock)
+          doHighlight("auto");
+        isHighlighted = m.isCodeBlock;
       });
       break;
     case "detectedLanguage":
