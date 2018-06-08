@@ -24,7 +24,11 @@ function onError(error) {
 function restoreOption(aId, aDefault) {
     let gettingItem = browser.storage.local.get(aId);
     gettingItem.then((res) => {
-        document.getElementById(aId).value = res[aId] || aDefault;
+        let element = document.getElementById(aId);
+        if (element.type && element.type.toLowerCase() === "checkbox")
+            element.checked = res[aId] || aDefault;
+        else
+            element.value = res[aId] || aDefault;
     }, onError);
 }
 
