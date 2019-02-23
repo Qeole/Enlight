@@ -86,9 +86,60 @@ function dohl() {
   /*
    * Deal with language
    */
-  var language = (options.language != "" && options.language != "auto") ?
-                    " " + options.language :
-                    "";
+  var language = "";
+
+  if (options.language != "" && options.language != "auto") {
+    language = " " + options.language;
+  } else if (options.language == "auto" && options.fileExt) {
+    /* Try to guess language based on file extension */
+    let extension = window.location.toString().split('.').pop().toLowerCase();
+    switch (extension) {
+    case "sh":
+      language = " bash";
+      break;
+    case "c":
+    case "cc":
+    case "h":
+      language = " cpp";
+      break;
+    case "diff":
+    case "patch":
+      language = " diff";
+    case "js":
+      language = " javascript";
+      break;
+    case "md":
+      language = " markdown";
+      break;
+    case "pl":
+      language = " perl";
+      break;
+    case "py":
+      language = " python";
+      break;
+    case "rb":
+      language = " ruby";
+      break;
+    case "cs":
+    case "css":
+    case "xml":
+    case "ini":
+    case "json":
+    case "java":
+    case "php":
+      language = " " + extension;
+      break;
+    case "txt":
+      language = " nohighlight";
+      break;
+    default:
+      break;
+    }
+  }
+  /*
+   * Else if (options.language == "auto"), we leave language to "" so
+   * highlihgt.sh attempts auto-detection
+   */
 
   /*
    * Enclose <pre></pre> blocks content in <code></code> blocks

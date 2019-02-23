@@ -13,6 +13,7 @@ function saveOptions(e) {
     browser.storage.local.set({
         hlstyle: document.getElementById("hlstyle").value,
         autohl: document.getElementById("autohl").checked,
+        fileext: document.getElementById("fileext").checked,
         linenumbers: document.getElementById("linenumbers").checked,
     });
 }
@@ -35,10 +36,12 @@ function restoreOption(aId, aDefault) {
 function restoreAllOptions() {
     restoreOption("hlstyle", "solarized-dark.css");
     restoreOption("autohl", false);
+    restoreOption("fileext", false);
     restoreOption("linenumbers", false);
 }
 
 document.addEventListener('DOMContentLoaded', restoreAllOptions);
 document.getElementById("hlstyle").addEventListener("change", saveOptions);
 document.getElementById("autohl").addEventListener("change", saveOptions);
+document.getElementById("fileext").addEventListener("change", saveOptions);
 document.getElementById("linenumbers").addEventListener("change", saveOptions);

@@ -30,6 +30,7 @@ var isHighlighted = false;
 var options = {
   hlstyle: "solarized-dark.css",
   autohl: false,
+  fileext: false,
   linenumbers: false,
 };
 
@@ -70,10 +71,12 @@ function doHighlight(aLanguageId) {
   browser.tabs.executeScript({
     file: gHLJSPath
   }).then(() => {
+    console.debug(options.fileext);
     browser.tabs.executeScript({
       code:
         "window.enlightContentScriptOptions = {" +
         "  language: '" + aLanguageId + "'," +
+        "  fileExt: " + options.fileext + "," +
         "  lineNumbers: " + options.linenumbers +
         "};"
     }).then(() => {
@@ -205,6 +208,7 @@ function init() {
   }
 
   reloadOption("autohl")
+    .then(reloadOption("fileext"))
     .then(reloadOption("linenumbers"))
     .then(reloadOption("hlstyle"))
     .then(() => {
