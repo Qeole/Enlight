@@ -11,7 +11,7 @@ listall() {
 }
 listall $1
 
-echo -e "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-echo "Not in data/languages-all.json:"
-echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-grep -vw -f <(sed 's/^"\([^"]*\)".*/\1/' data/languages-all.json) <(listall $1)
+echo -e "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+echo "Not in popup/languages-list_all.json :"
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+grep -vw -f <(sed 's/^"\([^"]*\)".*/\1/' popup/languages-list_all.json ) <(listall $1)
