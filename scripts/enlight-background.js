@@ -101,7 +101,11 @@ function popupListener(aMsg, aSender, aSendResponse) {
     console.debug("[enlight] Required language:", aMsg.languageId);
     doHighlight(aMsg.languageId);
     isHighlighted = true;
-    updateTitle(aMsg.languageId);
+    if (aMsg.languageId == "auto" && !options.autohl)
+      /* Add listener to get selected language from content script */
+      browser.runtime.onConnect.addListener(checkBodyListener);
+    else
+      updateTitle(aMsg.languageId);
   } else if (aMsg.shouldOpenPopup) {
     aSendResponse({shouldOpen: !isHighlighted});
     if (isHighlighted) {
