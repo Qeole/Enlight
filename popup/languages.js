@@ -26,7 +26,7 @@ browser.runtime.sendMessage({shouldOpenPopup: "query"})
 function loadJSON(aCallback) {
   var xobj = new XMLHttpRequest();
   xobj.overrideMimeType("application/json");
-  xobj.open("GET", "languages-list_all.json", true);
+  xobj.open("GET", "../options/languages-list_all.json", true);
   xobj.onreadystatechange = function () {
     if (xobj.readyState == 4 && xobj.status == "200") {
       /*

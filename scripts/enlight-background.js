@@ -12,7 +12,7 @@
  */
 var gHLJSPath      = "highlightjs/highlight.pack.js";
 var gContentScript = "scripts/enlight-content.js";
-var gLanguagePath  = "popup/languages-list_all.json";
+var gLanguagePath  = "options/languages-list_all.json";
 
 /*
  * List of supported languages (for display in button label).
