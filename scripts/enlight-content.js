@@ -156,6 +156,10 @@ function dohl() {
   /*
    * Call highlighting function: hljs is defined in highlight.js library.
    */
+  if (options && options.langList)
+    hljs.configure({
+      languages: options.langList
+    });
   hljs.initHighlighting();
 
   /*

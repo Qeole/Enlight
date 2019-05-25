@@ -32,6 +32,32 @@ var options = {
   autohl: false,
   fileext: false,
   linenumbers: false,
+  langlist: [
+    "apache",
+    "bash",
+    "cs",
+    "cpp",
+    "css",
+    "coffeescript",
+    "diff",
+    "xml",
+    "http",
+    "ini",
+    "json",
+    "java",
+    "javascript",
+    "makefile",
+    "markdown",
+    "nginx",
+    "objectivec",
+    "php",
+    "perl",
+    "properties",
+    "python",
+    "ruby",
+    "sql",
+    "shell",
+  ]
 };
 
 /*
@@ -77,7 +103,8 @@ function doHighlight(aLanguageId) {
         "window.enlightContentScriptOptions = {" +
         "  language: '" + aLanguageId + "'," +
         "  fileExt: " + options.fileext + "," +
-        "  lineNumbers: " + options.linenumbers +
+        "  lineNumbers: " + options.linenumbers + "," +
+        "  langList: " + JSON.stringify(options.langlist) +
         "};"
     }).then(() => {
       browser.tabs.executeScript({
@@ -211,6 +238,7 @@ function init() {
     .then(reloadOption("fileext"))
     .then(reloadOption("linenumbers"))
     .then(reloadOption("hlstyle"))
+    .then(reloadOption("langlist"))
     .then(() => {
       if (options.autohl) {
         browser.runtime.onConnect.addListener(checkBodyListener);
