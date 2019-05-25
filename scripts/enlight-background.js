@@ -137,7 +137,12 @@ function popupListener(aMsg, aSender, aSendResponse) {
     else
       updateTitle(aMsg.languageId);
   } else if (aMsg.shouldOpenPopup) {
-    aSendResponse({shouldOpen: !isHighlighted});
+    let response = {
+      shouldOpen: !isHighlighted
+    };
+    if (response.shouldOpen)
+      response.langSubset = options.langlist;
+    aSendResponse(response);
     if (isHighlighted) {
       doHighlight("undo");
       isHighlighted = false;

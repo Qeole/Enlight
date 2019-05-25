@@ -7,18 +7,22 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+var gLangSubset = [];
+
 /*
- * Ask background script whether popup should be opened.
+ * Callback to ask background script whether popup should be opened.
  */
 function handleResponse(aMsg) {
-  if (!aMsg.shouldOpen)
+  if (!aMsg.shouldOpen) {
     window.close();
+    return;
+  }
+  gLangSubset = aMsg.langSubset;
+  gLangSubset.push("auto");
 }
 function handleError(error) {
   console.log("[enlight] Error:", error);
 }
-browser.runtime.sendMessage({shouldOpenPopup: "query"})
-  .then(handleResponse, handleError);
 
 /*
  * Parse JSON file to load the names of supported languages.
@@ -46,27 +50,30 @@ function generateList(aResponse) {
   var languageList = JSON.parse(aResponse);
   var keys = Object.keys(languageList);
 
-  for (var i in keys) {
-    var element = document.createElement("div");
+  for (var l of keys) {
+    if (!gLangSubset.includes(l))
+      continue;
 
-    element.id = keys[i];
-    if (keys[i] == "auto") {
+    var element = document.createElement("div");
+    element.id = l;
+    if (l == "auto") {
       element.className = "auto";
-      //element.setAttribute("data-l10n-id", "autodetect");
       element.appendChild(document.createTextNode("Auto-detect"));
     }
     else {
       element.className = "lang";
-      element.textContent = languageList[keys[i]];
+      element.textContent = languageList[l];
     }
     document.body.appendChild(element);
   }
 }
 
 /*
- * Do load JSON and print list now.
+ * Check if popup should open, then load JSON and print list.
  */
-loadJSON(generateList);
+browser.runtime.sendMessage({shouldOpenPopup: "query"})
+  .then(handleResponse, handleError)
+  .then(loadJSON(generateList))
 
 /*
  * On user click, send selected language id to background script, then close
