@@ -88,7 +88,7 @@ for details).
 ## Miscellaneous
 
 Other than on the [hilight.js homesite][hljs], you can find a list of supported
-languages in [popup/languages-list_all.json][languages], and of available color
+languages in [options/languages-list_all.json][languages], and of available color
 schemes in [options/fill-css-list.js][package].
 
 [hljs]: https://highlightjs.org
@@ -99,5 +99,5 @@ schemes in [options/fill-css-list.js][package].
 [webext-ref]: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/web-ext_command_reference
 [mpl]: https://github.com/Qeole/Enlight/blob/master/LICENSE
 [bsd]: https://github.com/isagalaev/highlight.js/blob/master/LICENSE
-[languages]: https://github.com/Qeole/Enlight/blob/master/popup/languages-list_all.json
+[languages]: https://github.com/Qeole/Enlight/blob/master/options/languages-list_all.json
 [package]: https://github.com/Qeole/Enlight/blob/master/options/fill-css-list.js
