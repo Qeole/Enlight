@@ -45,7 +45,8 @@ function restoreLangList(aDefault) {
 }
 
 function saveOptions(e) {
-    e.preventDefault();
+    if (e) /* Undefined when calling for shortcuts for languages checkboxes */
+        e.preventDefault();
 
     selectedLanguages = getLangList();
 
