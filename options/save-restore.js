@@ -7,14 +7,54 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+/*
+ * Retrieve the list of checked languages in the list.
+ */
+function getLangList() {
+    let table = document.getElementById("langlist");
+    let res = [];
+
+    for (let row of table.children) {
+        let cell = row.children[0];
+        let input = cell.children[0];
+        let l = input.id.substring("langlist-".length);
+        if (input.checked)
+            res.push(l);
+    }
+
+    return res;
+}
+
+/*
+ * Check boxes for languages saved in pref (or from default).
+ */
+function restoreLangList(aDefault) {
+    let gettingItem = browser.storage.local.get("langlist");
+    gettingItem.then((res) => {
+        let table = document.getElementById("langlist");
+        let opts = res.langlist ? res.langlist : aDefault;
+
+        for (let row of table.children) {
+            let cell = row.children[0];
+            let input = cell.children[0];
+            let l = input.id.substring("langlist-".length);
+            if (opts.includes(l))
+                input.checked = true;
+        }
+    }, onError);
+}
+
 function saveOptions(e) {
     e.preventDefault();
+
+    selectedLanguages = getLangList();
 
     browser.storage.local.set({
         hlstyle: document.getElementById("hlstyle").value,
         autohl: document.getElementById("autohl").checked,
         fileext: document.getElementById("fileext").checked,
         linenumbers: document.getElementById("linenumbers").checked,
+        langlist: selectedLanguages,
     });
 }
 
@@ -34,10 +74,11 @@ function restoreOption(aId, aDefault) {
 }
 
 function restoreAllOptions() {
-    restoreOption("hlstyle", "solarized-dark.css");
-    restoreOption("autohl", false);
-    restoreOption("fileext", false);
-    restoreOption("linenumbers", false);
+    restoreOption("hlstyle", gDefaultOptions.hlstyle);
+    restoreOption("autohl", gDefaultOptions.autohl);
+    restoreOption("fileext", gDefaultOptions.fileext);
+    restoreOption("linenumbers", gDefaultOptions.linnumbers);
+    restoreLangList(gDefaultOptions.langlist);
 }
 
 document.addEventListener('DOMContentLoaded', restoreAllOptions);
@@ -45,3 +86,4 @@ document.getElementById("hlstyle").addEventListener("change", saveOptions);
 document.getElementById("autohl").addEventListener("change", saveOptions);
 document.getElementById("fileext").addEventListener("change", saveOptions);
 document.getElementById("linenumbers").addEventListener("change", saveOptions);
+document.getElementById("langlist").addEventListener("change", saveOptions);
