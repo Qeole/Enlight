@@ -7,8 +7,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-var gLangSubset = [];
-
 /*
  * Callback to ask background script whether popup should be opened.
  */
@@ -17,8 +15,11 @@ function handleResponse(aMsg) {
     window.close();
     return;
   }
-  gLangSubset = aMsg.langSubset;
-  gLangSubset.push("auto");
+
+  let langSubset = [];
+  langSubset = aMsg.langSubset;
+  langSubset.push("auto");
+  return langSubset;
 }
 function handleError(error) {
   console.log("[enlight] Error:", error);
@@ -27,7 +28,7 @@ function handleError(error) {
 /*
  * Parse JSON file to load the names of supported languages.
  */
-function loadJSON(aCallback) {
+function loadJSON(aLangSubset) {
   var xobj = new XMLHttpRequest();
   xobj.overrideMimeType("application/json");
   xobj.open("GET", "../options/languages-list_all.json", true);
@@ -37,7 +38,7 @@ function loadJSON(aCallback) {
        * Required use of an anonymous callback as .open will NOT return a value
        * but simply returns undefined in asynchronous mode.
        */
-      aCallback(xobj.responseText);
+      generateList(xobj.responseText, aLangSubset);
     }
   };
   xobj.send(null);
@@ -46,12 +47,12 @@ function loadJSON(aCallback) {
 /*
  * Print list of languages.
  */
-function generateList(aResponse) {
+function generateList(aResponse, aLangSubset) {
   var languageList = JSON.parse(aResponse);
   var keys = Object.keys(languageList);
 
   for (var l of keys) {
-    if (!gLangSubset.includes(l))
+    if (!aLangSubset.includes(l))
       continue;
 
     var element = document.createElement("div");
@@ -73,7 +74,7 @@ function generateList(aResponse) {
  */
 browser.runtime.sendMessage({shouldOpenPopup: "query"})
   .then(handleResponse, handleError)
-  .then(loadJSON(generateList))
+  .then(loadJSON, handleError)
 
 /*
  * On user click, send selected language id to background script, then close
