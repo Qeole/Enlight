@@ -60,6 +60,10 @@ You can also customize some options through Firefox add-on manager tab:
 * Add line numbers (_default: off_): add line numbers on the left of file
   content. Line numbers are created with CSS and are not part of the file
   contents.
+* Select the programming languages to use in the add-on pop-up and for
+  auto-detection. Using many languages tends to slow down auto-detection and to
+  make it less accurate. Defaults to the list of “common” languages as offered
+  by the highlight.js library on [its download page](hljs-download).
 
 When line numbering is enabled, it is possible to jump to the line passed
 through URL: e.g. scroll to line 27 and select it if a suffix such as
@@ -81,23 +85,24 @@ the [highlight.js project community][hljs].
 The code relative to the add-on itself is placed under the Mozilla Public
 License v. 2.0 (see file [LICENSE][mpl]).
 
-The code for highlight.js (_i.e._ everything under the `data/highlightjs`
-directory) was released under the BSD License (see relative [LICENSE][bsd] file
-for details).
+The code for highlight.js (_i.e._ everything under the `highlightjs` directory)
+was released under the BSD License (see relative [LICENSE][bsd] file for
+details).
 
 ## Miscellaneous
 
-Other than on the [hilight.js homesite][hljs], you can find a list of supported
-languages in [options/languages-list_all.json][languages], and of available color
-schemes in [options/fill-css-list.js][package].
+Other than on the [highlight.js homesite][hljs], you can find a list of
+supported languages in [options/languages-list_all.json][languages], and of
+available color schemes in [options/fill-css-list.js][package].
 
 [hljs]: https://highlightjs.org
+[hljs-download]: https://highlightjs.org/download/
 [policy]: https://blog.mozilla.org/addons/2015/02/10/extension-signing-safer-experience
 [signing]: https://wiki.mozilla.org/Add-ons/Extension_Signing
 [amo]: https://addons.mozilla.org/firefox/addon/enlight
 [webext-start]: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Getting_started_with_web-ext
 [webext-ref]: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/web-ext_command_reference
 [mpl]: https://github.com/Qeole/Enlight/blob/master/LICENSE
-[bsd]: https://github.com/isagalaev/highlight.js/blob/master/LICENSE
+[bsd]: https://github.com/highlightjs/highlight.js/blob/master/LICENSE
 [languages]: https://github.com/Qeole/Enlight/blob/master/options/languages-list_all.json
 [package]: https://github.com/Qeole/Enlight/blob/master/options/fill-css-list.js
