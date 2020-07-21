@@ -98,8 +98,10 @@ function dohl() {
       language = " bash";
       break;
     case "c":
-    case "cc":
     case "h":
+      language = " c";
+      break;
+    case "cc":
       language = " cpp";
       break;
     case "diff":
@@ -120,8 +122,12 @@ function dohl() {
     case "rb":
       language = " ruby";
       break;
+    case "rs":
+      language = " rust";
+      break;
     case "cs":
     case "css":
+    case "go":
     case "xml":
     case "ini":
     case "json":
