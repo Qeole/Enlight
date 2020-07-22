@@ -117,6 +117,7 @@ function doHighlight(aLanguageId) {
         "  language: '" + aLanguageId + "'," +
         "  fileExt: " + options.fileext + "," +
         "  lineNumbers: " + options.linenumbers + "," +
+        "  tabSize: " + options.tabsize + "," +
         "  langList: " + JSON.stringify(options.langlist) +
         "};"
     }).then(() => {
@@ -256,6 +257,7 @@ function init() {
     .then(reloadOption("fileext"))
     .then(reloadOption("linenumbers"))
     .then(reloadOption("hlstyle"))
+    .then(reloadOption("tabsize"))
     .then(reloadOption("langlist"))
     .then(() => {
       if (options.autohl) {

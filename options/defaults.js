@@ -12,6 +12,7 @@ var gDefaultOptions = {
     autohl: false,
     fileext: false,
     linenumbers: false,
+    tabsize: 8,
     /*
      * Default language list.
      * Based on the default selection proposed on the download page for

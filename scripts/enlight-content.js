@@ -154,8 +154,11 @@ function dohl() {
   for (var pre of preList) {
     var firstChild = pre.firstChild;
     var code = document.createElement("code");
+    var tabsize = "";
+    if (options && options.tabSize)
+      tabsize = " -moz-tab-size: " + options.tabSize + ";";
     code.setAttribute("class", "hljs" + language);
-    code.style = "padding: 0;";
+    code.style = "padding: 0;" + tabsize;
     code.appendChild(firstChild);
     pre.appendChild(code);
   }
