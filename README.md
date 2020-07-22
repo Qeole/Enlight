@@ -60,6 +60,8 @@ You can also customize some options through Firefox add-on manager tab:
 * Add line numbers (_default: off_): add line numbers on the left of file
   content. Line numbers are created with CSS and are not part of the file
   contents.
+* Set the width for tab characters (_default: 8-space long_): choose a size for
+  displaying tabulation characters.
 * Select the programming languages to use in the add-on pop-up and for
   auto-detection. Using many languages tends to slow down auto-detection and to
   make it less accurate. Defaults to the list of “common” languages as offered
