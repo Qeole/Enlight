@@ -107,6 +107,7 @@ function dohl() {
     case "diff":
     case "patch":
       language = " diff";
+      break;
     case "js":
       language = " javascript";
       break;
