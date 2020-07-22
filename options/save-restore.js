@@ -48,6 +48,11 @@ function saveOptions(e) {
     if (e) /* Undefined when calling for shortcuts for languages checkboxes */
         e.preventDefault();
 
+    let tabsize = Number(document.getElementById("tabsize").value);
+    console.log(tabsize);
+    if (!Number.isInteger(tabsize) || tabsize <= 0)
+        tabsize = gDefaultOptions.tabsize;
+
     selectedLanguages = getLangList();
 
     browser.storage.local.set({
@@ -55,6 +60,7 @@ function saveOptions(e) {
         autohl: document.getElementById("autohl").checked,
         fileext: document.getElementById("fileext").checked,
         linenumbers: document.getElementById("linenumbers").checked,
+        tabsize: tabsize,
         langlist: selectedLanguages,
     });
 }
@@ -79,6 +85,7 @@ function restoreAllOptions() {
     restoreOption("autohl", gDefaultOptions.autohl);
     restoreOption("fileext", gDefaultOptions.fileext);
     restoreOption("linenumbers", gDefaultOptions.linenumbers);
+    restoreOption("tabsize", gDefaultOptions.tabsize);
     restoreLangList(gDefaultOptions.langlist);
 }
 
@@ -87,4 +94,5 @@ document.getElementById("hlstyle").addEventListener("change", saveOptions);
 document.getElementById("autohl").addEventListener("change", saveOptions);
 document.getElementById("fileext").addEventListener("change", saveOptions);
 document.getElementById("linenumbers").addEventListener("change", saveOptions);
+document.getElementById("tabsize").addEventListener("change", saveOptions);
 document.getElementById("langlist").addEventListener("change", saveOptions);
