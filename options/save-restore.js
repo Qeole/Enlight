@@ -78,7 +78,7 @@ function restoreAllOptions() {
     restoreOption("hlstyle", gDefaultOptions.hlstyle);
     restoreOption("autohl", gDefaultOptions.autohl);
     restoreOption("fileext", gDefaultOptions.fileext);
-    restoreOption("linenumbers", gDefaultOptions.linnumbers);
+    restoreOption("linenumbers", gDefaultOptions.linenumbers);
     restoreLangList(gDefaultOptions.langlist);
 }
 
