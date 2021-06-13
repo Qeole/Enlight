@@ -83,7 +83,8 @@ browser.runtime.sendMessage({shouldOpenPopup: "query"})
 window.addEventListener("click", function(event) {
   let t = event.target;
   if (t.nodeName == "DIV") {
-    browser.runtime.sendMessage({"languageId": t.id});
-    window.close();
+    browser.runtime.sendMessage({"languageId": t.id}).then(() => {
+      window.close();
+    });
   }
 }, false);
