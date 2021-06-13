@@ -49,7 +49,6 @@ function saveOptions(e) {
         e.preventDefault();
 
     let tabsize = Number(document.getElementById("tabsize").value);
-    console.log(tabsize);
     if (!Number.isInteger(tabsize) || tabsize <= 0)
         tabsize = gDefaultOptions.tabsize;
 

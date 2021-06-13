@@ -107,7 +107,6 @@ function doHighlight(aLanguageId) {
   browser.tabs.executeScript({
     file: gHLJSPath
   }).then(() => {
-    console.debug(options.fileext);
     browser.tabs.executeScript({
       code:
         "window.enlightContentScriptOptions = {" +
