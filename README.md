@@ -6,9 +6,9 @@ files, based on the highlight.js project.
 
 Syntax highlighting relies on the highlight.js library (see [project
 homepage][hljs]). Currently packaged with the add-on is the version
-10.1.1 of highlight.js, which provides
-94    color themes <!-- darkula is an alias, doesn't count --> and syntax for
-189   languages.
+11.0.1 of highlight.js, which provides
+242    color themes and syntax for
+191    languages.
 
 ## Install
 
@@ -28,14 +28,12 @@ profile, use:
 
     web-ext run
 
-Or to compile an add-on `.xpi` file, use instead:
+Or to compile an add-on `.zip` file, use instead:
 
     web-ext build
 
 See the [documentation for web-ext tool][webext-ref] if you need more
 information about the available commands and options.
-
-Building with `cfx` or `jpm` (used for older versions) is no longer supported.
 
 ## Usage
 

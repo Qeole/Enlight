@@ -10,7 +10,7 @@
 /*
  * Paths.
  */
-var gHLJSPath      = "highlightjs/highlight.pack.js";
+var gHLJSPath      = "highlightjs/highlight.min.js";
 var gContentScript = "scripts/enlight-content.js";
 var gLanguagePath  = "options/languages-list_all.json";
 
@@ -28,21 +28,18 @@ var isHighlighted = false;
  * Options, hardcoded for now.
  */
 var options = {
-  hlstyle: "solarized-dark.css",
+  hlstyle: "base16/solarized-dark.css",
   autohl: false,
   fileext: false,
   linenumbers: false,
   langlist: [
-    "apache",
     "bash",
     "c",
     "cpp",
     "csharp",
-    "coffeescript",
     "css",
     "diff",
     "go",
-    "http",
     "ini",
     "java",
     "javascript",
@@ -52,15 +49,14 @@ var options = {
     "lua",
     "makefile",
     "markdown",
-    "nginx",
     "objectivec",
     "perl",
     "php",
     "php-template",
     "plaintext",
-    "properties",
     "python",
     "python-repl",
+    "r",
     "ruby",
     "rust",
     "scss",
@@ -68,6 +64,7 @@ var options = {
     "sql",
     "swift",
     "typescript",
+    "vbnet",
     "xml",
     "yaml",
   ]

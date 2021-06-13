@@ -8,7 +8,7 @@
  */
 
 var gDefaultOptions = {
-    hlstyle: "solarized-dark.css",
+    hlstyle: "base16/solarized-dark.css",
     autohl: false,
     fileext: false,
     linenumbers: false,
@@ -17,18 +17,18 @@ var gDefaultOptions = {
      * Default language list.
      * Based on the default selection proposed on the download page for
      * highlight.js: https://highlightjs.org/download/
+     *
+     *    cd highlight.js    # (in highlight.js repo)
+     *    grep -l '^ *Category:.* common' src/languages|sort|sed 's=.\+/\(.*\).js=\1='
      */
     langlist: [
-        "apache",
         "bash",
         "c",
         "cpp",
         "csharp",
-        "coffeescript",
         "css",
         "diff",
         "go",
-        "http",
         "ini",
         "java",
         "javascript",
@@ -38,15 +38,14 @@ var gDefaultOptions = {
         "lua",
         "makefile",
         "markdown",
-        "nginx",
         "objectivec",
         "perl",
         "php",
         "php-template",
         "plaintext",
-        "properties",
         "python",
         "python-repl",
+        "r",
         "ruby",
         "rust",
         "scss",
@@ -54,6 +53,7 @@ var gDefaultOptions = {
         "sql",
         "swift",
         "typescript",
+        "vbnet",
         "xml",
         "yaml",
     ],

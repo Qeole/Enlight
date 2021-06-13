@@ -1,5 +1,5 @@
 #!/bin/bash
-#sed 's/registerLanguage("/&\n/g' highlight.pack.js | sed 's/".*//' | sed '1d' | sort
+#sed 's/registerLanguage("/&\n/g' highlight.min.js | sed 's/".*//' | sed '1d' | sort
 
 if [ -z "$1" ] ; then
   echo "Usage: $0 <file>"

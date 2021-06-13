@@ -89,42 +89,42 @@ function dohl() {
   var language = "";
 
   if (options.language != "" && options.language != "auto") {
-    language = " " + options.language;
+    language = "language-" + options.language;
   } else if (options.language == "auto" && options.fileExt) {
     /* Try to guess language based on file extension */
     let extension = window.location.toString().split('.').pop().toLowerCase();
     switch (extension) {
     case "sh":
-      language = " bash";
+      language = "language-bash";
       break;
     case "c":
     case "h":
-      language = " c";
+      language = "language-c";
       break;
     case "cc":
-      language = " cpp";
+      language = "language-cpp";
       break;
     case "diff":
     case "patch":
-      language = " diff";
+      language = "language-diff";
       break;
     case "js":
-      language = " javascript";
+      language = "language-javascript";
       break;
     case "md":
-      language = " markdown";
+      language = "language-markdown";
       break;
     case "pl":
-      language = " perl";
+      language = "language-perl";
       break;
     case "py":
-      language = " python";
+      language = "language-python";
       break;
     case "rb":
-      language = " ruby";
+      language = "language-ruby";
       break;
     case "rs":
-      language = " rust";
+      language = "language-rust";
       break;
     case "cs":
     case "css":
@@ -134,18 +134,18 @@ function dohl() {
     case "json":
     case "java":
     case "php":
-      language = " " + extension;
+      language = "language-" + extension;
       break;
     case "txt":
-      language = " nohighlight";
+      language = "nohighlight";
       break;
     default:
       break;
     }
   }
   /*
-   * Else if (options.language == "auto"), we leave language to "" so
-   * highlihgt.sh attempts auto-detection
+   * Else if (options.language == "auto"), we leave language to "" so that
+   * highlight.js attempts auto-detection
    */
 
   /*
@@ -157,7 +157,7 @@ function dohl() {
     var tabsize = "";
     if (options && options.tabSize)
       tabsize = " -moz-tab-size: " + options.tabSize + ";";
-    code.setAttribute("class", "hljs" + language);
+    code.setAttribute("class", language);
     code.style = "padding: 0;" + tabsize;
     code.appendChild(firstChild);
     pre.appendChild(code);
@@ -170,7 +170,7 @@ function dohl() {
     hljs.configure({
       languages: options.langList
     });
-  hljs.initHighlighting();
+  hljs.highlightAll();
 
   /*
    * Add line numbers if needed.
@@ -200,7 +200,7 @@ function dohl() {
    */
   if (options.language == "" || options.language == "auto") {
     let languageClass = document.querySelectorAll("pre code")[0].className;
-    let languageId = languageClass.slice("hljs ".length);
+    let languageId = languageClass.slice("hljs language-".length);
     let port = browser.runtime.connect({name: "detectedLanguage"});
     port.postMessage({language: languageId});
     port.disconnect();
