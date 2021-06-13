@@ -28,11 +28,11 @@ function getLangList() {
 /*
  * Check boxes for languages saved in pref (or from default).
  */
-function restoreLangList(aDefault) {
+function restoreLangList() {
     let gettingItem = browser.storage.local.get("langlist");
     gettingItem.then((res) => {
         let table = document.getElementById("langlist");
-        let opts = res.langlist ? res.langlist : aDefault;
+        let opts = res.langlist ? res.langlist : gDefaultOptions.langlist;
 
         for (let row of table.children) {
             let cell = row.children[0];
@@ -85,10 +85,14 @@ function restoreAllOptions() {
     restoreOption("fileext", gDefaultOptions.fileext);
     restoreOption("linenumbers", gDefaultOptions.linenumbers);
     restoreOption("tabsize", gDefaultOptions.tabsize);
-    restoreLangList(gDefaultOptions.langlist);
+    /*
+     * restoreLangList() moved out, it needs a separate event so we are sure
+     * that the generation of the list to updated is finished.
+     */
 }
 
 document.addEventListener('DOMContentLoaded', restoreAllOptions);
+document.addEventListener('langlistReady', restoreLangList);
 document.getElementById("hlstyle").addEventListener("change", saveOptions);
 document.getElementById("autohl").addEventListener("change", saveOptions);
 document.getElementById("fileext").addEventListener("change", saveOptions);

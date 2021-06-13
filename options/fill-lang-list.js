@@ -8,6 +8,7 @@
  */
 
 var gLanguagePath  = "languages-list_all.json";
+const langlistReadyEvent = new Event("langlistReady");
 
 /*
  * Parse JSON list of languages.
@@ -47,6 +48,8 @@ function updateList(aResponse) {
         row.appendChild(cell);
         optList.appendChild(row);
     }
+
+    document.dispatchEvent(langlistReadyEvent);
 }
 
 loadJSON(updateList);
