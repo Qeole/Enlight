@@ -17,7 +17,7 @@ var gLanguagePath  = "options/languages-list_all.json";
 /*
  * List of supported languages (for display in button label).
  */
-var gLanguageList = {};
+var gLanguageList = [];
 
 /*
  * Current page status: highlighted, or not.
@@ -92,12 +92,21 @@ function reloadOption(aId, aDefault) {
  * Update button tooltip label ("title").
  */
 function updateTitle(aLanguageId) {
-  if (aLanguageId)
+  if (aLanguageId) {
+    let title = "Enlight [";
+    for (let l of gLanguageList) {
+      if (l.class == aLanguageId) {
+        title += l.name;
+        break;
+      }
+    }
+    title += "]";
     browser.browserAction.setTitle({
-      title: "Enlight [" + gLanguageList[aLanguageId] + "]"
+      title: title
     });
-  else
+  } else {
     browser.browserAction.setTitle({title: "Enlight"});
+  }
 }
 
 /*

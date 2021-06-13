@@ -30,18 +30,18 @@ function loadJSON(aCallback) {
 function updateList(aResponse) {
     languageList = JSON.parse(aResponse);
     let optList = document.getElementById("langlist");
-    for (let l in languageList) {
-        if (l == "auto")
+    for (let l of languageList) {
+        if (l.class == "auto")
             continue;
         let row = document.createElement("tr");
         let cell = document.createElement("td");
         let input = document.createElement("input");
         let label = document.createElement("label");
-        let id = "langlist-" + l;
+        let id = "langlist-" + l.class;
         input.type = "checkbox";
         input.id = id;
         label.for = id;
-        label.textContent = languageList[l];
+        label.textContent = l.name;
         cell.appendChild(input)
         cell.appendChild(label)
         row.appendChild(cell);

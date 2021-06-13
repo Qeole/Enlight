@@ -49,21 +49,20 @@ function loadJSON(aLangSubset) {
  */
 function generateList(aResponse, aLangSubset) {
   var languageList = JSON.parse(aResponse);
-  var keys = Object.keys(languageList);
 
-  for (var l of keys) {
-    if (!aLangSubset.includes(l))
+  for (var l of languageList) {
+    if (!aLangSubset.includes(l.class))
       continue;
 
     var element = document.createElement("div");
-    element.id = l;
-    if (l == "auto") {
+    element.id = l.class;
+    if (l.class == "auto") {
       element.className = "auto";
       element.appendChild(document.createTextNode("Auto-detect"));
     }
     else {
       element.className = "lang";
-      element.textContent = languageList[l];
+      element.textContent = l.name;
     }
     document.body.appendChild(element);
   }
