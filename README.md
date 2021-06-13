@@ -6,7 +6,7 @@ files, based on the highlight.js project.
 
 Syntax highlighting relies on the highlight.js library (see [project
 homepage][hljs]). Currently packaged with the add-on is the version
-11.0.1 of highlight.js, which provides
+11.0.1 <!-- HLJS_VERSION --> of highlight.js, which provides
 242    color themes and syntax for
 191    languages.
 
