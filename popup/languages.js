@@ -1,5 +1,7 @@
 /* SPDX-License-Identifier: MPL-2.0 */
 
+import { FullLanguageList } from "../options/list-languages.js";
+
 /*
  * Callback to ask background script whether popup should be opened.
  */
@@ -14,36 +16,27 @@ function handleResponse (aMsg) {
     langSubset.push("auto");
     return langSubset;
 }
-function handleError (error) {
-    console.log("[enlight] Error:", error);
-}
 
 /*
- * Parse JSON file to load the names of supported languages.
+ * Callback for errors: Log an error message.
  */
-function loadJSON (aLangSubset) {
-    const xobj = new XMLHttpRequest();
-    xobj.overrideMimeType("application/json");
-    xobj.open("GET", "../options/languages-list_all.json", true);
-    xobj.onreadystatechange = function () {
-        if (xobj.readyState === 4 && xobj.status === 200) {
-            /*
-             * Required use of an anonymous callback as .open will NOT return a
-             * value but simply returns undefined in asynchronous mode.
-             */
-            generateList(xobj.responseText, aLangSubset);
-        }
-    };
-    xobj.send(null);
+function handleError (error) {
+    console.error(`[${AddonName}] Error:`, error);
 }
 
 /*
  * Print list of languages.
  */
-function generateList (aResponse, aLangSubset) {
-    const languageList = JSON.parse(aResponse);
+function generateList (aLangSubset) {
+    /*
+     * If user clicked to remove highlighting, return.
+     * Otherwise, aLangSubset contains at least "auto".
+     */
+    if (!aLangSubset) {
+        return;
+    }
 
-    for (const l of languageList) {
+    for (const l of FullLanguageList) {
         if (!aLangSubset.includes(l.class)) {
             continue;
         }
@@ -62,11 +55,11 @@ function generateList (aResponse, aLangSubset) {
 }
 
 /*
- * Check if popup should open, then load JSON and print list.
+ * Check if popup should open, then print list.
  */
 browser.runtime.sendMessage({ shouldOpenPopup: "query" })
     .then(handleResponse, handleError)
-    .then(loadJSON, handleError);
+    .then(generateList, handleError);
 
 /*
  * On user click, send selected language id to background script, then close

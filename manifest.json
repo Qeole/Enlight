@@ -24,7 +24,7 @@
   },
 
   "background": {
-    "scripts": ["scripts/enlight-background.js"]
+    "page": "scripts/enlight-background.html"
   },
 
   "options_ui": {

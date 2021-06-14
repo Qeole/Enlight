@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: MPL-2.0 */
 
-/* global gDefaultOptions saveOptions */
+import { DefaultOptions } from "./defaults.js";
+import { saveOptions } from "./save-restore.js";
 
 function checkAll (aVal) {
     const table = document.getElementById("langlist");
@@ -31,5 +32,5 @@ document.getElementById("langlist-selectnone")
     });
 document.getElementById("langlist-reset")
     .addEventListener("click", () => {
-        checkAll(gDefaultOptions.langlist);
+        checkAll(DefaultOptions.langlist);
     });

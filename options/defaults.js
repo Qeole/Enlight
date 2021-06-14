@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: MPL-2.0 */
 
 /* eslint-disable-next-line no-unused-vars */
-const gDefaultOptions = {
+const DefaultOptions = {
     hlstyle: "base16/solarized-dark.css",
     autohl: false,
     fileext: false,
@@ -52,3 +52,5 @@ const gDefaultOptions = {
         "yaml",
     ],
 };
+
+export { DefaultOptions };

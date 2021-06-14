@@ -1,16 +1,13 @@
 /* SPDX-License-Identifier: MPL-2.0 */
 
+import { DefaultOptions } from "../options/defaults.js";
+import { FullLanguageList } from "../options/list-languages.js";
+
 /*
  * Paths.
  */
-const gHLJSPath = "highlightjs/highlight.min.js";
-const gContentScript = "scripts/enlight-content.js";
-const gLanguagePath = "options/languages-list_all.json";
-
-/*
- * List of supported languages (for display in button label).
- */
-let gLanguageList = [];
+const gHLJSPath = "../highlightjs/highlight.min.js";
+const gContentScript = "../scripts/enlight-content.js";
 
 /*
  * Current page status: highlighted, or not.
@@ -18,50 +15,9 @@ let gLanguageList = [];
 let isHighlighted = false;
 
 /*
- * Options, hardcoded for now.
+ * Initialize options with default values.
  */
-const options = {
-    hlstyle: "base16/solarized-dark.css",
-    autohl: false,
-    fileext: false,
-    linenumbers: false,
-    langlist: [
-        "bash",
-        "c",
-        "cpp",
-        "csharp",
-        "css",
-        "diff",
-        "go",
-        "ini",
-        "java",
-        "javascript",
-        "json",
-        "kotlin",
-        "less",
-        "lua",
-        "makefile",
-        "markdown",
-        "objectivec",
-        "perl",
-        "php",
-        "php-template",
-        "plaintext",
-        "python",
-        "python-repl",
-        "r",
-        "ruby",
-        "rust",
-        "scss",
-        "shell",
-        "sql",
-        "swift",
-        "typescript",
-        "vbnet",
-        "xml",
-        "yaml",
-    ],
-};
+const options = JSON.parse(JSON.stringify(DefaultOptions));
 
 /*
  * Callback.
@@ -88,7 +44,7 @@ function reloadOption (aId, aDefault) {
 function updateTitle (aLanguageId) {
     if (aLanguageId) {
         let title = "Enlight [";
-        for (const l of gLanguageList) {
+        for (const l of FullLanguageList) {
             if (l.class === aLanguageId) {
                 title += l.name;
                 break;
@@ -226,29 +182,6 @@ function tabUpdateListener (aTabId, aChangeInfo, aTabInfo) {
 }
 
 /*
- * Parse JSON list of languages so that we can display the name of detected
- * languages in button label.
- */
-function loadJSON (aCallback) {
-    const xobj = new XMLHttpRequest();
-    xobj.overrideMimeType("application/json");
-    xobj.open("GET", gLanguagePath, true);
-    xobj.onreadystatechange = function () {
-        if (xobj.readyState === 4 && xobj.status === 200) {
-            aCallback(xobj.responseText);
-        }
-    };
-    xobj.send(null);
-}
-
-/*
- * Callback.
- */
-function parseResponse (aResponse) {
-    gLanguageList = JSON.parse(aResponse);
-}
-
-/*
  * Load all options, and set up auto-highlighting if required.
  */
 function init () {
@@ -279,5 +212,3 @@ browser.runtime.onMessage.addListener(popupListener);
 
 browser.storage.onChanged.addListener(init);
 init();
-
-loadJSON(parseResponse);

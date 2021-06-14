@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: MPL-2.0 */
 
 /* eslint-disable no-multi-spaces */
-const styles = [
+const FullStyleList = [
     { file: "base16/3024.css",                          name: "3024" },
     { file: "a11y-dark.css",                            name: "A11y Dark" },
     { file: "a11y-light.css",                           name: "A11y Light" },
@@ -247,10 +247,4 @@ const styles = [
 ];
 /* eslint-enable no-multi-spaces */
 
-const list = document.getElementById("hlstyle");
-for (const s of styles) {
-    const item = document.createElement("option");
-    item.value = s.file;
-    item.textContent = s.name;
-    list.appendChild(item);
-}
+export { FullStyleList };

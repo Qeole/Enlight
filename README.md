@@ -92,8 +92,8 @@ details).
 ## Miscellaneous
 
 Other than on the [highlight.js homesite][hljs], you can find a list of
-supported languages in [options/languages-list_all.json][languages], and of
-available color schemes in [options/fill-css-list.js][package].
+supported languages in [options/list-languages.js][languages], and of
+available color schemes in [options/list-styles.js][styles].
 
 [hljs]: https://highlightjs.org
 [hljs-download]: https://highlightjs.org/download/
@@ -102,7 +102,7 @@ available color schemes in [options/fill-css-list.js][package].
 [amo]: https://addons.mozilla.org/firefox/addon/enlight
 [webext-start]: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Getting_started_with_web-ext
 [webext-ref]: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/web-ext_command_reference
-[mpl]: https://github.com/Qeole/Enlight/blob/master/LICENSE
+[mpl]: LICENSE
 [bsd]: https://github.com/highlightjs/highlight.js/blob/master/LICENSE
-[languages]: https://github.com/Qeole/Enlight/blob/master/options/languages-list_all.json
-[package]: https://github.com/Qeole/Enlight/blob/master/options/fill-css-list.js
+[languages]: options/list-languages.js
+[styles]: options/list-styles.js
