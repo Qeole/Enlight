@@ -1,18 +1,21 @@
 /* SPDX-License-Identifier: MPL-2.0 */
 
+/* global gDefaultOptions */
+
 /*
  * Retrieve the list of checked languages in the list.
  */
-function getLangList() {
-    let table = document.getElementById("langlist");
-    let res = [];
+function getLangList () {
+    const table = document.getElementById("langlist");
+    const res = [];
 
-    for (let row of table.children) {
-        let cell = row.children[0];
-        let input = cell.children[0];
-        let l = input.id.substring("langlist-".length);
-        if (input.checked)
+    for (const row of table.children) {
+        const cell = row.children[0];
+        const input = cell.children[0];
+        const l = input.id.substring("langlist-".length);
+        if (input.checked) {
             res.push(l);
+        }
     }
 
     return res;
@@ -21,31 +24,35 @@ function getLangList() {
 /*
  * Check boxes for languages saved in pref (or from default).
  */
-function restoreLangList() {
-    let gettingItem = browser.storage.local.get("langlist");
+function restoreLangList () {
+    const gettingItem = browser.storage.local.get("langlist");
     gettingItem.then((res) => {
-        let table = document.getElementById("langlist");
-        let opts = res.langlist ? res.langlist : gDefaultOptions.langlist;
+        const table = document.getElementById("langlist");
+        const opts = res.langlist ? res.langlist : gDefaultOptions.langlist;
 
-        for (let row of table.children) {
-            let cell = row.children[0];
-            let input = cell.children[0];
-            let l = input.id.substring("langlist-".length);
-            if (opts.includes(l))
+        for (const row of table.children) {
+            const cell = row.children[0];
+            const input = cell.children[0];
+            const l = input.id.substring("langlist-".length);
+            if (opts.includes(l)) {
                 input.checked = true;
+            }
         }
     }, onError);
 }
 
-function saveOptions(e) {
-    if (e) /* Undefined when calling for shortcuts for languages checkboxes */
+function saveOptions (e) {
+    /* e is undefined when calling for shortcuts for languages checkboxes */
+    if (e) {
         e.preventDefault();
+    }
 
     let tabsize = Number(document.getElementById("tabsize").value);
-    if (!Number.isInteger(tabsize) || tabsize <= 0)
+    if (!Number.isInteger(tabsize) || tabsize <= 0) {
         tabsize = gDefaultOptions.tabsize;
+    }
 
-    selectedLanguages = getLangList();
+    const selectedLanguages = getLangList();
 
     browser.storage.local.set({
         hlstyle: document.getElementById("hlstyle").value,
@@ -57,22 +64,23 @@ function saveOptions(e) {
     });
 }
 
-function onError(error) {
+function onError (error) {
     console.error("[enlight]: Error:", error);
 }
 
-function restoreOption(aId, aDefault) {
-    let gettingItem = browser.storage.local.get(aId);
+function restoreOption (aId, aDefault) {
+    const gettingItem = browser.storage.local.get(aId);
     gettingItem.then((res) => {
-        let element = document.getElementById(aId);
-        if (element.type && element.type.toLowerCase() === "checkbox")
+        const element = document.getElementById(aId);
+        if (element.type && element.type.toLowerCase() === "checkbox") {
             element.checked = res[aId] || aDefault;
-        else
+        } else {
             element.value = res[aId] || aDefault;
+        }
     }, onError);
 }
 
-function restoreAllOptions() {
+function restoreAllOptions () {
     restoreOption("hlstyle", gDefaultOptions.hlstyle);
     restoreOption("autohl", gDefaultOptions.autohl);
     restoreOption("fileext", gDefaultOptions.fileext);
@@ -84,8 +92,8 @@ function restoreAllOptions() {
      */
 }
 
-document.addEventListener('DOMContentLoaded', restoreAllOptions);
-document.addEventListener('langlistReady', restoreLangList);
+document.addEventListener("DOMContentLoaded", restoreAllOptions);
+document.addEventListener("langlistReady", restoreLangList);
 document.getElementById("hlstyle").addEventListener("change", saveOptions);
 document.getElementById("autohl").addEventListener("change", saveOptions);
 document.getElementById("fileext").addEventListener("change", saveOptions);

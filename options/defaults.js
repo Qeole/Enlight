@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: MPL-2.0 */
 
-var gDefaultOptions = {
+/* eslint-disable-next-line no-unused-vars */
+const gDefaultOptions = {
     hlstyle: "base16/solarized-dark.css",
     autohl: false,
     fileext: false,
@@ -50,4 +51,4 @@ var gDefaultOptions = {
         "xml",
         "yaml",
     ],
-}
+};
