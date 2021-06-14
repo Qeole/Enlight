@@ -122,7 +122,7 @@ function populateLanguageList () {
         const id = "langlist-" + l.class;
         input.type = "checkbox";
         input.id = id;
-        label.for = id;
+        label.setAttribute("for", id);
         label.textContent = l.name;
         cell.appendChild(input);
         cell.appendChild(label);

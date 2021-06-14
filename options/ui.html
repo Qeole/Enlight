@@ -15,59 +15,56 @@
   </head>
   <body>
     <form>
-      <fieldset>
-        <legend>Preferences</legend>
 
+      <p>
+        Color scheme
+        <select id="hlstyle" style="margin-left: 1em;"></select>
+      </p>
+
+      <p>
+        <input id="autohl" type="checkbox"/>
+        <label for="autohl">
+          Autodetect and automatically highlight all raw files
+        </label>
+      </p>
+
+      <p>
+        <input id="fileext" type="checkbox"/>
+        <label for="fileext">
+          Use file extension (from URL) to detect common languages instead of
+          syntax-based recognition
+        </label>
+      </p>
+
+      <p>
+        <input id="linenumbers" type="checkbox"/>
+        <label for="linenumbers">
+          Add line numbers on the left
+        </label>
+      </p>
+
+      <p>
+        <label for="tabsize">
+          Width of tab characters
+        </label>
+        <input id="tabsize" type="text" size="2" maxLength="2"/>
+      </p>
+
+      <details>
+        <summary>
+          Syntax languages to use in list and for autodetection
+        </summary>
         <p>
-          Color Scheme
-          <select id="hlstyle" style="margin-left: 1em;"></select>
+          List of languages to show in the popup, and to use for
+          autodetection. Using many languages may slow down autodetection.
         </p>
+        <a class="langlist-shortcut" id="langlist-selectall">Select all</a>
+        <a class="langlist-shortcut" id="langlist-selectnone">Select none</a>
+        <a class="langlist-shortcut" id="langlist-reset">Reset</a>
+        <table id="langlist">
+        </table>
+      </details>
 
-        <p>
-          <input id="autohl" type="checkbox"/>
-          <label for="autohl">
-            Autodetect and automatically highlight all raw files
-          </label>
-        </p>
-
-        <p>
-          <input id="fileext" type="checkbox"/>
-          <label for="fileext">
-            Use file extension (from URL) to detect common languages instead of
-            syntax-based recognition
-          </label>
-        </p>
-
-        <p>
-          <input id="linenumbers" type="checkbox"/>
-          <label for="linenumbers">
-            Add line numbers on the left
-          </label>
-        </p>
-
-        <p>
-          <label for="tabsize">
-            Width of tab characters
-          </label>
-          <input id="tabsize" type="text" size="2" maxLength="2"/>
-        </p>
-
-        <details>
-          <summary>
-            Syntax languages to use in list and for autodetection
-          </summary>
-          <p>
-            List of languages to show in the popup, and to use for
-            autodetection. Using many languages may slow down autodetection.
-          </p>
-          <a class="langlist-shortcut" id="langlist-selectall">Select all</a>
-          <a class="langlist-shortcut" id="langlist-selectnone">Select none</a>
-          <a class="langlist-shortcut" id="langlist-reset">Reset</a>
-          <table id="langlist">
-          </table>
-        </details>
-
-      </fieldset>
     </form>
     <script type="module" src="defaults.js"></script>
     <script type="module" src="save-restore.js"></script>
