@@ -8,8 +8,8 @@ const AddonName = browser.runtime.getManifest().name;
 /*
  * Paths.
  */
-const gHLJSPath = "../highlightjs/highlight.min.js";
-const gContentScript = "../scripts/enlight-content.js";
+const HLJSPath = "../highlightjs/highlight.min.js";
+const ContentScript = "../scripts/enlight-content.js";
 
 /*
  * Current page status: highlighted, or not.
@@ -66,7 +66,7 @@ function updateTitle (aLanguageId) {
  */
 function doHighlight (aLanguageId) {
     browser.tabs.executeScript({
-        file: gHLJSPath,
+        file: HLJSPath,
     }).then(() => {
         browser.tabs.executeScript({
             code:
@@ -79,7 +79,7 @@ function doHighlight (aLanguageId) {
         "};",
         }).then(() => {
             browser.tabs.executeScript({
-                file: gContentScript,
+                file: ContentScript,
             }).then(() => {
                 if (aLanguageId === "undo") {
                     return browser.tabs.removeCSS({
