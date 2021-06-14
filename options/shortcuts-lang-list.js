@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: MPL-2.0 */
+
 function checkAll(aVal) {
     let table = document.getElementById("langlist");
 
