@@ -3,6 +3,8 @@
 import { DefaultOptions } from "../options/defaults.js";
 import { FullLanguageList } from "../options/list-languages.js";
 
+const AddonName = browser.runtime.getManifest().name;
+
 /*
  * Paths.
  */
@@ -23,7 +25,7 @@ const options = JSON.parse(JSON.stringify(DefaultOptions));
  * Callback.
  */
 function onError (error) {
-    console.error("[enlight]: Error:", error);
+    console.error(`[${AddonName}] Error:`, error);
 }
 
 /*
@@ -98,7 +100,7 @@ function doHighlight (aLanguageId) {
  */
 function popupListener (aMsg, aSender, aSendResponse) {
     if (aMsg.languageId) {
-        console.debug("[enlight] Required language:", aMsg.languageId);
+        console.debug(`[${AddonName}] Required language:`, aMsg.languageId);
         doHighlight(aMsg.languageId);
         isHighlighted = true;
         if (aMsg.languageId === "auto" && !options.autohl) {
@@ -149,7 +151,7 @@ function checkBodyListener (p) {
     switch (p.name) {
     case "checkBodyPort":
         p.onMessage.addListener((m) => {
-            console.debug("[enlight] Do we detect a code block?", m.isCodeBlock);
+            console.debug(`[${AddonName}] Do we detect a code block?`, m.isCodeBlock);
             if (m.isCodeBlock) {
                 doHighlight("auto");
             }
@@ -158,7 +160,7 @@ function checkBodyListener (p) {
         break;
     case "detectedLanguage":
         p.onMessage.addListener((m) => {
-            console.debug("[enlight] Content script detected language:",
+            console.debug(`[${AddonName}] Content script detected language:`,
                 m.language);
             updateTitle(m.language);
         });

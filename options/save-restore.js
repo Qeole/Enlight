@@ -4,6 +4,8 @@ import { DefaultOptions } from "./defaults.js";
 import { FullLanguageList } from "./list-languages.js";
 import { FullStyleList } from "./list-styles.js";
 
+const AddonName = browser.runtime.getManifest().name;
+
 /*
  * Retrieve the list of checked languages in the list.
  */
@@ -53,7 +55,7 @@ function saveOptions (e) {
  * Callback for errors: Log an error message.
  */
 function onError (error) {
-    console.error("[enlight]: Error:", error);
+    console.error(`[${AddonName}] Error:`, error);
 }
 
 /*

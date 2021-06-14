@@ -2,6 +2,8 @@
 
 import { FullLanguageList } from "../options/list-languages.js";
 
+const AddonName = browser.runtime.getManifest().name;
+
 /*
  * Callback to ask background script whether popup should be opened.
  */
