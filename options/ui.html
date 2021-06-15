@@ -3,13 +3,33 @@
   <head>
     <!-- vim: set ts=8 sts=2 et sw=2 tw=80: -->
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="chrome://global/skin/in-content/common.css"/>
     <style type="text/css">
+      body {
+        color: var(--in-content-page-color);
+        background-color: var(--in-content-box-background);
+      }
       .langlist-shortcut{
         text-decoration: underline;
-        margin: 1ex;
+        margin-right: 1em;
       }
       .langlist-shortcut:hover {
         cursor: pointer;
+      }
+      #langlist input[type="checkbox"] {
+        vertical-align: bottom;
+      }
+      label {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .checkbox-label {
+        max-width: 95%;
+        vertical-align: top;
+      }
+      .help-message {
+        display: block;
+        color: var(--in-content-deemphasized-text);
       }
     </style>
   </head>
@@ -17,53 +37,81 @@
     <form>
 
       <p>
-        Color scheme
+        <label for="hlstyle">
+          <b>Color scheme</b>
+          <span class="help-message">
+            Pick a color scheme
+            (<a href="https://highlightjs.org/static/demo/">Previews</a>).
+          </span>
+        </label>
         <select id="hlstyle" style="margin-left: 1em;"></select>
       </p>
 
       <p>
         <input id="autohl" type="checkbox"/>
-        <label for="autohl">
-          Autodetect and automatically highlight all raw files
+        <label class="checkbox-label" for="autohl">
+          <b>Autodetection</b>
+          <span class="help-message">
+            Activate to autodetect and automatically highlight all plain-text
+            files.
+          </span>
         </label>
       </p>
 
       <p>
         <input id="fileext" type="checkbox"/>
-        <label for="fileext">
-          Use file extension (from URL) to detect common languages instead of
-          syntax-based recognition
+        <label class="checkbox-label" for="fileext">
+          <b>Detection based on file extension</b>
+          <span class="help-message">
+            Activate to use file extension (from URL) to detect common languages
+            instead of using syntax-based recognition. Fall back to syntax-based
+            if file extension of plain-text file is not known.
+          </span>
         </label>
       </p>
 
       <p>
         <input id="linenumbers" type="checkbox"/>
-        <label for="linenumbers">
-          Add line numbers on the left
+        <label class="checkbox-label" for="linenumbers">
+          <b>Line numbers</b>
+          <span class="help-message">
+            Activate to add line numbers in a column on the left of colored
+            contents.
+          </span>
         </label>
       </p>
 
       <p>
         <label for="tabsize">
-          Width of tab characters
+          <b>Tab width</b>
+          <span class="help-message">
+            Choose a width for tab characters.
+          </span>
         </label>
         <input id="tabsize" type="text" size="2" maxLength="2"/>
       </p>
 
-      <details>
-        <summary>
-          Syntax languages to use in list and for autodetection
-        </summary>
-        <p>
-          List of languages to show in the popup, and to use for
-          autodetection. Using many languages may slow down autodetection.
-        </p>
-        <a class="langlist-shortcut" id="langlist-selectall">Select all</a>
-        <a class="langlist-shortcut" id="langlist-selectnone">Select none</a>
-        <a class="langlist-shortcut" id="langlist-reset">Reset</a>
-        <table id="langlist">
-        </table>
-      </details>
+      <fieldset>
+        <legend>
+          <b>Supported languages</b>
+        </legend>
+        <details>
+          <summary>
+            Click to unfold
+            <span class="help-message">
+              List of languages to list in the popup, and to consider for
+              autodetection. Using many languages may slow down autodetection.
+            </span>
+          </summary>
+          <p>
+            <a class="langlist-shortcut" id="langlist-selectall">Select all</a>
+            <a class="langlist-shortcut" id="langlist-selectnone">Select none</a>
+            <a class="langlist-shortcut" id="langlist-reset">Reset</a>
+          </p>
+          <table id="langlist">
+          </table>
+        </details>
+      </fieldset
 
     </form>
     <script type="module" src="defaults.js"></script>
