@@ -8,7 +8,8 @@ const AddonName = browser.runtime.getManifest().name;
 /*
  * Paths.
  */
-const HLJSPath = "../highlightjs/highlight.min.js";
+const HLJSPath = "../hljs/highlight.min.js";
+const HLJSStylesDir = "/hljs/styles/";
 const ContentScript = "../scripts/enlight-content.js";
 
 /*
@@ -83,11 +84,11 @@ function doHighlight (aLanguageId) {
             }).then(() => {
                 if (aLanguageId === "undo") {
                     return browser.tabs.removeCSS({
-                        file: "/highlightjs/styles/" + options.hlstyle,
+                        file: HLJSStylesDir + options.hlstyle,
                     });
                 } else {
                     return browser.tabs.insertCSS({
-                        file: "/highlightjs/styles/" + options.hlstyle,
+                        file: HLJSStylesDir + options.hlstyle,
                     });
                 }
             });

@@ -85,7 +85,7 @@ the [highlight.js project community][hljs].
 The code relative to the add-on itself is placed under the Mozilla Public
 License v. 2.0 (see file [LICENSE][mpl]).
 
-The code for highlight.js (_i.e._ everything under the `highlightjs` directory)
+The code for highlight.js (_i.e._ everything under the `hljs` directory)
 was released under the BSD License (see relative [LICENSE][bsd] file for
 details).
 

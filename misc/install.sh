@@ -1,6 +1,6 @@
 #!/bin/sh
 
-HJSDIR="highlightjs"
+HJSDIR="hljs"
 
 rm -rf $HJSDIR
 mkdir $HJSDIR
