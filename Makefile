@@ -3,40 +3,49 @@
 SHELL := /usr/bin/env bash
 
 VERSION := $(shell sed -n '/"version"/ s/.*: "\(.*\)",/\1/p' manifest.json)
+HLJS_VERSION := $(shell awk '/HLJS_VERSION/ { print $$1 }' README.md)
+
 ADDON   := web-ext-artifacts/enlight-$(VERSION).zip
 WEB_EXT ?= ./node_modules/web-ext/bin/web-ext
 
 HLJS_DIR     := hljs
 HLJS_SCRIPT  := highlight.min.js
 HLJS_STYLES  := $(HLJS_DIR)/styles
-HLJS_SRC     := build/$(HLJS_SCRIPT) src/$(notdir $(HLJS_STYLES)) README.md LICENSE
 HLJS         := $(HLJS_DIR)/$(HLJS_SCRIPT) $(HLJS_STYLES) $(HLJS_DIR)/README.md $(HLJS_DIR)/LICENSE
 
-HLJS_VERSION := $(shell awk '/HLJS_VERSION/ { print $$1 }' README.md)
-HLJS_SRC_DIR := hljs_src_$(HLJS_VERSION)
+HLJS_SRC_DIR := highlight.js
+HLJS_SRC_REF := $(HLJS_SRC_DIR)/LICENSE
+HLJS_SRC     := $(addprefix $(HLJS_SRC_DIR)/,build/$(HLJS_SCRIPT) src/$(notdir $(HLJS_STYLES)) README.md LICENSE)
 
-addon: checks $(ADDON) addons-linter
+addon: hljs_version checks $(ADDON) addons-linter
 
 checks: check-css-list check-lang-list eslint
 
 %.zip: $(HLJS)
 	$(WEB_EXT) build --overwrite-dest -i misc/ -i amo-screenshots/ -i package-lock.json -i $(HLJS_SRC_DIR)/
 
-hljs: clean-hljs $(HLJS)
+hljs: clean-hljs hljs_version $(HLJS)
 
-$(HLJS): $(HLJS_SRC_DIR)
+$(HLJS): $(HLJS_SRC_REF)
 	cd $(HLJS_SRC_DIR) && \
 		npm install && \
 		node tools/build.js -t browser
 	mkdir -p $(HLJS_DIR)
-	cp -r -t $(HLJS_DIR) $(addprefix $(HLJS_SRC_DIR)/,$(HLJS_SRC))
+	cp -r -t $(HLJS_DIR) $(HLJS_SRC)
 
 lib-src: clean-lib-src $(HLJS_SRC_DIR)
 
-$(HLJS_SRC_DIR):
-	git clone --config advice.detachedHead=false --branch $(HLJS_VERSION) --depth 1 https://github.com/highlightjs/highlight.js.git $@
+hljs_version: $(HLJS_SRC_REF)
+	pushd $(dir $<) && \
+		[[ "$$(git describe --tags)" == "$(HLJS_VERSION)" ]] || \
+		( git checkout $(HLJS_VERSION) && \
+			popd && \
+			$(RM) -r -- $(HLJS_DIR) )
 
-.PHONY: addon hljs checks lib-src
+$(HLJS_SRC_REF):
+	git submodule update --init
+
+.PHONY: addon hljs checks lib-src hljs_version
 
 STYLES_LIST := options/list-styles.js
 check-css-list: $(HLJS_STYLES)
