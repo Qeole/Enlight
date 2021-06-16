@@ -10,7 +10,7 @@ const AddonName = browser.runtime.getManifest().name;
  */
 const HLJSPath = "../hljs/highlight.min.js";
 const HLJSStylesDir = "/hljs/styles/";
-const ContentScript = "../scripts/enlight-content.js";
+const ContentScript = "../scripts/content.js";
 
 /*
  * Current page status: highlighted, or not.
