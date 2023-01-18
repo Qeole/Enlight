@@ -201,8 +201,9 @@ function dohl () {
      * language
      */
     if (options.language === "" || options.language === "auto") {
-        const languageClass = document.querySelectorAll("pre code")[0].className;
-        const languageId = languageClass.slice("hljs language-".length);
+        const languageId = document.querySelectorAll("pre code")[0].className
+            .split(" ").find(c => c.indexOf("language-", 0) === 0)
+            .slice("language-".length);
         const port = browser.runtime.connect({ name: "detectedLanguage" });
         port.postMessage({ language: languageId });
         port.disconnect();
