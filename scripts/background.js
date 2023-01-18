@@ -54,43 +54,69 @@ function updateTitle (aLanguageId) {
             }
         }
         title += "]";
-        browser.browserAction.setTitle({
+        browser.action.setTitle({
             title: title,
         });
     } else {
-        browser.browserAction.setTitle({ title: "Enlight" });
+        browser.action.setTitle({ title: "Enlight" });
     }
+}
+
+/*
+ * Injected script. Pass options to main content script.
+ */
+function passOptions (aLanguageId, aFileExt, aLineNumbers, aTabSize, aLangList) {
+    window.enlightContentScriptOptions = {
+        language: aLanguageId,
+        fileExt: aFileExt,
+        lineNumbers: aLineNumbers,
+        tabSize: aTabSize,
+        langList: aLangList,
+    };
 }
 
 /*
  * Actually trigger syntax highlighting by injecting content scripts.
  */
 function doHighlight (aLanguageId) {
-    browser.tabs.executeScript({
-        file: HLJSPath,
-    }).then(() => {
-        browser.tabs.executeScript({
-            code:
-        "window.enlightContentScriptOptions = {" +
-        "  language: '" + aLanguageId + "'," +
-        "  fileExt: " + options.fileext + "," +
-        "  lineNumbers: " + options.linenumbers + "," +
-        "  tabSize: " + options.tabsize + "," +
-        "  langList: " + JSON.stringify(options.langlist) +
-        "};",
+    browser.tabs.query({
+        active: true,
+    }).then((tabs) => {
+        const target = {
+            tabId: tabs[0].id,
+        };
+
+        browser.scripting.executeScript({
+            target: target,
+            files: [HLJSPath],
         }).then(() => {
-            browser.tabs.executeScript({
-                file: ContentScript,
+            browser.scripting.executeScript({
+                target: target,
+                func: passOptions,
+                args: [
+                    aLanguageId,
+                    options.fileext,
+                    options.linenumbers,
+                    options.tabsize,
+                    JSON.stringify(options.langlist),
+                ],
             }).then(() => {
-                if (aLanguageId === "undo") {
-                    return browser.tabs.removeCSS({
-                        file: HLJSStylesDir + options.hlstyle,
-                    });
-                } else {
-                    return browser.tabs.insertCSS({
-                        file: HLJSStylesDir + options.hlstyle,
-                    });
-                }
+                browser.scripting.executeScript({
+                    target: target,
+                    files: [ContentScript],
+                }).then(() => {
+                    if (aLanguageId === "undo") {
+                        return browser.scripting.removeCSS({
+                            target: target,
+                            files: [HLJSStylesDir + options.hlstyle],
+                        });
+                    } else {
+                        return browser.scripting.insertCSS({
+                            target: target,
+                            files: [HLJSStylesDir + options.hlstyle],
+                        });
+                    }
+                });
             });
         });
     });
@@ -177,10 +203,13 @@ function tabUpdateListener (aTabId, aChangeInfo, aTabInfo) {
         return;
     }
     /*
-   * Auto-highlight!
-   */
-    browser.tabs.executeScript({
-        code: "(" + checkBody.toString() + ")()",
+     * Auto-highlight!
+     */
+    browser.scripting.executeScript({
+        target: {
+            tabId: aTabId,
+        },
+        func: checkBody,
     });
 }
 
