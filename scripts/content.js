@@ -150,6 +150,10 @@ function dohl () {
      * Enclose <pre></pre> blocks content in <code></code> blocks
      */
     for (const pre of preList) {
+        /* Replace all <br> tags with newline characters */
+        const codeBlock = pre.querySelector('code');
+        codeBlock.innerHTML = codeBlock.innerHTML.replace(/<br>/g, '\n');
+
         const firstChild = pre.firstChild;
         const code = document.createElement("code");
         let tabsize = "";
