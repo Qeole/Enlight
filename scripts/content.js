@@ -152,7 +152,9 @@ function dohl () {
     for (const pre of preList) {
         /* Replace all <br> tags with newline characters */
         const codeBlock = pre.querySelector('code');
-        codeBlock.innerHTML = codeBlock.innerHTML.replace(/<br[ /]*>/g, '\n');
+        if (codeBlock) {
+            codeBlock.innerHTML = codeBlock.innerHTML.replace(/<br[ /]*>/g, '\n');
+        }
 
         const firstChild = pre.firstChild;
         const code = document.createElement("code");
